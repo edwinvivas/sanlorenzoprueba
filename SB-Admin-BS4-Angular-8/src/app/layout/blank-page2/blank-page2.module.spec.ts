@@ -1,13 +1,13 @@
-import { BlankPageModule } from './blank-page2.module';
+import { BlankPage2Module } from './blank-page2.module';
 
-describe('BlankPageModule', () => {
-    let blankPageModule: BlankPageModule;
+describe('BlankPage2Module', () => {
+    let blankPage2Module: BlankPage2Module;
 
     beforeEach(() => {
-        blankPageModule = new BlankPageModule();
+        blankPage2Module = new BlankPage2Module();
     });
 
     it('should create an instance', () => {
-        expect(blankPageModule).toBeTruthy();
+        expect(blankPage2Module).toBeTruthy();
     });
 });

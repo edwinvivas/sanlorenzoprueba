@@ -130,7 +130,7 @@ $topnav-background-color: $san-lorenzo-claro;
             height: auto;
             li {
                 a {
-                    color: #fff;
+                    color: $san-lorenzo-verde-oscuro;
                     padding: 10px;
                     display: block;
                 }
@@ -175,16 +175,16 @@ $topnav-background-color: $san-lorenzo-claro;
     cursor: pointer;
     padding: 12px;
     bottom: 0;
-    color: #999;
-    background: #212529;
+    color: $san-lorenzo-verde-oscuro;
+    background: $san-lorenzo-claro;
     i {
         font-size: 23px;
     }
     &:hover {
         background: darken($topnav-background-color, 5%);
-        color: #fff;
+        color:$san-lorenzo-verde-medio;
     }
-    border-top: 1px solid #999;
+    border-top: 1px solid $san-lorenzo-verde-oscuro;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
