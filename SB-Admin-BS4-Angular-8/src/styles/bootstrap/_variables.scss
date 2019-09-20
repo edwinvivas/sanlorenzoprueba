@@ -47,6 +47,15 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+/* Color Theme Swatches in Hex */
+$san-lorenzo-verde-oscuro: #078C03;
+$san-lorenzo-verde-medio: #0ED907;
+$san-lorenzo-verde-claro: #BFF2BD;
+$san-lorenzo-claro: #F2E9D8;
+$san-lorenzo-oscuro: #0D0D0D;
+$san-lorenzo-info:  #05E67E;
+$san-lorenzo-danger: #D9077A;
+$san-lorenzo-warning:#A65316;
 $colors: () !default;
 $colors: map-merge((
   "blue":       $blue,
@@ -64,14 +73,14 @@ $colors: map-merge((
   "gray-dark":  $gray-800
 ), $colors);
 
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
-$success:       $green !default;
+$primary:       $san-lorenzo-verde-oscuro !default;
+$secondary:     $san-lorenzo-verde-medio !default;
+$success:       $san-lorenzo-verde-claro !default;
 $info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$warning:       $san-lorenzo-warning !default;
+$danger:        $san-lorenzo-danger !default;
+$light:         $san-lorenzo-claro !default;
+$dark:          $san-lorenzo-oscuro !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((

@@ -1,21 +1,30 @@
-$topnav-background-color: #fff;
+$san-lorenzo-verde-oscuro: #078C03;
+$san-lorenzo-verde-medio: #0ED907;
+$san-lorenzo-verde-claro: #BFF2BD;
+$san-lorenzo-claro: #F2E9D8;
+$san-lorenzo-oscuro: #0D0D0D;
+$san-lorenzo-info:  #05E67E;
+$san-lorenzo-danger: #D9077A;
+$san-lorenzo-warning:#A65316;
+
+$topnav-background-color: $san-lorenzo-claro;
 :host {
     .navbar {
         background-color: $topnav-background-color;
         .navbar-brand {
-            color: #40FF00;
+            color: $san-lorenzo-verde-oscuro;
         }
         .nav-item > a {
-            color: #40FF00;
+            color: $san-lorenzo-verde-oscuro;
             &:hover {
-                color: #40FF00;
+                color: $san-lorenzo-verde-medio;
             }
         }
     }
     .messages {
         width: 300px;
         .media {
-            border-bottom: 1px solid #40FF00;
+            border-bottom: 1px solid $san-lorenzo-info;
             padding: 5px 10px;
             &:last-child {
                 border-bottom: none;
