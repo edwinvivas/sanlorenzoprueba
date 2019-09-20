@@ -9,6 +9,17 @@ $san-lorenzo-warning:#A65316;
 
 $topnav-background-color: $san-lorenzo-claro;
 :host {
+    .logo {
+        width: 25px;
+        margin: 2px 2px 7px 1px;
+    }
+    .title {
+        font-weight: bolder;
+        font-size: 25px;
+        font-family: monospace;
+        margin: 3px;
+    }
+    
     .navbar {
         background-color: $topnav-background-color;
         .navbar-brand {
