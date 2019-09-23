@@ -1,14 +1,106 @@
-<!-- <p>CONJUNTO MULTIFAMILIAR SAN LORENZO P.H 
-    CRA 68 D N° 24 A-50       nit 830008327-023
-
-
-<p> -->
-
+<div [@routerTransition]>
+<app-page-header [heading]="'Formulario Registro Propietario o Arrendatario'" [icon]="'fa fa-user-circle'"></app-page-header>
 &nbsp;
+<img class="logoformulario"  src="/assets/images/logoph2.png" alt=""> 
 
-                    <fieldset class="form-group">
-                        <label>Text Input</label>
-                        <input class="form-control">
-                        <p class="help-block">Example block-level help text here.</p>
-                    </fieldset>
- 
+<p>
+     La siguiente información es de carácter confidencial y reservado. Solamente se autoriza &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    su uso dentro de los programas de seguridad y en caso de desastres </p>
+    &nbsp;
+    &nbsp;
+<div class="row">
+    <div class="col-lg-5"> 
+     <h4>Nombre y Apellido</h4>
+
+    <form role="form">
+
+    <div class="form-group">
+       <!-- <label class="form-control-label" for="inputSuccess">Input with success</label> -->
+        <input type="text" class="form-control is-valid" id="inputSuccess">
+        <div class="valid-feedback">
+          Ingrese su nombre
+        </div>
+    </div>
+
+    <fieldset class="form-group">
+            <label>Ocupa el inmueble en calidad de:</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="tipo_ocupacion" id="optionsRadios1" value="option1" checked=""> PROPÍETARIO
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="tipo_ocupacion" id="optionsRadios2" value="option2"> ARRENDATARIO
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="form-group2">
+                <label>Si es arrendatario seleccione:</label>
+                <div class="radio2">
+                    <label>
+                        <input type="radio" name="tipo_arriendo" id="optionsRadios3" value="option3" checked=""> Arriendo Directo con el propietario
+                    </label>
+                </div>
+                <div class="radio2">
+                    <label>
+                        <input type="radio" name="tipo_arriendo" id="optionsRadios4" value="option4"> Arriendo por inmobiliaria
+                    </label>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+            <div class="col-lg-6">
+                   <!-- <h4>Disabled Form States</h4>--> 
+        
+                    <form role="form">
+                            
+                        <div class="form-group">
+                                    <label>Seleccione el interior</label>
+                                    <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                    </select>
+                                </div>
+                      
+                                <div class="form-group">
+                                        <label>Seleccione el apartamento</label>
+                                        <select class="form-control">
+                                            <option>101</option>
+                                            <option>102</option>
+                                            <option>103</option>
+                                            <option>104</option>
+                                            <option>201</option>
+                                        </select>
+                                    </div>
+                                    <fieldset class="form-group">
+                                            <label>La cuota administración la pagara :</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> PROPÍETARIO
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> ARRENDATARIO
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> INMOBILIARIA
+                                                    </label>
+                                                </div>
+                                        </fieldset>
+
+                        </form>
+                    </div>
+   </div>
+</div>
+
