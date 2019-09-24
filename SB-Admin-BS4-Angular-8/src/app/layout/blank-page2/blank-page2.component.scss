@@ -1,10 +1,29 @@
 
 :host {
-.logoformulario {
-    width: 80px;
-    margin: 2px 2px 7px 1px;
-    display: block;
-    margin:auto;
-}
+    .logoformulario {
+        width: 80px;
+        margin: 2px 2px 30px 1px;
+        display: block;
+        margin:auto;
+                }
+        label {
+            display: block;
+            font: 1rem 'Fira Sans', sans-serif;
+            }
+        input,
+        label {
+            margin: .4rem 0;
+            }
+    #mensajeinicio {
+    margin: 10px 20px 0px 150px; 
+                }
+    #mensajeinicio2 {
+     margin: 10px 20px 40px 200px; 
+                    }
+    #titular{
+        margin: 10px 20px 20px 200px;
+        font-weight :bold;
 
+
+    }                
 }

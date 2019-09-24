@@ -1,26 +1,25 @@
 <div [@routerTransition]>
 <app-page-header [heading]="'Formulario Registro Propietario o Arrendatario'" [icon]="'fa fa-user-circle'"></app-page-header>
-&nbsp;
+
+
 <img class="logoformulario"  src="/assets/images/logoph2.png" alt=""> 
 
-<p>
-     La siguiente información es de carácter confidencial y reservado. Solamente se autoriza &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    su uso dentro de los programas de seguridad y en caso de desastres </p>
-    &nbsp;
-    &nbsp;
+<p id= "mensajeinicio">
+     La siguiente información es de carácter confidencial y reservado. Solamente se autoriza </p>
+     <p id= "mensajeinicio2">  su uso dentro de los programas de seguridad y en caso de desastres </p>
+
 <div class="row">
     <div class="col-lg-5"> 
-     <h4>Nombre y Apellido</h4>
-
-    <form role="form">
-
+         <form role="form">
     <div class="form-group">
-       <!-- <label class="form-control-label" for="inputSuccess">Input with success</label> -->
-        <input type="text" class="form-control is-valid" id="inputSuccess">
-        <div class="valid-feedback">
-          Ingrese su nombre
+              <label for="start">Fecha de registro:</label>
+
+       <input type="date" id="fecharegistro" name="fecharegistro"
+              value=" "
+              min="201-901-01" max="2110-12-31">
+       
         </div>
-    </div>
+    
 
     <fieldset class="form-group">
             <label>Ocupa el inmueble en calidad de:</label>
@@ -35,7 +34,7 @@
                 </label>
             </div>
         </fieldset>
-        <fieldset class="form-group2">
+        <fieldset class="form-group">
                 <label>Si es arrendatario seleccione:</label>
                 <div class="radio2">
                     <label>
@@ -48,58 +47,279 @@
                     </label>
                 </div>
             </fieldset>
+            <div class="form-group">
+                <label>Seleccione el interior</label>
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </div>
+  
+            <div class="form-group">
+                    <label>Seleccione el apartamento</label>
+                    <select class="form-control">
+                        <option>101</option>
+                        <option>102</option>
+                        <option>103</option>
+                        <option>104</option>
+                        <option>201</option>
+                    </select>
+                </div>
+                <fieldset class="form-group">
+                        <label>La cuota administración la pagara :</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> PROPÍETARIO
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> ARRENDATARIO
+                            </label>
+                        </div>
+                        <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> INMOBILIARIA
+                                </label>
+                            </div>
+                    </fieldset>
+
+
+            <label id= "titular">Titular: </label>
+
+                <div id="Ingresonombre" class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                    <input type="text" class="form-control is-valid" id="nombre">
+                    <div class="valid-feedback">
+                     <!--  Input success message -->
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <label for="start">Fecha de nacimiento:</label>
+  
+         <input type="date" id="fechanacimiento" name="fechanacimiento"
+                value=" "
+                min="1980-12-01" max="2110-12-31">
+         
+          </div>
+
+          <div id="Ingresocedula" class="form-group">
+            <label class="form-control-label" for="inputSuccess">Numero de cedula</label>
+            <input type="text" class="form-control is-valid" id="cedula">
+            <div class="valid-feedback">
+             <!--  Input success message -->
+            </div>
+        </div>
+
+        <div id="Numerocelular" class="form-group">
+            <label class="form-control-label" for="inputSuccess">Numero de celular</label>
+            <input type="text" class="form-control is-valid" id="celular">
+            <div class="valid-feedback">
+             <!--  Input success message -->
+            </div>
+        </div>
+
+        <div id="Numerocelular" class="form-group">
+            <label class="form-control-label" for="inputSuccess">Correo electrónico</label>
+            <input type="text" class="form-control is-valid" id="correo">
+            <div class="valid-feedback">
+             <!--  Input success message -->
+            </div>
+        </div>
+        <div id="profesion" class="form-group">
+                <label class="form-control-label" for="inputSuccess">Profesion y/o cargo</label>
+                <input type="text" class="form-control is-valid" id="profesion">
+                <div class="valid-feedback">
+                 <!--  Input success message -->
+                </div>
+            </div>
+            <div id="empresa" class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Empresa donde labora</label>
+                    <input type="text" class="form-control is-valid" id="empresa">
+                    <div class="valid-feedback">
+                     <!--  Input success message -->
+                    </div>
+                </div>
+                <div id="empresadireccion" class="form-group">
+                        <label class="form-control-label" for="inputSuccess">Direccion de la Empresa </label>
+                        <input type="text" class="form-control is-valid" id="empresadireccion">
+                        <div class="valid-feedback">
+                         <!--  Input success message -->
+                        </div>
+                    </div>
+                    <div id="empresacelular" class="form-group">
+                            <label class="form-control-label" for="inputSuccess">Telefono empresa </label>
+                            <input type="text" class="form-control is-valid" id="empresacelular">
+                            <div class="valid-feedback">
+                             <!--  Input success message -->
+                            </div>
+                        </div>
         </form>
     </div>
 
             <div class="col-lg-6">
-                   <!-- <h4>Disabled Form States</h4>--> 
-        
-                    <form role="form">
-                            
-                        <div class="form-group">
-                                    <label>Seleccione el interior</label>
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                    </select>
-                                </div>
-                      
-                                <div class="form-group">
-                                        <label>Seleccione el apartamento</label>
-                                        <select class="form-control">
-                                            <option>101</option>
-                                            <option>102</option>
-                                            <option>103</option>
-                                            <option>104</option>
-                                            <option>201</option>
-                                        </select>
-                                    </div>
-                                    <fieldset class="form-group">
-                                            <label>La cuota administración la pagara :</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> PROPÍETARIO
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> ARRENDATARIO
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> INMOBILIARIA
-                                                    </label>
-                                                </div>
-                                        </fieldset>
 
-                        </form>
+                    <label id= "hogar">Composicion hogar residente: </label>
+
+                    <div id="hogar1nombre" class="form-group">
+                      <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                       <input type="text" class="form-control is-valid" id="hogar1nombre">
+                        <div class="valid-feedback">
+                            <!--  Input success message -->
+                        </div>
+                          </div>
+                          <div id="ocupacionhogar1" class="form-group">
+                               <label class="form-control-label" for="inputSuccess">Ocupacion</label>
+                               <input type="text" class="form-control is-valid" id="ocupacionhogar1">
+                               <div class="valid-feedback">
+                                <!--  Input success message -->
+                               </div>
+                           </div>
+                           <div id="parentesco1" class="form-group">
+                                   <label class="form-control-label" for="inputSuccess">Parentesco</label>
+                                   <input type="text" class="form-control is-valid" id="parentesco1">
+                                   <div class="valid-feedback">
+                                    <!--  Input success message -->
+                                   </div>
+                               </div>
+
+                               <div class="form-group">
+                                    <label for="start">Fecha de nacimiento:</label>
+                      
+                             <input type="date" id="fechanacimientohogar1" name="fechanacimientohogar1"
+                                    value=" "
+                                    min="1980-12-01" max="2110-12-31">
+                             
+                              </div>
+
+                    <fieldset class="form-group">
+                            <label>Servicio domestico:</label>
+                            <div class="radio4">
+                                <label>
+                                    <input type="radio" name="servdomestico" id="domestico_si" value="domestico_si" checked=""> SI
+                                </label>
+                            </div>
+                            <div class="radio4">
+                                <label>
+                                    <input type="radio" name="servdomestico" id="domestico_no" value="domestico_si"> NO
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div id="servicionombre" class="form-group">
+                                <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                                 <input type="text" class="form-control is-valid" id="nombreservicio">
+                                  <div class="valid-feedback">
+                                      <!--  Input success message -->
+                                  </div>
+        <div id="serviciocedula" class="form-group">
+            <label class="form-control-label" for="inputSuccess">Numero de cedula</label>
+            <input type="text" class="form-control is-valid" id="cedulaservicio">
+            <div class="valid-feedback">
+             <!--  Input success message -->
+            </div>
+          </div>                
+        </div>
+
+                      <fieldset class="form-group">
+                                <label>Tipo servicio:</label>
+                                <div class="radio5">
+                                    <label>
+                                        <input type="radio" name="servtipo" id="interno" value="interno" checked=""> Interno
+                                    </label>
+                                </div>
+                                <div class="radio5">
+                                    <label>
+                                        <input type="radio" name="servtipo" id="externo" value="interno"> Externo
+                                    </label>
+                                </div>
+                            </fieldset>
+                    <fieldset class="form-group">
+                            <label>Mascota:</label>
+                            <div class="radio3">
+                                <label>
+                                    <input type="radio" name="mascota" id="mascota_si" value="mascota_si" checked=""> SI
+                                </label>
+                            </div>
+                            <div class="radio3">
+                                <label>
+                                    <input type="radio" name="mascota" id="mascota_no" value="mascota_no"> NO
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div id="razamascota" class="form-group">
+                         <label class="form-control-label" for="inputSuccess">Raza</label>
+                            <input type="text" class="form-control is-valid" id="razamascota">
+                            <div class="valid-feedback">
+                             <!--  Input success message -->
+                             </div>
+                            </div>
+
+                            <fieldset class="form-group">
+                                    <label>Vehiculo:</label>
+                                    <div class="radio3">
+                                        <label>
+                                            <input type="radio" name="vehiculo1" id="vehiculo_si" value="vehiculo_si" checked=""> SI
+                                        </label>
+                                    </div>
+                                    <div class="radio3">
+                                        <label>
+                                            <input type="radio" name="vehiculo1" id="vehiculo_no" value="vehiculo_no"> NO
+                                        </label>
+                                    </div>
+
+                                    <div id="marca1" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Marca</label>
+                                            <input type="text" class="form-control is-valid" id="marca1">
+                                            <div class="valid-feedback">
+                                             <!--  Input success message -->
+                                            </div>
+                                        </div>
+                                        <div id="color1" class="form-group">
+                                                <label class="form-control-label" for="inputSuccess">Color</label>
+                                                <input type="text" class="form-control is-valid" id="color1">
+                                                <div class="valid-feedback">
+                                                 <!--  Input success message -->
+                                                </div>
+                                            </div>
+                                            <div id="placa1" class="form-group">
+                                                    <label class="form-control-label" for="inputSuccess">Placa</label>
+                                                    <input type="text" class="form-control is-valid" id="placa1">
+                                                    <div class="valid-feedback">
+                                                     <!--  Input success message -->
+                                                    </div>
+                                                </div>
+                                </fieldset>
+             <label id= "emergencia">En caso de emergencia llamar a: </label>
+
+                     <div id="Emergencianombre" class="form-group">
+                       <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                        <input type="text" class="form-control is-valid" id="nombreemergencia">
+                         <div class="valid-feedback">
+                             <!--  Input success message -->
+                         </div>
+                           </div>
+                           <div id="celularemergencia" class="form-group">
+                                <label class="form-control-label" for="inputSuccess">Numero de celular</label>
+                                <input type="text" class="form-control is-valid" id="emergenciacelular">
+                                <div class="valid-feedback">
+                                 <!--  Input success message -->
+                                </div>
+                            </div>
+                            <div id="telefonoemergencia" class="form-group">
+                                    <label class="form-control-label" for="inputSuccess">Numero de Telefono</label>
+                                    <input type="text" class="form-control is-valid" id="emergenciatelefono">
+                                    <div class="valid-feedback">
+                                     <!--  Input success message -->
+                                    </div>
+                                </div>
                     </div>
    </div>
 </div>
