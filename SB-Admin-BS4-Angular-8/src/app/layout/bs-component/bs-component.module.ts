@@ -29,7 +29,7 @@ import { PageHeaderModule } from '../../shared';
         FormsModule,
         ReactiveFormsModule,
         NgbModule,
-        PageHeaderModule
+        PageHeaderModule,
     ],
     declarations: [
         BsComponentComponent,
