@@ -21,7 +21,7 @@
       <div class="card-body">
         <div class="row">
             <div class="col-xl-6 text-xs-center">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
                         <div class="form-group">
                             <label>Seleccione el interior</label>
@@ -37,10 +37,10 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                <!--/div-->
             </div>
             <div class="col-xl-6 text-xs-center">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
                         <div class="form-group">
                             <label>Seleccione el apartamento</label>
@@ -53,7 +53,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                <!--/div-->
             </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
       <div class="card-body">
         <div class="row">
             <div class="col-xl-8 text-xs-center">
-                <div class="card mb-3">
+             <!-- div class="card mb-3"-->
                     <div class="card-body">
                         <div id="propietarionombre" class="form-group">
                             <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
@@ -82,10 +82,10 @@
                         </div>
 
                     </div>
-                </div>
+                <!--/div -->
             </div>
             <div class="col-xl-4 text-xs-justify">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
                         <div class="form-group">
                             <label for="start">Fecha de nacimiento:</label>
@@ -95,12 +95,12 @@
 
                       </div>
                     </div>
-                </div>
+                <!--/div -->
             </div>
         </div>
         <div class="row">
             <div class="col-xl-4 text-xs-center">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
                         <div id="Ingresocedula" class="form-group">
                             <label class="form-control-label" for="inputSuccess">Numero de cedula</label>
@@ -110,17 +110,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                <!--/div-->
             </div>
             <div class="col-xl-4 text-xs-center">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
-                        cedula de
+                            <div id="expedidacedula" class="form-group">
+                                    <label class="form-control-label" for="inputSuccess">Expedida en</label>
+                                    <input type="text" class="form-control is-valid" id="cedulaexpedida">
+                                    <div class="valid-feedback">
+                                     <!--  Input success message -->
+                                    </div>
+                         </div>
                     </div>
-                </div>
+                <!--/div-->
             </div>
             <div class="col-xl-4 text-xs-center">
-                <div class="card mb-3">
+                <!--div class="card mb-3"-->
                     <div class="card-body">
                         <div id="Numerocelular" class="form-group">
                             <label class="form-control-label" for="inputSuccess">Numero de celular</label>
@@ -131,7 +137,7 @@
                         </div>
 
                     </div>
-                </div>
+                <!--/div-->
             </div>
         </div>
 
@@ -162,7 +168,17 @@
     </div>
     <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <label>Vehiculo:</label>
+            <div class="radio3">
+                <label>
+                    <input type="radio" name="vehiculo1" id="vehiculo_si" value="vehiculo_si" checked=""> SI
+                </label>
+            </div>
+            <div class="radio3">
+                <label>
+                    <input type="radio" name="vehiculo1" id="vehiculo_no" value="vehiculo_no"> NO
+                </label>
+            </div>
       </div>
     </div>
   </div>
@@ -177,7 +193,50 @@
     </div>
     <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="row">
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <fieldset class="form-group">
+                                            <label>Tiene Mascota:</label>
+                                            <div class="radio3">
+                                                <label>
+                                                    <input type="radio" name="mascota" id="mascota_si" value="mascota_si" checked=""> SI
+                                                </label>
+                                            </div>
+                                            <div class="radio3">
+                                                <label>
+                                                    <input type="radio" name="mascota" id="mascota_no" value="mascota_no"> NO
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                            </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <div id="razamascota" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Raza</label>
+                                               <input type="text" class="form-control is-valid" id="razamascota">
+                                               <div class="valid-feedback">
+                                                <!--  Input success message -->
+                                                </div>
+                                               </div>
+                                               <div id="clasemascota" class="form-group">
+                                                    <label class="form-control-label" for="inputSuccess">Clase</label>
+                                                       <input type="text" class="form-control is-valid" id="clasemascota">
+                                                       <div class="valid-feedback">
+                                                        <!--  Input success message -->
+                                                        </div>
+                                                       </div>
+                            </div>
+                        <!--/div-->
+                    </div>
+                </div>
+
+
+
       </div>
     </div>
   </div>
@@ -191,7 +250,61 @@
     </div>
     <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="row">
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <fieldset class="form-group">
+                                            <label>Servicio domestico:</label>
+                                            <div class="radio4">
+                                                <label>
+                                                    <input type="radio" name="servdomestico" id="domestico_si" value="domestico_si" checked=""> SI
+                                                </label>
+                                            </div>
+                                            <div class="radio4">
+                                                <label>
+                                                    <input type="radio" name="servdomestico" id="domestico_no" value="domestico_si"> NO
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                                <label>Tipo servicio:</label>
+                                                <div class="radio5">
+                                                    <label>
+                                                        <input type="radio" name="servtipo" id="interno" value="interno" checked=""> Interno
+                                                    </label>
+                                                </div>
+                                                <div class="radio5">
+                                                    <label>
+                                                        <input type="radio" name="servtipo" id="externo" value="interno"> Externo
+                                                    </label>
+                                                </div>
+                                            </fieldset>
+
+                            </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <div id="servicionombre" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                                             <input type="text" class="form-control is-valid" id="nombreservicio">
+                                              <div class="valid-feedback">
+                                                  <!--  Input success message -->
+                                              </div>
+                    <div id="serviciocedula" class="form-group">
+                        <label class="form-control-label" for="inputSuccess">Numero de cedula</label>
+                        <input type="text" class="form-control is-valid" id="cedulaservicio">
+                        <div class="valid-feedback">
+                         <!--  Input success message -->
+                        </div>
+                      </div>
+                    </div>
+                            </div>
+                        <!--/div-->
+                    </div>
+                </div>
       </div>
     </div>
   </div>
@@ -205,7 +318,48 @@
     </div>
     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="row">
+                    <div class="col-xl-4 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <div id="Emergencianombre" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
+                                             <input type="text" class="form-control is-valid" id="nombreemergencia">
+                                              <div class="valid-feedback">
+                                                  <!--  Input success message -->
+                                              </div>
+                                                </div>
+                            </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-4 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <div id="celularemergencia" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Numero de celular</label>
+                                            <input type="text" class="form-control is-valid" id="emergenciacelular">
+                                            <div class="valid-feedback">
+                                             <!--  Input success message -->
+                                            </div>
+                                        </div>
+                            </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-4 text-xs-center">
+                        <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                    <div id="telefonoemergencia" class="form-group">
+                                            <label class="form-control-label" for="inputSuccess">Numero de Telefono</label>
+                                            <input type="text" class="form-control is-valid" id="emergenciatelefono">
+                                            <div class="valid-feedback">
+                                             <!--  Input success message -->
+                                            </div>
+                                        </div>
+
+                            </div>
+                        <!--/div-->
+                    </div>
+                </div>
       </div>
     </div>
   </div>
