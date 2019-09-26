@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module'
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+//import { RegistroComponent } from './layout/blank-page/components/registro/Registro.component';
 
 @NgModule({
     imports: [
@@ -16,7 +17,9 @@ import { AuthGuard } from './shared';
         BrowserAnimationsModule,
         HttpClientModule,
         LanguageTranslationModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule//,
+       // RegistroComponent
     ],
     declarations: [AppComponent],
     providers: [AuthGuard],
