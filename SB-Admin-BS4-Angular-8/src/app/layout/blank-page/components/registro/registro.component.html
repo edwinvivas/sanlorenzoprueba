@@ -6,42 +6,42 @@
             <h2>Agregar Nuevo Residente</h2>
             <table>
               <tr>
-                <th>Tipo Documento</th>
+                <th id="preguntas">Tipo Documento</th>
                 <td>
-                  <select [(ngModel)]="nuevoResidente.tipo_documento" >
-                    <option value="CC">Cedula de Ciudadania</option>
-                    <option value=CE>Cedula de Extranjeria</option>
+                  <select  id="casillas" class="redondeado" [(ngModel)]="nuevoResidente.tipo_documento" >
+                    <option id="casillas" class="redondeado" value="CC">Cedula de Ciudadania</option>
+                    <option id="casillas" class="redondeado" value=CE>Cedula de Extranjeria</option>
                   </select>
                 </td>
               </tr>
               <tr>
-                  <th>Número de Documento</th>
+                  <th >Número de Documento</th>
                   <td>
-                    <input type="text" [(ngModel)]="nuevoResidente.numero_documento">
+                    <input id="casillas" class="redondeado" type="text" [(ngModel)]="nuevoResidente.numero_documento">
                   </td>
                 </tr>
               <tr>
                   <th>Primer apellido</th>
                   <td>
-                    <input type="text" [(ngModel)]="nuevoResidente.primer_apellido">
+                    <input id="casillas" class="redondeado" type="text" [(ngModel)]="nuevoResidente.primer_apellido">
                   </td>
                 </tr>
                 <tr>
                     <th>Segundo apellido</th>
                     <td>
-                      <input type="text" [(ngModel)]="nuevoResidente.segundo_apellido">
+                      <input id="casillas" class="redondeado" type="text" [(ngModel)]="nuevoResidente.segundo_apellido">
                     </td>
                   </tr>
                   <tr>
                       <th>Primer nombre</th>
                       <td>
-                        <input type="text" [(ngModel)]="nuevoResidente.primer_nombre">
+                        <input id="casillas" class="redondeado" type="text" [(ngModel)]="nuevoResidente.primer_nombre">
                       </td>
                     </tr>
                     <tr>
                         <th>Segundo nombre</th>
                         <td>
-                          <input type="text" [(ngModel)]="nuevoResidente.segundo_nombre">
+                          <input id="casillas" class="redondeado" type="text" [(ngModel)]="nuevoResidente.segundo_nombre">
                         </td>
                       </tr>
             </table>
@@ -67,4 +67,4 @@
             </tr>
           </table>
         </div>
-        <input type="button" (click)="agregarResidente()" value="Agregar">
+        <input id="agregar" class="redondeado" type="button" (click)="agregarResidente()" value="Agregar">

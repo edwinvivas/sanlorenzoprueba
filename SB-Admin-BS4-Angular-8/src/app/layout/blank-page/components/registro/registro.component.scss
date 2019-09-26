@@ -1,0 +1,26 @@
+$san-lorenzo-verde-oscuro: #078C03;
+$san-lorenzo-verde-medio: #0ED907;
+$san-lorenzo-verde-claro: #BFF2BD;
+$san-lorenzo-claro: #F2E9D8;
+$san-lorenzo-oscuro: #0D0D0D;
+$san-lorenzo-info:  #05E67E;
+$san-lorenzo-danger: #D9077A;
+$san-lorenzo-warning:#A65316;
+
+
+#casillas{
+border-color :$san-lorenzo-verde-claro
+}
+
+.redondeado{
+    border-radius: 5px;
+    outline-color: $san-lorenzo-verde-medio
+}
+#agregar{
+    background: $san-lorenzo-verde-medio;
+
+}
+
+#preguntas{
+
+}
