@@ -3,18 +3,23 @@ import { Persona } from '../persona';
 import { Apartamento } from '../apartamento';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
 
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
     selector: 'app-registro',
     templateUrl: './registro.component.html',
     styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-    constructor(public _parametricos_srv: ParametricosService) {}
+    constructor(public _parametricos_srv: ParametricosService, private _ngbModal_srv: NgbModal) {}
     public persona1: Persona;
     public nuevoResidente: Persona;
     public edit: boolean;
     public mostrarFormulario: boolean;
-
+    public ModalEliminarOptions = {
+        ELIMINAR : 0,
+        CANCELAR : 1
+    }
     @Input()
     public residentes: Array<Persona>;
 
@@ -54,6 +59,38 @@ export class RegistroComponent implements OnInit {
         this.edit = true;
         this.mostrarFormulario = true;
         this.nuevoResidente = residente;
+    }
+
+    public eliminarResidenteModal(content, residente) {
+
+        this._ngbModal_srv.open(content, { backdrop: 'static' }).result.then(
+            result => {
+                console.log(result);
+                if (result === this.ModalEliminarOptions.ELIMINAR) {
+                    this.eliminarResidente(residente);
+                }
+            },
+            reason => {
+                console.log(this.getDismissReason(reason));
+            }
+        );
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
+    }
+
+    private eliminarResidente(residente: Persona) {
+        const index = this.residentes.indexOf(residente, 0);
+        if (index > -1) {
+            this.residentes.splice(index, 1);
+        }
     }
     public MostrarFormAgregarResidente() {
         this.mostrarFormulario = true;

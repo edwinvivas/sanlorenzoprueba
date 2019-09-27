@@ -102,7 +102,7 @@
         <div class="card-header">
             Residentes <a href="javascript:void(1)"><i class="fa fa-fw fa-plus" (click)="MostrarFormAgregarResidente()"></i></a>
         </div>
-        <div *ngIf="persona1.apartamento.residentes.length > 0" class="card-body table-responsive">
+        <div *ngIf="residentes.length > 0" class="card-body table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -110,19 +110,30 @@
                         <th>Numero Documento</th>
                         <th>Apellidos</th>
                         <th>Nombres</th>
-                        <th>editar</th>
+                        <th>acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let residente of persona1.apartamento.residentes">
+                    <tr *ngFor="let residente of residentes">
                         <th scope="row">{{ residente.tipo_documento }}</th>
                         <td>{{ residente.numero_documento }}</td>
                         <td>{{ residente.primer_apellido + ' ' + residente.segundo_apellido }}</td>
                         <td>{{ residente.primer_nombre + ' ' + residente.segundo_nombre }}</td>
                         <td>
-                            <a href="javascript:void(1)" (click)="editarResidente(residente)" value="edit"
-                                ><i class="fa fa-pencil" aria-hidden="true"></i
-                            ></a>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <a href="javascript:void(1)" (click)="editarResidente(residente)" value="edit">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a href="javascript:void(1)" (click)="eliminarResidenteModal(contentModalDelete, residente)">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -130,3 +141,20 @@
         </div>
     </div>
 </div>
+
+<ng-template #contentModalDelete let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Eliminar Residente</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(ModalEliminarOptions.CANCELAR)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <p>Esta seguro que desea eliminar el residente?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button"  class="btn btn-danger" (click)="c(ModalEliminarOptions.ELIMINAR)">Si, eliminar</button>
+        <button type="button" ngbAutofocus class="btn btn-secondary" (click)="c(ModalEliminarOptions.CANCELAR)">Cacelar</button>
+    </div>
+</ng-template>
