@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Persona } from './components/persona';
 
+class RegistroApartamento {
+    public datosBasicos: any;
+    public propietario: any;
+    public residentes: Array<Persona>;
+
+    public constructor() {
+        this.residentes = new Array<Persona>();
+    }
+}
 
 @Component({
     selector: 'app-blank-page',
@@ -7,9 +17,10 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./blank-page.component.scss']
 })
 export class BlankPageComponent implements OnInit {
+    public data: RegistroApartamento;
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.data = new RegistroApartamento();
+    }
 }
-
-
