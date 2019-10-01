@@ -1,15 +1,29 @@
-
-<div class="card mb-3" *ngIf="!mostrarvisitante" >
+<div class="card mb-3" *ngIf="!mostrarvisitante">
     <div class="card-header">Registro Visitante</div>
     <div class="card-body">
         <div class="row">
             <div class="col-sm-12 text-xs-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="/assets/images/usuariosnlorenzo.jpg " class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <!-- h5 class="card-title">Fotografía Visitante</h5 -->
-                        <p class="card-text"></p>
-                        <input class="btn btn-primary" type="button" (click)="cambiarfotografia()" value="Cambiar fotografía" />
+                <div class="row">
+                    <div class="col-xl-4 text-xs-center">
+                        <!-- div class="card mb-3"-->
+                        <div class="card-body">
+                            <div class="card" style="width: 18rem;">
+                                <img src="/assets/images/usuariosnlorenzo.jpg " class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <!-- h5 class="card-title">Fotografía Visitante</h5 -->
+                                    <p class="card-text"></p>
+                                    <input class="btn btn-primary" type="button" (click)="cambiarfotografia()" value="Cambiar fotografía" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-8 text-xs-center">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                .col-xl-8
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
