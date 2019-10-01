@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ConsoleReporter } from 'jasmine';
+
 
 @Component({
     selector: 'app-modal',

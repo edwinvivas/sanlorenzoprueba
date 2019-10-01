@@ -13,7 +13,6 @@ import { HeaderComponent } from './components/header/header.component';
         LayoutRoutingModule,
         TranslateModule,
         NgbDropdownModule
-
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
 
