@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-//import { RegistroComponent } from './layout/blank-page/components/registro/Registro.component';
+
 
 @NgModule({
     imports: [
@@ -18,8 +18,7 @@ import { AuthGuard } from './shared';
         HttpClientModule,
         LanguageTranslationModule,
         AppRoutingModule,
-        FormsModule//,
-       // RegistroComponent
+        FormsModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard],

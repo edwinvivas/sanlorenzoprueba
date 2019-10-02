@@ -21,7 +21,51 @@
                     <div class="col-xl-8 text-xs-center">
                         <div class="card mb-3">
                             <div class="card-body">
-                                .col-xl-8
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <form class="form" #VisitorForm="ngForm" >
+                                            <div class="form-group">
+                                                <label for="primer_apellido">Primer apellido</label>
+                                                <input
+                                                    class="form-control"
+                                                    [(ngModel)]="data.surname"
+                                                    required
+                                                    pattern="[A-Za-z]"
+                                                    minlength="3"
+                                                    maxlength="8"
+                                                    name="primer_apellido"
+                                                    type="text"
+                                                    #primer_apellido="ngModel"
+                                                    id="primer_apellido"
+                                                />
+                                                <div class="alert alert-danger" *ngIf="primer_apellido.touched && primer_apellido.invalid">
+
+                                                    <div  *ngIf="primer_apellido.errors.required">*El campo es requerido</div>
+                                                    <div  *ngIf="primer_apellido.errors.minlength">*El campo debe tener minimo {{primer_apellido.errors.minlength.requiredLength}} caracteres</div>
+                                                    <div  *ngIf="primer_apellido.errors.pattern">*Debe contener texto</div>
+                                                  </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+                                            <div class="form-group">
+                                                <label for="primer_apellido">Segundo apellido</label>
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    id="segundo_apellido"
+                                                    minlength="3"
+                                                    maxlength="8"
+                                                    required
+                                                />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary">
+                                        guardar
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
