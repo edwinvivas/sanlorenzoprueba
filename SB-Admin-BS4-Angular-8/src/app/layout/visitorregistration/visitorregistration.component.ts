@@ -7,9 +7,11 @@ class DataModel {
     public tipodocumento: string;
     public numero_documento: string;
     public expedida:string;
+    public fechaexpedicion:string;
     public genero:string;
     public rh:string;
     public visitantecel:string;
+    public email:string;
     public nacimiento:string;
     public eps:string;
     public emergencia:string;
@@ -17,15 +19,17 @@ class DataModel {
     public primernombre: string;
     public segundonombre: string;
     public surname: string;
-    public secondsurname: string;
+    public segundoapellido: string;
     public hora: Time;
     public xphr: string;
     public constructor() {
         this.numero_documento = null;
         this.expedida = null;
+        this.fechaexpedicion = null;
         this.genero = null;
         this.rh = null;
         this.visitantecel = null;
+        this.email=null;
         this.nacimiento = null;
         this.eps = null;
         this.emergencia = null;
@@ -33,7 +37,7 @@ class DataModel {
         this.primernombre = null;
         this.segundonombre = null;
         this.surname = null;
-        this.secondsurname = null;
+        this.segundoapellido = null;
     }
 }
 
