@@ -10,11 +10,12 @@
             <div class="col-sm-4 text-xs-center">
                 <div class="card-body">
                     <div class="card">
-                        <img src="/assets/images/usuariosnlorenzo.jpg " class="card-img-top" alt="..." />
+                            <app-camara> </app-camara>
+                       <!--  <img src="/assets/images/usuariosnlorenzo.jpg " class="card-img-top" alt="..." /> -->
                         <div class="card-body">
                             <h5 class="card-title">Visitante</h5>
                             <p class="card-text">
-                                {{ data.primernombre }} {{ data.segundonombre }} {{ data.surname }} {{ data.secondsurname }}
+                                {{ visitante.primernombre }} {{ visitante.segundonombre }} {{ visitante.surname }} {{ visitante.segundonombre }}
                             </p>
                             <input class="btn btn-primary" type="button" (click)="cambiarfotografia()" value="Cambiar" />
                         </div>
@@ -38,7 +39,7 @@
                                                         <label for="tipo_documento_ddl">Tipo Documento</label>
                                                         <select
                                                             class="form-control"
-                                                            [(ngModel)]="data.tipodocumento"
+                                                            [(ngModel)]="visitante.tipodocumento"
                                                             required
                                                             name="tipo_documento_ddl"
                                                             #tipo_documento_ddl="ngModel"
@@ -63,7 +64,7 @@
                                                         <label for="expedida">Expedida en</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.expedida"
+                                                            [(ngModel)]="visitante.expedida"
                                                             required
                                                             pattern="[a-zA-Z]*$"
                                                             minlength="4"
@@ -91,7 +92,7 @@
                                                         <label for="numero_documento">Número de Documento</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.numero_documento"
+                                                            [(ngModel)]="visitante.numero_documento"
                                                             required
                                                             pattern="^[0-9]*$"
                                                             minlength="6"
@@ -120,7 +121,7 @@
                                                         <label for="fechaexpedicion">Fecha de expedicion:</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.fechaexpedicion"
+                                                            [(ngModel)]="visitante.fechaexpedicion"
                                                             required
                                                             name="fechaexpedicion"
                                                             type="date"
@@ -156,7 +157,7 @@
                                                         <label for="primer_nombre">Primer nombre</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.primernombre"
+                                                            [(ngModel)]="visitante.primernombre"
                                                             required
                                                             pattern="[a-zA-Z]*$"
                                                             minlength="3"
@@ -185,7 +186,7 @@
                                                         <label for="primer_apellido">Primer apellido</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.surname"
+                                                            [(ngModel)]="visitante.surname"
                                                             required
                                                             pattern="[a-zA-Z]*$"
                                                             minlength="3"
@@ -215,7 +216,7 @@
                                                         <label for="rh">RH</label>
                                                         <select
                                                             class="form-control"
-                                                            [(ngModel)]="data.rh"
+                                                            [(ngModel)]="visitante.rh"
                                                             required
                                                             name="rh"
                                                             #rh="ngModel"
@@ -240,7 +241,7 @@
                                                         <label for="nacimiento">Fecha de nacimiento:</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.nacimiento"
+                                                            [(ngModel)]="visitante.nacimiento"
                                                             required
                                                             name="nacimiento"
                                                             type="date"
@@ -265,7 +266,7 @@
                                                         <label for="segundo_nombre">Segundo nombre</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.segundonombre"
+                                                            [(ngModel)]="visitante.segundonombre"
                                                             pattern="[a-zA-Z]*$"
                                                             minlength="3"
                                                             maxlength="8"
@@ -293,7 +294,7 @@
                                                         <label for="segundo_apellido">Segundo apellido</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.segundoapellido"
+                                                            [(ngModel)]="visitante.segundoapellido"
                                                             required
                                                             pattern="[a-zA-Z]*$"
                                                             minlength="3"
@@ -322,7 +323,7 @@
                                                         <label for="genero">Genero</label>
                                                         <select
                                                             class="form-control"
-                                                            [(ngModel)]="data.genero"
+                                                            [(ngModel)]="visitante.genero"
                                                             required
                                                             name="genero"
                                                             #genero="ngModel"
@@ -333,6 +334,9 @@
                                                             <option>M</option>
                                                             <option>F</option>
                                                         </select>
+                                                        <div class="alert alert-danger" *ngIf="genero.touched && genero.invalid">
+                                                            <div *ngIf="genero.errors.required">*El campo es requerido</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,7 +354,7 @@
                                                         <label for="visitantecel">Número de celular</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.visitantecel"
+                                                            [(ngModel)]="visitante.visitantecel"
                                                             required
                                                             pattern="^[0-9]*$"
                                                             minlength="10"
@@ -385,7 +389,7 @@
                                                             required
                                                             email
                                                             pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-                                                            [(ngModel)]="data.email"
+                                                            [(ngModel)]="visitante.email"
                                                             name="email"
                                                             #email="ngModel"
                                                             id="email"
@@ -413,11 +417,11 @@
                                                         <label for="emergencia">Llamar a :</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.emergencia"
+                                                            [(ngModel)]="visitante.emergencia"
                                                             required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
+                                                            pattern="[a-zA-Z ]*$"
+                                                            minlength="8"
+                                                            maxlength="20"
                                                             name="emergencia"
                                                             type="text"
                                                             #emergencia="ngModel"
@@ -432,7 +436,7 @@
                                                                 {{ emergencia.errors.minlength.requiredLength }} caracteres
                                                             </div>
                                                             <div *ngIf="emergencia.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
+                                                                *Este campo no acepta numeros
                                                             </div>
                                                         </div>
                                                     </div>
@@ -440,11 +444,11 @@
                                                         <label for="eps">EPS</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.eps"
+                                                            [(ngModel)]="visitante.eps"
                                                             required
-                                                            pattern="[a-zA-Z]*$"
+                                                            pattern="[a-zA-Z ]*$"
                                                             minlength="4"
-                                                            maxlength="8"
+                                                            maxlength="12"
                                                             name="eps"
                                                             type="text"
                                                             #eps="ngModel"
@@ -458,7 +462,7 @@
                                                                 {{ eps.errors.minlength.requiredLength }} caracteres
                                                             </div>
                                                             <div *ngIf="eps.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
+                                                                *Este campo no acepta numeros
                                                             </div>
                                                         </div>
                                                     </div>
@@ -468,7 +472,7 @@
                                                         <label for="emergenciacel">Número de celular</label>
                                                         <input
                                                             class="form-control"
-                                                            [(ngModel)]="data.emergenciacel"
+                                                            [(ngModel)]="visitante.emergenciacel"
                                                             required
                                                             pattern="^[0-9]*$"
                                                             minlength="10"
@@ -505,11 +509,83 @@
                                 <button class="btn btn-primary" [disabled]="!visitorForm.valid" type="submit">Enviar</button>
                             </div>
                         </form>
+
+                        <div class="card-body">
+                            <p>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    (click)="isCollapsed = !isCollapsed"
+                                    [attr.aria-expanded]="!isCollapsed"
+                                    aria-controls="domiciliario"
+                                >
+                                    Domiciliario
+                                </button>
+                            </p>
+                            <!--div class="row"-->
+                            <div class="col-sm-12">
+                                <div id="domiciliario" [ngbCollapse]="!isCollapsed">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="empresa">Empresa</label>
+                                            <input
+                                                class="form-control"
+                                                [(ngModel)]="visitante.empresa"
+                                                required
+                                                pattern="[a-zA-Z]*$"
+                                                minlength="4"
+                                                maxlength="8"
+                                                name="empresa"
+                                                type="text"
+                                                #empresa="ngModel"
+                                                (change)="log(empresa)"
+                                                id="empresa"
+                                            />
+                                            <div class="alert alert-danger" *ngIf="empresa.touched && empresa.invalid">
+                                                <div *ngIf="empresa.errors.required">*El campo es requerido</div>
+                                                <div *ngIf="empresa.errors.minlength">
+                                                    *El campo debe tener minimo
+                                                    {{ empresa.errors.minlength.requiredLength }} caracteres
+                                                </div>
+                                                <div *ngIf="empresa.errors.pattern">
+                                                    *Este campo no acepta numeros ni espacios
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="arl">ARL</label>
+                                            <input
+                                                class="form-control"
+                                                [(ngModel)]="visitante.arl"
+                                                required
+                                                pattern="[a-zA-Z]*$"
+                                                minlength="4"
+                                                maxlength="8"
+                                                name="arl"
+                                                type="text"
+                                                #arl="ngModel"
+                                                (change)="log(arl)"
+                                                id="arl"
+                                            />
+                                            <div class="alert alert-danger" *ngIf="arl.touched && arl.invalid">
+                                                <div *ngIf="arl.errors.required">*El campo es requerido</div>
+                                                <div *ngIf="arl.errors.minlength">
+                                                    *El campo debe tener minimo
+                                                    {{ arl.errors.minlength.requiredLength }} caracteres
+                                                </div>
+                                                <div *ngIf="arl.errors.pattern">
+                                                    *Este campo no acepta numeros ni espacios
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!--/div-->
-            <!--/div-->
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
