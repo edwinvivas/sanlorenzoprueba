@@ -17,7 +17,7 @@
                             <p class="card-text">
                                 {{ visitante.primernombre }} {{ visitante.segundonombre }} {{ visitante.surname }} {{ visitante.segundonombre }}
                             </p>
-                            <input class="btn btn-primary" type="button" (click)="cambiarfotografia()" value="Cambiar" />
+                           <!--  <input class="btn btn-primary" type="button" (click)="cambiarfotografia()" value="Cambiar" /> -->
                         </div>
                     </div>
                 </div>
@@ -35,9 +35,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group" >
                                                         <label for="tipo_documento_ddl">Tipo Documento</label>
-                                                        <select
+                                                        <select tabindex="1"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.tipodocumento"
                                                             required
@@ -46,7 +46,7 @@
                                                             (change)="log(tipo_documento_ddl)"
                                                             id="tipo_documento_ddl"
                                                         >
-                                                            <option value="">Seleccione un tipo de documento</option>
+                                                            <option value="">Seleccione</option>
                                                             <option
                                                                 *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
                                                                 [ngValue]="tipoDocumento.abbr"
@@ -59,10 +59,11 @@
                                                         >
                                                             <div *ngIf="tipo_documento_ddl.errors.required">*El campo es requerido</div>
                                                         </div>
+
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="expedida">Expedida en</label>
-                                                        <input
+                                                        <input tabindex="3"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.expedida"
                                                             required
@@ -90,7 +91,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="numero_documento">Número de Documento</label>
-                                                        <input
+                                                        <input tabindex="2"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.numero_documento"
                                                             required
@@ -116,10 +117,11 @@
                                                                 *Este campo no acepta texto ni espacios
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fechaexpedicion">Fecha de expedicion:</label>
-                                                        <input
+                                                        <input tabindex="4"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.fechaexpedicion"
                                                             required
@@ -155,7 +157,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="primer_nombre">Primer nombre</label>
-                                                        <input
+                                                        <input tabindex="5"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.primernombre"
                                                             required
@@ -184,7 +186,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="primer_apellido">Primer apellido</label>
-                                                        <input
+                                                        <input tabindex="7"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.surname"
                                                             required
@@ -214,7 +216,7 @@
 
                                                     <div class="form-group">
                                                         <label for="rh">RH</label>
-                                                        <select
+                                                        <select tabindex="9"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.rh"
                                                             required
@@ -239,7 +241,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="nacimiento">Fecha de nacimiento:</label>
-                                                        <input
+                                                        <input tabindex="11"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.nacimiento"
                                                             required
@@ -264,7 +266,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="segundo_nombre">Segundo nombre</label>
-                                                        <input
+                                                        <input tabindex="6"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.segundonombre"
                                                             pattern="[a-zA-Z]*$"
@@ -292,7 +294,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="segundo_apellido">Segundo apellido</label>
-                                                        <input
+                                                        <input tabindex="8"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.segundoapellido"
                                                             required
@@ -321,7 +323,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="genero">Genero</label>
-                                                        <select
+                                                        <select tabindex="10"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.genero"
                                                             required
@@ -329,8 +331,9 @@
                                                             #genero="ngModel"
                                                             (change)="log(genero)"
                                                             id="genero"
+
                                                         >
-                                                            <option value="">Seleccione un genero</option>
+                                                        <option value="">Seleccione</option>
                                                             <option>M</option>
                                                             <option>F</option>
                                                         </select>
@@ -352,7 +355,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="visitantecel">Número de celular</label>
-                                                        <input
+                                                        <input tabindex="12"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.visitantecel"
                                                             required
@@ -383,12 +386,12 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="email">Email</label>&nbsp;
-                                                        <input
+                                                        <input tabindex="13"
                                                             class="form-control"
                                                             type="email"
                                                             required
                                                             email
-                                                            pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+
                                                             [(ngModel)]="visitante.email"
                                                             name="email"
                                                             #email="ngModel"
@@ -396,10 +399,8 @@
                                                         />
                                                         <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
                                                             <div *ngIf="email.errors.required">*El campo es requerido</div>
-                                                            <div *ngIf="email.errors.email">*Debe ser un correo electronico valido</div>
-                                                            <div *ngIf="email.errors.errors.pattern">
-                                                                *Ingrese un correo electronico valido
-                                                            </div>
+                                                           <div *ngIf="email.errors.email">ingrese un correo valido</div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -415,7 +416,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="emergencia">Llamar a :</label>
-                                                        <input
+                                                        <input tabindex="14"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.emergencia"
                                                             required
@@ -442,7 +443,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eps">EPS</label>
-                                                        <input
+                                                        <input tabindex="16"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.eps"
                                                             required
@@ -470,7 +471,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="emergenciacel">Número de celular</label>
-                                                        <input
+                                                        <input tabindex="15"
                                                             class="form-control"
                                                             [(ngModel)]="visitante.emergenciacel"
                                                             required
@@ -514,7 +515,7 @@
                             <p>
                                 <button
                                     type="button"
-                                    class="btn btn-outline-primary"
+                                    class="btn btn-primary"
                                     (click)="isCollapsed = !isCollapsed"
                                     [attr.aria-expanded]="!isCollapsed"
                                     aria-controls="domiciliario"
@@ -528,7 +529,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="empresa">Empresa</label>
-                                            <input
+                                            <input tabindex="17"
                                                 class="form-control"
                                                 [(ngModel)]="visitante.empresa"
                                                 required
@@ -554,7 +555,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="arl">ARL</label>
-                                            <input
+                                            <input tabindex="18"
                                                 class="form-control"
                                                 [(ngModel)]="visitante.arl"
                                                 required

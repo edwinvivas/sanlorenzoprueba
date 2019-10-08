@@ -1,8 +1,13 @@
 <div style="text-align:center">
+
+    <div class="col-12 col-sm-12 crop-res">
+        <img *ngIf="cropperRes || imageUrl" [src]="cropperRes || imageUrl" />
+    </div>
+
     <div>
         <webcam
             [height]="300"
-            [width]="250"
+            [width]="200"
             [trigger]="triggerObservable"
             (imageCapture)="handleImage($event)"
             *ngIf="showWebcam"
@@ -14,10 +19,15 @@
             (initError)="handleInitError($event)"
         ></webcam>
         <br />
-        <button class="btn btn-primary" (click)="triggerSnapshot()">Tomar Foto</button>
+        <button class="btn btn-primary-positive" (click)="triggerSnapshot()"  onclick="document.getElementById('up7913').disabled=true;document.getElementById('down7913').disabled=false;" type="submit"  name="up7913" id="up7913">Tomar Foto</button>
+        &nbsp;
+        <button class="btn btn-secondary-negative" (click)="toggleWebcam()"  onclick="this.disabled=true;document.getElementById('up7913').disabled=false;" type="submit"  name="down7913" id="down7913" >Cambiar Foto </button>
+        &nbsp;
         <br />
-        <button class="btn btn-primary" (click)="toggleWebcam()">Cambiar Foto</button>
-        <br />
+
+        <!-- <button onclick="document.getElementById('up7913').disabled=true;document.getElementById('down7913').disabled=false;" type="submit" class="positive" name="up7913" id="up7913">First</button>
+        <button onclick="this.disabled=true;document.getElementById('up7913').disabled=false;" type="submit" class="negative" name="down7913" id="down7913">Second</button> -->
+
         <!-- <button class="actionBtn" (click)="showNextWebcam(true)" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>
         <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch" /><label for="cameraSwitchCheckbox"
             >Allow Camera Switch</label
@@ -34,30 +44,42 @@
 </ul>
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9">
-        <angular-cropper #angularCropper *ngIf="showCropper && imageUrl"
-                            [cropperOptions]="cropperConfig"
-                            [imageUrl]="imageUrl"
-                            (zoom)="zoomManual()"
-                            (ready)="readyImage($event)"
-                            (cropend)="cropendImage($event)">
-        </angular-cropper>
-        <div *ngIf="!showCropper && imageUrl" class="container-preloader">
-            <div class="dash uno"></div>
-            <div class="dash dos"></div>
-            <div class="dash tres"></div>
-            <div class="dash cuatro"></div>
+
+    <div *ngIf="mostrar" class="card text-white mb-3" style="width: 100%;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-12"  >
+                <angular-cropper #angularCropper *ngIf="showCropper && imageUrl"
+                                    [cropperOptions]="cropperConfig"
+                                    [imageUrl]="imageUrl"
+                                    (zoom)="zoomManual()"
+                                    (ready)="readyImage($event)"
+                                    (cropend)="cropendImage($event)">
+                </angular-cropper>
+                <div *ngIf="!showCropper && imageUrl" class="container-preloader">
+                    <div class="dash uno"></div>
+                    <div class="dash dos"></div>
+                    <div class="dash tres"></div>
+                    <div class="dash cuatro"></div>
+                </div>
+                </div>
+               <!--  <div class="col-xs-12 col-sm-3 crop-res">
+                    <img *ngIf="cropperRes || imageUrl" [src]="cropperRes || imageUrl" />
+                </div> -->
+          </div>
+          <br />
+          <button  (click)="destroy($event)" type="button" class="btn btn-primary" data-method="destroy" title="Destroy">
+            <span  class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="cropper.destroy()">
+                <span>Fijar foto</span>
+            </span>
+        </button>
+
         </div>
-        </div>
-        <div class="col-xs-12 col-sm-3 crop-res">
-            <img *ngIf="cropperRes || imageUrl" [src]="cropperRes || imageUrl" />
-        </div>
-    </div>
+      </div>
     <div class="row" *ngIf="imageUrl" id="actions">
         <div class="col-sm-12">
             <div class="docs-buttons">
-                <h3>Opciones: </h3>
+               <!--  <h3>Opciones: </h3>
 
                 <div class="btn-group">
                     <button
@@ -84,7 +106,7 @@
                             <span class="fa fa-search-minus">(+)</span>
                         </span>
                     </button>
-                </div>
+                </div> -->
 
                 <!-- <div class="btn-group">
                     <button
@@ -215,19 +237,20 @@
                         </span>
                     </button>
                 </div>
- -->
+ --><br />
+
                  <div class="btn-group">
                     <!-- <button (click)="reset()" type="button" class="btn btn-primary" data-method="reset" title="Reset">
                         <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="cropper.reset()">
                             <span class="fa fa-refresh">Refresh</span>
                         </span>
                     </button> -->
-                    <button (click)="destroy($event)" type="button" class="btn btn-primary" data-method="destroy" title="Destroy">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="cropper.destroy()">
-                            <span class="fa fa-power-off">Off</span>
-                        </span>
-                    </button>
+
+                    <button  (click)="mostrar= !mostrar" class="btn btn-primary btn-block">
+                        <span class="fa fa-pencil">Editar</span>
+                          </button>
                 </div>
+
             </div>
             <!-- /.docs-buttons -->
         </div>
