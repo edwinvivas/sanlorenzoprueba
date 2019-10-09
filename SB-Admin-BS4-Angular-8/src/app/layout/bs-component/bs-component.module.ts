@@ -9,7 +9,7 @@ import {
     AlertComponent,
     ButtonsComponent,
     ModalComponent,
-    CollapseComponent,
+    /*CollapseComponent,*/
     DatePickerComponent,
     DropdownComponent,
     PaginationComponent,
@@ -36,7 +36,7 @@ import { PageHeaderModule } from '../../shared';
         ButtonsComponent,
         AlertComponent,
         ModalComponent,
-        CollapseComponent,
+       /* CollapseComponent,*/
         DatePickerComponent,
         DropdownComponent,
         PaginationComponent,

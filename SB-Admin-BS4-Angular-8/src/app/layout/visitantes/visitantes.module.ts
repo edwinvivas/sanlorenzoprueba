@@ -13,6 +13,8 @@ import { WebcamModule } from 'ngx-webcam';
 import { HttpClientModule } from '@angular/common/http';
 // común
 import { CommonModule } from '@angular/common';
+import { IngresoComponent } from './ingreso/ingreso.component';
+import { SalidaComponent } from './salida/salida.component';
 
 @NgModule({
     imports: [
@@ -25,6 +27,6 @@ import { CommonModule } from '@angular/common';
         FormsModule
     ],
     providers: [HttpClientModule],
-    declarations: [VisitantesComponent, /*CamaraComponent*/]
+    declarations: [VisitantesComponent, IngresoComponent, SalidaComponent, /*CamaraComponent*/]
 })
 export class VisitantesModule {}

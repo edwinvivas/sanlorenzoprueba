@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 
@@ -13,8 +13,9 @@ import { CropperComponent } from 'angular-cropperjs';
     styleUrls: ['./camara.component.scss']
 })
 export class CamaraComponent implements OnInit {
+    @Input() imageUrl: any;
 
-    mostrar = false;
+    public mostrar = false;
     // toggle webcam on/off
     public showWebcam = true;
     public allowCameraSwitch = true;
@@ -26,6 +27,7 @@ export class CamaraComponent implements OnInit {
     };
     public errors: WebcamInitError[] = [];
     // latest snapshot
+    @Input()
     public webcamImage: WebcamImage = null;
     // webcam snapshot trigger
     private trigger: Subject<void> = new Subject<void>();
@@ -36,7 +38,6 @@ export class CamaraComponent implements OnInit {
      * CropperJS declarations
      */
 
-    public imageUrl: any;
 
     public cropperRes: string;
     public showCropper: boolean;
@@ -91,6 +92,7 @@ export class CamaraComponent implements OnInit {
 
         this.showCropper = true;
         //this.refreshCrop(this.imageUrl);
+        this.imageUrl = this.webcamImage.imageAsDataUrl;
         this.refreshCrop(this.webcamImage.imageAsDataUrl);
     }
 

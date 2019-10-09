@@ -34,6 +34,7 @@
         <app-stat [bgClass]="'warning'" [icon]="'fa fa-arrow-up'" [count]="12" [label]="'N° de entradas'"></app-stat>
     </div>
     <div class="col-xs-3 col-lg-4">
+            <div [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active">
         <div class="card mb-3">
             <div class="col-xs-3  text-xs-center">
                 <div class="card-body">
@@ -44,6 +45,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <app-stat [bgClass]="'success'" [icon]="'fa fa-arrow-down'" [count]="124" [label]="'N° de salidas'"></app-stat>
     </div>
 </div>

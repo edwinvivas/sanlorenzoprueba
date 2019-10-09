@@ -1,5 +1,3 @@
-import { Time } from '@angular/common';
-
 export class Visitante {
     public tipodocumento: string;
     public numero_documento: string;
@@ -19,8 +17,11 @@ export class Visitante {
     public segundoapellido: string;
     public empresa: string;
     public arl: string;
-    public hora: Time;
     public xphr: string;
+    public fotografia: string;
+    public tipo_visitante: string;
+    public familiar: string;
+
     public constructor() {
         this.numero_documento = null;
         this.expedida = null;
@@ -39,5 +40,8 @@ export class Visitante {
         this.segundoapellido = null;
         this.empresa = null;
         this.arl = null;
+        this.fotografia = null;
+        this.tipo_visitante = null;
+        this.familiar = null;
     }
 }
