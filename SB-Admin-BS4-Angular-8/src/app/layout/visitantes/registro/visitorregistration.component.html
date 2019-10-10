@@ -27,7 +27,8 @@
                 <div class="card-body">
                     <div class="row">
                         <form class="form" #visitorForm="ngForm" (submit)="guardar()">
-                            <button class="btn btn-primary" [disabled]="!visitorForm.valid" type="submit">Enviar</button>
+                            <button class="btn btn-primary" [disabled]="!visitorForm.valid"
+                                type="submit">Enviar</button>
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -38,54 +39,41 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="tipo_documento_ddl">Tipo Documento</label>
-                                                        <select
-                                                            tabindex="1"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.tipodocumento"
-                                                            required
-                                                            name="tipo_documento_ddl"
-                                                            #tipo_documento_ddl="ngModel"
-                                                            (change)="log(tipo_documento_ddl)"
-                                                            id="tipo_documento_ddl"
-                                                        >
+                                                        <select tabindex="1" class="form-control"
+                                                            [(ngModel)]="visitante.tipodocumento" required
+                                                            name="tipo_documento_ddl" #tipo_documento_ddl="ngModel"
+                                                            (change)="log(tipo_documento_ddl)" id="tipo_documento_ddl">
                                                             <option value="">Seleccione</option>
                                                             <option
                                                                 *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
-                                                                [ngValue]="tipoDocumento.abbr"
-                                                                >{{ tipoDocumento.detalle }}</option
-                                                            > </select
-                                                        ><!-- URL(
+                                                                [ngValue]="tipoDocumento.abbr">
+                                                                {{ tipoDocumento.detalle }}</option>
+                                                        </select>
+                                                        <!-- URL(
                                                         {{image.imageUrl}}  -
                                                         {{webcamImage}}
                                                         ) -->
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid"
-                                                        >
-                                                            <div *ngIf="tipo_documento_ddl.errors.required">*El campo es requerido</div>
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
+                                                            <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
+                                                                requerido</div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="expedida">Lugar de expedición</label>
-                                                        <input
-                                                            tabindex="3"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.expedida"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="4"
-                                                            maxlength="8"
-                                                            name="expedida"
-                                                            type="text"
-                                                            #expedida="ngModel"
-                                                            (change)="log(expedida)"
-                                                            id="expedida"
-                                                        />
-                                                        <div class="alert alert-danger" *ngIf="expedida.touched && expedida.invalid">
-                                                            <div *ngIf="expedida.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="3" class="form-control"
+                                                            [(ngModel)]="visitante.expedida" required
+                                                            pattern="[a-zA-Z]*$" minlength="4" maxlength="8"
+                                                            name="expedida" type="text" #expedida="ngModel"
+                                                            (change)="log(expedida)" id="expedida" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="expedida.touched && expedida.invalid">
+                                                            <div *ngIf="expedida.errors.required">*El campo es requerido
+                                                            </div>
                                                             <div *ngIf="expedida.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ expedida.errors.minlength.requiredLength }} caracteres
+                                                                {{ expedida.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="expedida.errors.pattern">
                                                                 *Este campo no acepta numeros ni espacios
@@ -96,57 +84,51 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="numero_documento">Número de Documento</label>
-                                                        <input
-                                                            tabindex="2"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.numero_documento"
-                                                            required
-                                                            pattern="^[0-9]*$"
-                                                            minlength="6"
-                                                            maxlength="10"
-                                                            name="numero_documento"
-                                                            type="text"
-                                                            #numero_documento="ngModel"
-                                                            (change)="log(numero_documento)"
-                                                            id="numero_documento"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="numero_documento.touched && numero_documento.invalid"
-                                                        >
-                                                            <div *ngIf="numero_documento.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="2" class="form-control"
+                                                            [(ngModel)]="visitante.numero_documento" required
+                                                            pattern="^[0-9]*$" minlength="6" maxlength="10"
+                                                            name="numero_documento" type="text"
+                                                            #numero_documento="ngModel" (change)="log(numero_documento)"
+                                                            id="numero_documento" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="numero_documento.touched && numero_documento.invalid">
+                                                            <div *ngIf="numero_documento.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="numero_documento.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ numero_documento.errors.minlength.requiredLength }} caracteres
+                                                                {{ numero_documento.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="numero_documento.errors.pattern">
                                                                 *Este campo no acepta texto ni espacios
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {{nacimiento.value}}
+                                                    {{fechaexpedicion.value}}
                                                     <div class="form-group">
+                                                       
                                                         <label for="fechaexpedicion">Fecha de expedición</label>
-                                                        <input
-                                                            tabindex="4"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.fechaexpedicion"
+                                                        <input 
+                                                        tabindex="4" 
+                                                        class="form-control"
+                                                            [(ngModel)]="visitante.fechaexpedicion" 
                                                             required
-                                                            name="fechaexpedicion"
+                                                            name="fechaexpedicion" 
                                                             type="date"
-                                                            #fechaexpedicion="ngModel"
+                                                            #fechaexpedicion="ngModel" 
                                                             (change)="log(fechaexpedicion)"
-                                                            id="fechaexpedicion"
-                                                            min="1980-12-01"
-                                                            max="2110-12-31"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="fechaexpedicion.touched && fechaexpedicion.invalid"
-                                                        >
-                                                            <div *ngIf="fechaexpedicion.errors.required">*El campo es requerido</div>
+                                                            id="fechaexpedicion" 
+                                                            min="1960-12-01" 
+                                                            max="2110-12-31" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="fechaexpedicion.touched && fechaexpedicion.invalid">
+                                                            <div *ngIf="fechaexpedicion.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="fechaexpedicion.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ fechaexpedicion.errors.minlength.requiredLength }} caracteres
+                                                                {{ fechaexpedicion.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                         </div>
                                                     </div>
@@ -163,28 +145,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="primer_nombre">Primer nombre</label>
-                                                        <input
-                                                            tabindex="5"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.primernombre"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="primer_nombre"
-                                                            type="text"
-                                                            #primer_nombre="ngModel"
-                                                            (change)="log(primer_nombre)"
-                                                            id="primer_nombre"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="primer_nombre.touched && primer_nombre.invalid"
-                                                        >
-                                                            <div *ngIf="primer_nombre.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="5" class="form-control"
+                                                            [(ngModel)]="visitante.primernombre" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="primer_nombre" type="text" #primer_nombre="ngModel"
+                                                            (change)="log(primer_nombre)" id="primer_nombre" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="primer_nombre.touched && primer_nombre.invalid">
+                                                            <div *ngIf="primer_nombre.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="primer_nombre.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ primer_nombre.errors.minlength.requiredLength }} caracteres
+                                                                {{ primer_nombre.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="primer_nombre.errors.pattern">
                                                                 *Este campo no acepta numeros ni espacios
@@ -193,28 +166,20 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="primer_apellido">Primer apellido</label>
-                                                        <input
-                                                            tabindex="7"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.surname"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="primer_apellido"
-                                                            type="text"
-                                                            #primer_apellido="ngModel"
-                                                            (change)="log(primer_apellido)"
-                                                            id="primer_apellido"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="primer_apellido.touched && primer_apellido.invalid"
-                                                        >
-                                                            <div *ngIf="primer_apellido.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="7" class="form-control"
+                                                            [(ngModel)]="visitante.surname" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="primer_apellido" type="text"
+                                                            #primer_apellido="ngModel" (change)="log(primer_apellido)"
+                                                            id="primer_apellido" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="primer_apellido.touched && primer_apellido.invalid">
+                                                            <div *ngIf="primer_apellido.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="primer_apellido.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ primer_apellido.errors.minlength.requiredLength }} caracteres
+                                                                {{ primer_apellido.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="primer_apellido.errors.pattern">
                                                                 *Este campo no acepta numeros ni espacios
@@ -224,16 +189,9 @@
 
                                                     <div class="form-group">
                                                         <label for="rh">RH</label>
-                                                        <select
-                                                            tabindex="9"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.rh"
-                                                            required
-                                                            name="rh"
-                                                            #rh="ngModel"
-                                                            (change)="log(rh)"
-                                                            id="rh"
-                                                        >
+                                                        <select tabindex="9" class="form-control"
+                                                            [(ngModel)]="visitante.rh" required name="rh" #rh="ngModel"
+                                                            (change)="log(rh)" id="rh">
                                                             <option value="">Seleccione un RH</option>
                                                             <option>O-</option>
                                                             <option>O+</option>
@@ -244,30 +202,27 @@
                                                             <option>AB-</option>
                                                             <option>AB+</option>
                                                         </select>
-                                                        <div class="alert alert-danger" *ngIf="rh.touched && rh.invalid">
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="rh.touched && rh.invalid">
                                                             <div *ngIf="rh.errors.required">*El campo es requerido</div>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="form-group">
                                                         <label for="nacimiento">Fecha de nacimiento</label>
-                                                        <input
-                                                            tabindex="11"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.nacimiento"
-                                                            required
-                                                            name="nacimiento"
-                                                            type="date"
-                                                            #nacimiento="ngModel"
-                                                            (change)="log(nacimiento)"
-                                                            id="nacimiento"
-                                                            min="1980-12-01"
-                                                            max="2110-12-31"
-                                                        />
-                                                        <div class="alert alert-danger" *ngIf="nacimiento.touched && nacimiento.invalid">
-                                                            <div *ngIf="nacimiento.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="11" class="form-control"
+                                                            [(ngModel)]="visitante.nacimiento" required
+                                                            name="nacimiento" type="date" #nacimiento="ngModel"
+                                                            (change)="log(nacimiento)" id="nacimiento" min="1980-12-01"
+                                                            max="2110-12-31" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="nacimiento.touched && nacimiento.invalid">
+                                                            <div *ngIf="nacimiento.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="nacimiento.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ nacimiento.errors.minlength.requiredLength }} caracteres
+                                                                {{ nacimiento.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                         </div>
                                                     </div>
@@ -276,27 +231,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="segundo_nombre">Segundo nombre</label>
-                                                        <input
-                                                            tabindex="6"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.segundonombre"
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="segundo_nombre"
-                                                            type="text"
-                                                            #segundo_nombre="ngModel"
-                                                            (change)="log(segundo_nombre)"
-                                                            id="segundo_nombre"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="segundo_nombre.touched && segundo_nombre.invalid"
-                                                        >
-                                                            <div *ngIf="segundo_nombre.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="6" class="form-control"
+                                                            [(ngModel)]="visitante.segundonombre" pattern="[a-zA-Z]*$"
+                                                            minlength="3" maxlength="8" name="segundo_nombre"
+                                                            type="text" #segundo_nombre="ngModel"
+                                                            (change)="log(segundo_nombre)" id="segundo_nombre" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="segundo_nombre.touched && segundo_nombre.invalid">
+                                                            <div *ngIf="segundo_nombre.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="segundo_nombre.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ segundo_nombre.errors.minlength.requiredLength }} caracteres
+                                                                {{ segundo_nombre.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="segundo_nombre.errors.pattern">
                                                                 *Este campo no acepta numeros ni espacios
@@ -305,28 +252,20 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="segundo_apellido">Segundo apellido</label>
-                                                        <input
-                                                            tabindex="8"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.segundoapellido"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="segundo_apellido"
-                                                            type="text"
-                                                            #segundo_apellido="ngModel"
-                                                            (change)="log(segundo_apellido)"
-                                                            id="segundo_apellido"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="segundo_apellido.touched && segundo_apellido.invalid"
-                                                        >
-                                                            <div *ngIf="segundo_apellido.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="8" class="form-control"
+                                                            [(ngModel)]="visitante.segundoapellido" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="segundo_apellido" type="text"
+                                                            #segundo_apellido="ngModel" (change)="log(segundo_apellido)"
+                                                            id="segundo_apellido" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="segundo_apellido.touched && segundo_apellido.invalid">
+                                                            <div *ngIf="segundo_apellido.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="segundo_apellido.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ segundo_apellido.errors.minlength.requiredLength }} caracteres
+                                                                {{ segundo_apellido.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="segundo_apellido.errors.pattern">
                                                                 *Este campo no acepta numeros ni espacios
@@ -335,22 +274,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="genero">Genero</label>
-                                                        <select
-                                                            tabindex="10"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.genero"
-                                                            required
-                                                            name="genero"
-                                                            #genero="ngModel"
-                                                            (change)="log(genero)"
-                                                            id="genero"
-                                                        >
+                                                        <select tabindex="10" class="form-control"
+                                                            [(ngModel)]="visitante.genero" required name="genero"
+                                                            #genero="ngModel" (change)="log(genero)" id="genero">
                                                             <option value="">Seleccione</option>
                                                             <option>M</option>
                                                             <option>F</option>
                                                         </select>
-                                                        <div class="alert alert-danger" *ngIf="genero.touched && genero.invalid">
-                                                            <div *ngIf="genero.errors.required">*El campo es requerido</div>
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="genero.touched && genero.invalid">
+                                                            <div *ngIf="genero.errors.required">*El campo es requerido
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,28 +301,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="visitantecel">Número de celular</label>
-                                                        <input
-                                                            tabindex="12"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.visitantecel"
-                                                            required
-                                                            pattern="^[0-9]*$"
-                                                            minlength="10"
-                                                            maxlength="10"
-                                                            name="visitantecel"
-                                                            type="text"
-                                                            #visitantecel="ngModel"
-                                                            (change)="log(visitantecel)"
-                                                            id="visitantecel"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="visitantecel.touched && visitantecel.invalid"
-                                                        >
-                                                            <div *ngIf="visitantecel.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="12" class="form-control"
+                                                            [(ngModel)]="visitante.visitantecel" required
+                                                            pattern="^[0-9]*$" minlength="10" maxlength="10"
+                                                            name="visitantecel" type="text" #visitantecel="ngModel"
+                                                            (change)="log(visitantecel)" id="visitantecel" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="visitantecel.touched && visitantecel.invalid">
+                                                            <div *ngIf="visitantecel.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="visitantecel.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ visitantecel.errors.minlength.requiredLength }} caracteres
+                                                                {{ visitantecel.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="visitantecel.errors.pattern">
                                                                 *Este campo no acepta texto ni espacios
@@ -399,20 +324,15 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="email">Email</label>&nbsp;
-                                                        <input
-                                                            tabindex="13"
-                                                            class="form-control"
-                                                            type="email"
-                                                            required
-                                                            email
-                                                            [(ngModel)]="visitante.email"
-                                                            name="email"
-                                                            #email="ngModel"
-                                                            id="email"
-                                                        />
-                                                        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-                                                            <div *ngIf="email.errors.required">*El campo es requerido</div>
-                                                            <div *ngIf="email.errors.email">ingrese un correo valido</div>
+                                                        <input tabindex="13" class="form-control" type="email" required
+                                                            email [(ngModel)]="visitante.email" name="email"
+                                                            #email="ngModel" id="email" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="email.touched && email.invalid">
+                                                            <div *ngIf="email.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="email.errors.email">ingrese un correo valido
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -428,26 +348,20 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="emergencia">Llamar a :</label>
-                                                        <input
-                                                            tabindex="14"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.emergencia"
-                                                            required
-                                                            pattern="[a-zA-Z ]*$"
-                                                            minlength="8"
-                                                            maxlength="20"
-                                                            name="emergencia"
-                                                            type="text"
-                                                            #emergencia="ngModel"
-                                                            (change)="log(emergencia)"
-                                                            id="emergencia"
-                                                            placeholder="Nombre y apellido"
-                                                        />
-                                                        <div class="alert alert-danger" *ngIf="emergencia.touched && emergencia.invalid">
-                                                            <div *ngIf="emergencia.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="14" class="form-control"
+                                                            [(ngModel)]="visitante.emergencia" required
+                                                            pattern="[a-zA-Z ]*$" minlength="8" maxlength="20"
+                                                            name="emergencia" type="text" #emergencia="ngModel"
+                                                            (change)="log(emergencia)" id="emergencia"
+                                                            placeholder="Nombre y apellido" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="emergencia.touched && emergencia.invalid">
+                                                            <div *ngIf="emergencia.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="emergencia.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ emergencia.errors.minlength.requiredLength }} caracteres
+                                                                {{ emergencia.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="emergencia.errors.pattern">
                                                                 *Este campo no acepta numeros
@@ -456,22 +370,14 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="eps">EPS</label>
-                                                        <input
-                                                            tabindex="16"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.eps"
-                                                            required
-                                                            pattern="[a-zA-Z ]*$"
-                                                            minlength="4"
-                                                            maxlength="12"
-                                                            name="eps"
-                                                            type="text"
-                                                            #eps="ngModel"
-                                                            (change)="log(eps)"
-                                                            id="eps"
-                                                        />
-                                                        <div class="alert alert-danger" *ngIf="eps.touched && eps.invalid">
-                                                            <div *ngIf="eps.errors.required">*El campo es requerido</div>
+                                                        <input tabindex="16" class="form-control"
+                                                            [(ngModel)]="visitante.eps" required pattern="[a-zA-Z ]*$"
+                                                            minlength="4" maxlength="12" name="eps" type="text"
+                                                            #eps="ngModel" (change)="log(eps)" id="eps" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="eps.touched && eps.invalid">
+                                                            <div *ngIf="eps.errors.required">*El campo es requerido
+                                                            </div>
                                                             <div *ngIf="eps.errors.minlength">
                                                                 *El campo debe tener minimo
                                                                 {{ eps.errors.minlength.requiredLength }} caracteres
@@ -485,34 +391,34 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="emergenciacel">Número de celular</label>
-                                                        <input
-                                                            tabindex="15"
-                                                            class="form-control"
-                                                            [(ngModel)]="visitante.emergenciacel"
+                                                        <input 
+                                                        tabindex="15" 
+                                                        class="form-control"
+                                                            [(ngModel)]="visitante.emergenciacel" 
                                                             required
-                                                            pattern="^[0-9]*$"
-                                                            minlength="10"
+                                                            pattern="^[0-9]*$" 
+                                                            minlength="10" 
                                                             maxlength="10"
-                                                            name="emergenciacel"
-                                                            type="text"
+                                                            name="emergenciacel" 
+                                                            type="text" 
                                                             #emergenciacel="ngModel"
-                                                            (change)="log(emergenciacel)"
-                                                            id="emergenciacel"
-                                                        />
-                                                        <div
-                                                            class="alert alert-danger"
-                                                            *ngIf="emergenciacel.touched && emergenciacel.invalid"
-                                                        >
-                                                            <div *ngIf="emergenciacel.errors.required">*El campo es requerido</div>
+                                                            (change)="log(emergenciacel)" 
+                                                            id="emergenciacel" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="emergenciacel.touched && emergenciacel.invalid">
+                                                            <div *ngIf="emergenciacel.errors.required">*El campo es
+                                                                requerido</div>
                                                             <div *ngIf="emergenciacel.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ emergenciacel.errors.minlength.requiredLength }} caracteres
+                                                                {{ emergenciacel.errors.minlength.requiredLength }}
+                                                                caracteres
                                                             </div>
                                                             <div *ngIf="emergenciacel.errors.pattern">
                                                                 *Este campo no acepta texto ni espacios
                                                             </div>
                                                         </div>
                                                     </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -524,47 +430,162 @@
                                         <div class="card-body">
 
                                             <div class="form-group">
-
-                                                <div class="row">
-
+                                                    <div class="row">
+                                                        <!-- {{visitante.tipo_visitante}} =>
+                                                        {{visitante.familiar}} - 
+                                                        {{visitante.domiciliario}} - 
+                                                        {{visitante.servicios}} -->
+                                                        <div class="col-sm-4" >
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input
+                                                                        type="radio"
+                                                                        [(ngModel)]="visitante.tipo_visitante"
+                                                                        #familiar="ngModel"
+                                                                        value="familiar"
+                                                                        id="familiar"
+                                                                        name="tipo_visitante"
+                                                                        (change)="log(familiar);change_tipo_visitante()" 
+                                                                        class="custom-control-input"
+                                                                        required
+                                                                        
+                                                                    />
+                                                                    <label class="custom-control-label" for="familiar">Familiar</label>
+                                                                </div>
+                                                            </div>
                                                     <div class="col-sm-4">
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="familiar"
-                                                                name="customRadioInline1"
-                                                                class="custom-control-input"
-                                                                required
+                                                        <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarempresa" >
+                                                            <input 
+                                                            type="radio" 
+                                                            [(ngModel)]="visitante.tipo_visitante"
+                                                            #domiciliario="ngModel"
+                                                            value="domiciliario"
+                                                            id="domiciliario" 
+                                                            name="tipo_visitante"
+                                                            (change)="log(domiciliario);change_tipo_visitante()" 
+                                                            class="custom-control-input" 
+                                                           required
                                                             />
-                                                            <label class="custom-control-label" for="familiar">Familiar</label>
+                                                            <label class="custom-control-label"
+                                                                for="domiciliario">Domiciliario</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="domiciliario"
-                                                                name="customRadioInline1"
-                                                                class="custom-control-input"
+                                                            <input 
+                                                            type="radio" 
+                                                            [(ngModel)]="visitante.tipo_visitante"
+                                                            #servicios="ngModel"
+                                                            value="servicios"
+                                                            id="servicios" 
+                                                            name="tipo_visitante"
+                                                            (change)="log(servicios); change_tipo_visitante()"
+                                                                class="custom-control-input" 
                                                                 required
-                                                            />
-                                                            <label class="custom-control-label" for="domiciliario">Domiciliario</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="servicios"
-                                                                name="customRadioInline1"
-                                                                class="custom-control-input"
-                                                                required
-                                                            />
+                                                                 />
                                                             <label class="custom-control-label" for="servicios">Servicios</label>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             <!--    <div class="col-sm-12">
+                                        <div class="card mb-3">
+                                            <div class="card-header">prueba radio boton</div>
+                                            <div class="card-body">
+    
+                                                <div class="form-group">
+                                                        <div class="row">
+                                                            
+                                                                <div class="col-sm-4" >
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input
+                                                                            value="prueba1"
+                                                                                type="radio"
+                                                                                [(ngModel)]="visitante.prueba1"
+                                                                                #prueba1="ngModel"
+                                                                                id="prueba1"
+                                                                                name="prueba1"
+                                                                                (change)="log(prueba1)" 
+                                                                                class="custom-control-input"
+                                                                                required
+                                                                            />
+                                                                            <label class="custom-control-label" for="prueba1">prueba 1</label>
+                                                                        </div>
+                                                                    </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input 
+                                                                    type="radio" 
+                                                                    id="domiciliario" 
+                                                                    name="tipo_visitante"
+                                                                    class="custom-control-input" 
+                                                                   
+                                                                    />
+                                                                    <label class="custom-control-label"
+                                                                        for="domiciliario">p2</label>
+                                                                </div>
+                                                            </div>
+                                                       
+                                                       
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                <div class="col-sm-12" *ngIf="visitante.tipo_visitante == 'servicios' || visitante.tipo_visitante == 'domiciliario'">
+                                    <div class="card mb-3" >
+                                        <div class="card-header" >Datos empresa</div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <!-- <div id="domiciliario" [ngbCollapse]="!isCollapsed"> -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="empresa">Empresa</label>
+                                                        <input tabindex="17" class="form-control"
+                                                            [(ngModel)]="visitante.empresa" required
+                                                            pattern="[a-zA-Z]*$" minlength="4" maxlength="8"
+                                                            name="empresa" type="text" #empresa="ngModel"
+                                                            (change)="log(empresa)" id="empresa" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="empresa.touched && empresa.invalid">
+                                                            <div *ngIf="empresa.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="empresa.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ empresa.errors.minlength.requiredLength }} caracteres
+                                                            </div>
+                                                            <div *ngIf="empresa.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="arl">ARL</label>
+                                                        <input tabindex="18" class="form-control"
+                                                            [(ngModel)]="visitante.arl" required pattern="[a-zA-Z]*$"
+                                                            minlength="4" maxlength="8" name="arl" type="text"
+                                                            #arl="ngModel" (change)="log(arl)" id="arl" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="arl.touched && arl.invalid">
+                                                            <div *ngIf="arl.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="arl.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ arl.errors.minlength.requiredLength }} caracteres
+                                                            </div>
+                                                            <div *ngIf="arl.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!--/div-->
                                         </div>
                                     </div>
                                 </div>
@@ -572,95 +593,12 @@
 
                             <div class="row">
                                 <div class="col-sm-12"></div>
-                                <button class="btn btn-primary" [disabled]="!visitorForm.valid" type="submit">Enviar</button>
+                                <button class="btn btn-primary" [disabled]="!visitorForm.valid"
+                                    type="submit">Enviar</button>
                             </div>
                         </form>
 
-                        <div class="card-body">
-                            <p>
-                                <!-- <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    (click)="isCollapsed = !isCollapsed"
-                                    [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="domiciliario"
-                                >
-                                    Domiciliario
-                                </button> -->
-                            </p>
-                            <!--div class="row"-->
-
-                            <div class="col-sm-12">
-                                <div class="card mb-3">
-                                    <div class="card-header">Datos empresa</div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <!-- <div id="domiciliario" [ngbCollapse]="!isCollapsed"> -->
-
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="empresa">Empresa</label>
-                                                    <input
-                                                        tabindex="17"
-                                                        class="form-control"
-                                                        [(ngModel)]="visitante.empresa"
-                                                        required
-                                                        pattern="[a-zA-Z]*$"
-                                                        minlength="4"
-                                                        maxlength="8"
-                                                        name="empresa"
-                                                        type="text"
-                                                        #empresa="ngModel"
-                                                        (change)="log(empresa)"
-                                                        id="empresa"
-                                                    />
-                                                    <div class="alert alert-danger" *ngIf="empresa.touched && empresa.invalid">
-                                                        <div *ngIf="empresa.errors.required">*El campo es requerido</div>
-                                                        <div *ngIf="empresa.errors.minlength">
-                                                            *El campo debe tener minimo
-                                                            {{ empresa.errors.minlength.requiredLength }} caracteres
-                                                        </div>
-                                                        <div *ngIf="empresa.errors.pattern">
-                                                            *Este campo no acepta numeros ni espacios
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="arl">ARL</label>
-                                                    <input
-                                                        tabindex="18"
-                                                        class="form-control"
-                                                        [(ngModel)]="visitante.arl"
-                                                        required
-                                                        pattern="[a-zA-Z]*$"
-                                                        minlength="4"
-                                                        maxlength="8"
-                                                        name="arl"
-                                                        type="text"
-                                                        #arl="ngModel"
-                                                        (change)="log(arl)"
-                                                        id="arl"
-                                                    />
-                                                    <div class="alert alert-danger" *ngIf="arl.touched && arl.invalid">
-                                                        <div *ngIf="arl.errors.required">*El campo es requerido</div>
-                                                        <div *ngIf="arl.errors.minlength">
-                                                            *El campo debe tener minimo
-                                                            {{ arl.errors.minlength.requiredLength }} caracteres
-                                                        </div>
-                                                        <div *ngIf="arl.errors.pattern">
-                                                            *Este campo no acepta numeros ni espacios
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/div-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
                 </div>
             </div>

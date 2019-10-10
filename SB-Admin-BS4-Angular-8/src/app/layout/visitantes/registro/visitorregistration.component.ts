@@ -19,18 +19,26 @@ export class VisitorregistrationComponent implements OnInit {
     constructor(
         public _parametricos_srv: ParametricosService,
         public _visitantes_srv: VisitantesService,
+        
         private _ngbModal_srv: NgbModal
+       
     ) {}
     public mostrarvisitante: boolean;
+    public mostrarempresa: boolean;
     ngOnInit() {
         this.image = {
             imageUrl:'',
             webcamImage : null
         }
+        this.mostrarempresa = false;
+        
         this.mostrarvisitante = false;
+        
         this.visitante = new Visitante();
     }
     public cambiarfotografia() {}
+
+  
 
     public log(data) {
         console.log(data);
@@ -39,5 +47,31 @@ export class VisitorregistrationComponent implements OnInit {
         alert(JSON.stringify(this.visitante));
 
         this._visitantes_srv.guardar(this.visitante);
+    }
+
+    
+    
+
+
+    /**
+     * @description Detecta el cambio del tipo de visitante, 
+     * para controlar los valores de los campos segun el tipo
+     * @author "edwin.vivas(at)xphera.co"
+     */
+    public change_tipo_visitante(){
+        switch (this.visitante.tipo_visitante){
+            case "servicios":
+            case "domiciliario":
+            {
+                this.visitante.empresa = "";
+                this.visitante.arl = "";
+                break;
+            }
+            default:{
+                this.visitante.empresa = "NO APLICA";
+                this.visitante.arl = "NO APLICA";
+                break;
+            }
+        }
     }
 }
