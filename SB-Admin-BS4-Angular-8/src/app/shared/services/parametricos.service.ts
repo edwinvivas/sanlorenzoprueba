@@ -5,6 +5,14 @@ interface TiposDocumento {
     detalle: string;
 }
 
+interface Rh {
+    prefi: string;
+}
+
+interface Genero {
+    prefi: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -24,8 +32,29 @@ export class ParametricosService {
         tiposDocumentos.push({ abbr: 'PE', detalle: 'Permiso Especial de Permanencia' });
 
         return tiposDocumentos;
-
     }
 
+    public getrh() {
+        const rh: Array<Rh> = new Array<Rh>();
 
+        rh.push({ prefi: 'O-' });
+        rh.push({ prefi: 'O+' });
+        rh.push({ prefi: 'A-' });
+        rh.push({ prefi: 'A+' });
+        rh.push({ prefi: 'B-' });
+        rh.push({ prefi: 'B+' });
+        rh.push({ prefi: 'AB-' });
+        rh.push({ prefi: 'AB+' });
+
+        return rh;
+    }
+
+    public getgenero() {
+        const genero: Array<Genero> = new Array<Genero>();
+
+        genero.push({ prefi: 'M' });
+        genero.push({ prefi: 'F' });
+
+        return genero;
+    }
 }

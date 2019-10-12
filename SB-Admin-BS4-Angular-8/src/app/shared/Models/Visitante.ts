@@ -1,47 +1,47 @@
 export class Visitante {
-    public tipodocumento: string;
+    public tipo_documento: string;
     public numero_documento: string;
-    public expedida: string;
-    public fechaexpedicion: string;
+    public lugar_expedicion: string;
+    public fecha_expedicion: string;
     public genero: string;
     public rh: string;
-    public visitantecel: string;
+    public celular_visitante: string;
     public email: string;
-    public nacimiento: string;
+    public fecha_nacimiento: string;
     public eps: string;
-    public emergencia: string;
-    public emergenciacel: string;
-    public primernombre: string;
-    public segundonombre: string;
-    public surname: string;
-    public segundoapellido: string;
+    public contacto_emergencia: string;
+    public celular_emergencia: string;
+    public primer_nombre: string;
+    public segundo_nombre: string;
+    public primer_apellido: string;
+    public segundo_apellido: string;
     public empresa: string;
     public arl: string;
     public xphr: string;
     public fotografia: string;
     public tipo_visitante: string;
-    public familiar: string;
+
 
     public constructor() {
         this.numero_documento = null;
-        this.expedida = null;
-        this.fechaexpedicion = null;
+        this.lugar_expedicion = null;
+        this.fecha_expedicion = null;
         this.genero = null;
         this.rh = null;
-        this.visitantecel = null;
+        this.celular_visitante = null;
         this.email = null;
-        this.nacimiento = null;
+        this.fecha_nacimiento = null;
         this.eps = null;
-        this.emergencia = null;
-        this.emergenciacel = null;
-        this.primernombre = null;
-        this.segundonombre = null;
-        this.surname = null;
-        this.segundoapellido = null;
+        this.contacto_emergencia = null;
+        this.celular_emergencia = null;
+        this.primer_nombre = null;
+        this.segundo_nombre = null;
+        this.primer_apellido = null;
+        this.segundo_apellido = null;
         this.empresa = null;
         this.arl = null;
         this.fotografia = null;
         this.tipo_visitante = null;
-        this.familiar = null;
+
     }
 }
