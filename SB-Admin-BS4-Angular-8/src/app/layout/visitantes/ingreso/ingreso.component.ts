@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Visitante } from '../../../shared/Models/Visitante';
 
 @Component({
   selector: 'app-ingreso',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IngresoComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
+
+
+  public nuevoVisitante: Visitante;
+  public edit: boolean;
+
+
+  @Input()
+  public visitantes: Array<Visitante>;
 
   ngOnInit() {
+    this.nuevoVisitante = new Visitante();
+
   }
 
+  public guardar() {
+    if (this.edit === false) {
+        this.visitantes.push(this.nuevoVisitante);
+    } else {
+        this.edit = false;
+    }
+
+    this.nuevoVisitante = new Visitante();
 }
+
+
+}
+

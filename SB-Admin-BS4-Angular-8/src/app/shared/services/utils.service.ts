@@ -13,4 +13,6 @@ export class UtilsService {
   public str_to_date_gmt_co(string_date: string) {
     return new Date(string_date + ' ' + 'GMT-0500');
   }
+
+
 }

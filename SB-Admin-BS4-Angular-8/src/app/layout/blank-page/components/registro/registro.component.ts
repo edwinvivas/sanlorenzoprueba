@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Persona } from '../persona';
 import { Apartamento } from '../apartamento';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
-
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -29,12 +28,12 @@ export class RegistroComponent implements OnInit {
         this.nuevoResidente = new Persona();
         this.nuevoResidente.tipo_documento = 'CC';
 
-        this.persona1 = new Persona();
+      /*   this.persona1 = new Persona();
         this.persona1.tipo_documento = 'CC';
         this.persona1.numero_documento = '1010188564';
         this.persona1.primer_nombre = 'Lucero';
         this.persona1.primer_nombre = 'Vivas';
-        this.persona1.segundo_apellido = 'Soto';
+        this.persona1.segundo_apellido = 'Soto'; */
 
         const apartamento: Apartamento = new Apartamento();
         apartamento.interior = '1';

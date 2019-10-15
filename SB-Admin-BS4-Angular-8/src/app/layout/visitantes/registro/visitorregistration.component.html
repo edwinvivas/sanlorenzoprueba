@@ -13,11 +13,11 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Visitante</h5>
+                            {{myDate | date:'dd/MM/yyyy'}}
                             <p class="card-text">
                                 {{ visitante.primer_nombre }} {{ visitante.segundo_nombre }} {{ visitante.primer_apellido }}
                                 {{ visitante.segundo_apellido }}
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,9 @@
             <div class="col-sm-8 text-xs-center">
                 <div class="card-body">
                     <div class="row">
-                        <form class="form" #visitorForm="ngForm" (submit)="guardar()">
-                            <button class="btn btn-primary" [disabled]="!visitorForm.valid"
+                        <form class="form" #visitorForm="ngForm" (submit)="guardarvisitante()">
+                              <!--   [disabled]="!visitorForm.valid" -->
+                            <button (click)="guardarvisitante()" value="Guardarvisitante"    [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
                                 type="submit">Enviar</button>
 
                             <div class="row">
@@ -134,9 +135,13 @@
                                                                 caracteres
                                                             </div>
                                                         </div>
-                                                        <div class="alert alert-danger"
+                                                       <!--  <div class="alert alert-danger"
                                                             *ngIf="fecha_expedicion.touched && !fecha_expedicion.invalid && !estadosValidacionesPersonalizadas.fecha_expedicion">
                                                                 *La fecha de expedición debe ser mayor que la fecha de nacimiento
+                                                        </div> -->
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="fecha_expedicion.touched && !estadosValidacionesPersonalizadas.fecha_actual">
+                                                                *La fecha de expedición no puede ser la fecha actual o mayor
                                                         </div>
                                                     </div>
                                                 </div>
@@ -218,11 +223,17 @@
 
                                                     <div class="form-group">
                                                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                                        <input tabindex="11" class="form-control"
-                                                            [(ngModel)]="visitante.fecha_nacimiento" required
-                                                            name="fecha_nacimiento" type="date" #fecha_nacimiento="ngModel"
+                                                        <input
+                                                        tabindex="11"
+                                                        class="form-control"
+                                                            [(ngModel)]="visitante.fecha_nacimiento"
+                                                            required
+                                                            name="fecha_nacimiento"
+                                                             type="date"
+                                                             #fecha_nacimiento="ngModel"
                                                             (change)="log(fecha_nacimiento); ejecutar_validaciones_personalizadas()"
-                                                             id="fecha_nacimiento" min="1980-12-01"
+                                                             id="fecha_nacimiento"
+                                                             min="1980-12-01"
                                                             max="2110-12-31" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="fecha_nacimiento.touched && fecha_nacimiento.invalid">
@@ -236,7 +247,6 @@
                                                         </div>
                                                         <div class="alert alert-danger"
                                                             *ngIf="fecha_nacimiento.touched && !fecha_nacimiento.invalid && !estadosValidacionesPersonalizadas.fecha_nacimiento">
-
                                                                 *La fecha de nacimiento debe ser menor que la fecha de expedición del documento de identidad
                                                         </div>
                                                     </div>
@@ -567,7 +577,8 @@
 
                             <div class="row">
                                 <div class="col-sm-12"></div>
-                                <button class="btn btn-primary" [disabled]="(!visitorForm.valid) && (!validaciones_personalidas_ok())"
+                                <!-- [disabled]="(!visitorForm.valid) && (!validaciones_personalidas_ok())" -->
+                                <button [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
                                     type="submit">Enviar</button>
                             </div>
                         </form>

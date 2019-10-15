@@ -1,7 +1,8 @@
 <div style="text-align:center">
+  <!--   *ngIf="cropperRes || imageUrl" [src]="cropperRes ||-->
 
-    <div class="col-12 col-sm-12 crop-res">
-        <img *ngIf="cropperRes || imageUrl" [src]="cropperRes || imageUrl" />
+   <div *ngIf="mostrarimagen" class="col-12 col-sm-12 crop-res">
+        <img   [src]="cropperRes || imageUrl"  />
     </div>
 
     <div>
@@ -19,9 +20,24 @@
             (initError)="handleInitError($event)"
         ></webcam>
         <br />
-        <button class="btn btn-primary-positive" (click)="triggerSnapshot()"  onclick="document.getElementById('up7913').disabled=true;document.getElementById('down7913').disabled=false;" type="submit"  name="up7913" id="up7913">Tomar Foto</button>
+
+        <button
+
+        class="btn btn-primary-positive"
+        (click)="triggerSnapshot() || mostrarimagen= true"
+        onclick="document.getElementById('up7913').disabled=true;document.getElementById('down7913').disabled=false;"
+        type="submit"
+        name="up7913"
+        id="up7913">Tomar Foto</button>
         &nbsp;
-        <button class="btn btn-secondary-negative" (click)="toggleWebcam()"  onclick="this.disabled=true;document.getElementById('up7913').disabled=false;" type="submit"  name="down7913" id="down7913" >Cambiar Foto </button>
+        <button
+        *ngIf="imageUrl"
+        class="btn btn-secondary-negative"
+        (click)="toggleWebcam() || mostrarimagen= !mostrarimagen"
+        onclick="this.disabled=true;document.getElementById('up7913').disabled=false;"
+        type="submit"
+        name="down7913"
+        id="down7913" >Cambiar Foto </button>
         &nbsp;
         <br />
 
@@ -72,9 +88,7 @@
 <br />
 
                  <div class="btn-group">
-
-
-                    <button  (click)="mostrar= !mostrar" class="btn btn-primary btn-block">
+                      <button  (click)="mostrar= !mostrar" class="btn btn-primary btn-block">
                         <span class="fa fa-pencil">Editar</span>
                           </button>
                 </div>

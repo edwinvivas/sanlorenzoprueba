@@ -2,6 +2,7 @@ export class Visitante {
     public tipo_documento: string;
     public numero_documento: string;
     public lugar_expedicion: string;
+    public fecha_expedicion1: string;
     public fecha_expedicion: string;
     public genero: string;
     public rh: string;
@@ -20,7 +21,8 @@ export class Visitante {
     public xphr: string;
     public fotografia: string;
     public tipo_visitante: string;
-
+    public fecha_actual: string;
+    public myDate:Date;
 
     public constructor() {
         this.numero_documento = null;
@@ -42,6 +44,7 @@ export class Visitante {
         this.arl = null;
         this.fotografia = null;
         this.tipo_visitante = null;
+        this.fecha_actual = null;
 
     }
 }

@@ -1,3 +1,19 @@
-<p>
-  ingreso works!
-</p>
+
+<table class="table table-hover">
+        <thead>
+          <tr>
+
+            <th scope="col">Documento</th>
+            <th scope="col">Nombre y Apellido</th>
+            <th scope="col">Herramientas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let visitante of visitantes" >
+            <th scope="row">{{ visitante.numero_documento }}</th>
+            <td>{{ visitante.primer_nombre +''+ visitante.primer_apellido }}</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+

@@ -14,7 +14,7 @@ import { CropperComponent } from 'angular-cropperjs';
 })
 export class CamaraComponent implements OnInit {
     @Input() imageUrl: any;
-
+    public mostrarimagen = true;
     public mostrar = false;
     // toggle webcam on/off
     public showWebcam = true;
