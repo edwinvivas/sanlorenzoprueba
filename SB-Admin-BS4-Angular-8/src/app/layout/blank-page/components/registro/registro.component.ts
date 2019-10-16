@@ -4,6 +4,7 @@ import { Apartamento } from '../apartamento';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
     selector: 'app-registro',
     templateUrl: './registro.component.html',
@@ -18,11 +19,12 @@ export class RegistroComponent implements OnInit {
     public ModalEliminarOptions = {
         ELIMINAR : 0,
         CANCELAR : 1
-    }
+    };
     @Input()
     public residentes: Array<Persona>;
 
     ngOnInit() {
+
         this.edit = false;
         this.mostrarFormulario = false;
         this.nuevoResidente = new Persona();
@@ -39,7 +41,7 @@ export class RegistroComponent implements OnInit {
         apartamento.interior = '1';
         apartamento.numero = '101';
 
-        this.persona1.apartamento = apartamento;
+        /* this.persona1.apartamento = apartamento; */
     }
 
     public guardar() {

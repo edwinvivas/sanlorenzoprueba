@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from './components/persona';
+import { Propietario } from '../../shared/Models/Propietario';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+
+
 
 class RegistroApartamento {
     public datosBasicos: any;
@@ -18,9 +23,17 @@ class RegistroApartamento {
 })
 export class BlankPageComponent implements OnInit {
     public data: RegistroApartamento;
-    constructor() {}
+    constructor(private _ngbModal_srv: NgbModal) {}
+
+    public propietario: Propietario;
 
     ngOnInit() {
+        this.propietario = new Propietario ();
         this.data = new RegistroApartamento();
+
     }
+    public log(data) {
+        console.log(data);
+    }
+
 }

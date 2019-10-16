@@ -1,19 +1,38 @@
 
-<table class="table table-hover">
-        <thead>
-          <tr>
-
-            <th scope="col">Documento</th>
-            <th scope="col">Nombre y Apellido</th>
-            <th scope="col">Herramientas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let visitante of visitantes" >
-            <th scope="row">{{ visitante.numero_documento }}</th>
-            <td>{{ visitante.primer_nombre +''+ visitante.primer_apellido }}</td>
-            <td>@mdo</td>
-          </tr>
-        </tbody>
+<div class="card mb-10" *ngIf="!mostrarFormulario">
+  <div class="card-header">
+      visitantes <a href="javascript:void(1)"><i class="fa fa-fw fa-plus"  [routerLink]="['/visitantes/registro']" routerLinkActive="router-link-active" (click)="(MostrarFormAgregarVisitante)"></i></a>
+  </div>
+  <!-- <div *ngIf="visitantes.length > 0" class="card-body table-responsive"> -->
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>Tipo Doc</th>
+                  <th>Numero Documento</th>
+                  <th>Apellidos</th>
+                  <th>Nombres</th>
+                  <th>acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let visitante of visitantes">
+                  <th scope="row">{{ visitante.tipo_documento }}</th>
+                  <td>{{ visitante.numero_documento }}</td>
+                  <td>{{ visitante.primer_apellido + ' ' + visitante.segundo_apellido }}</td>
+                  <td>{{ visitante.primer_nombre + ' ' + visitante.segundo_nombre }}</td>
+                  <td>
+                  </td>
+              </tr>
+          </tbody>
       </table>
+ 
+</div>
 
+
+
+
+
+
+
+
+<||||||||||||||||||||||w|||

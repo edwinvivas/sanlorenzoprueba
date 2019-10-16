@@ -1,4 +1,4 @@
-import { Component, OnInit,Input  } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Visitante } from '../../../shared/Models/Visitante';
@@ -6,6 +6,7 @@ import { VisitantesService } from 'src/app/shared/services/visitantes.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { WebcamImage} from 'ngx-webcam';
 import { DatePipe } from '@angular/common';
+
 
 @Component({
     selector: 'app-visitorregistration',
@@ -25,34 +26,46 @@ export class VisitorregistrationComponent implements OnInit {
 
     public visitante: Visitante;
 
-    public image:any;
+    public image: any;
 
     public imageUrl: any;
     public webcamImage: WebcamImage;
     public myDate = new Date();
 
+
     constructor(
         public _parametricos_srv: ParametricosService,
         public _visitantes_srv: VisitantesService,
         public _utils_srv: UtilsService,
-        private _ngbModal_srv: NgbModal
+        private _ngbModal_srv: NgbModal,
+        private _datepipe: DatePipe
     ) {}
-    public nuevoVisitante: Visitante;
-    public edit: boolean;
+
     public mostrarvisitante: boolean;
     public mostrarempresa: boolean;
+    public mostrarFormulario: boolean;
+    public nuevoVisitante: Visitante;
+    public edit: boolean;
+    public ModalEliminarOptions = {
+      ELIMINAR : 0,
+      CANCELAR : 1
+  };
+
+
 
     @Input()
     public visitantes: Array<Visitante>;
 
     ngOnInit() {
         this.nuevoVisitante = new Visitante();
+        this.edit = false;
+        this.mostrarFormulario = false;
 
 
         this.image = {
-            imageUrl:'',
+            imageUrl: '',
             webcamImage : null
-        }
+        };
         this.mostrarempresa = false;
 
         this.mostrarvisitante = false;
@@ -69,7 +82,9 @@ export class VisitorregistrationComponent implements OnInit {
 
         this.nuevoVisitante = new Visitante();
     }
-
+    public MostrarFormAgregarVisitante() {
+        this.mostrarFormulario = true;
+      }
 
 
     private validacionesPersonalizadas() {
@@ -93,7 +108,7 @@ export class VisitorregistrationComponent implements OnInit {
      *  y que la fecha de nacimiento sea mayor que 01/01/1920
      */
     public validate_fecha_expedicion() {
-        console.info("validando fecha de expedicion");
+        console.info('validando fecha de expedicion');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
         const fecha_nacimiento: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_nacimiento);
         const minima_fecha_nacimiento = new Date('01/01/1920');
@@ -106,7 +121,7 @@ export class VisitorregistrationComponent implements OnInit {
      * y que la fecha de nacimiento sea mayor que 01/01/1920
      */
     public validate_fecha_nacimiento() {
-        console.info("validando fecha de nacimiento");
+        console.info('validando fecha de nacimiento');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
         const fecha_nacimiento: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_nacimiento);
         const minima_fecha_nacimiento = new Date('01/01/1920');
@@ -117,8 +132,11 @@ export class VisitorregistrationComponent implements OnInit {
     public validate_fecha_actual() {
         console.info ('validando fecha actual');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
-        const fecha_actual: myDate = this._utils_srv.str_to_date_gmt_co(this.datePipe.transform(this.myDate, 'yyyy-MM-dd'));
-        const valid: boolean = fecha_expedicion === fecha_actual || fecha_expedicion > fecha_actual;
+        const fecha_actual: Date = this._utils_srv.str_to_date_gmt_co(this._datepipe.transform(this.myDate, 'yyyy-MM-dd'));
+        const valid: boolean =  this._utils_srv.fecha_mayor_igual_fecha( fecha_actual, fecha_expedicion);
+
+
+
         this.estadosValidacionesPersonalizadas.fecha_actual = valid;
     }
 
@@ -131,24 +149,25 @@ export class VisitorregistrationComponent implements OnInit {
     public ejecutar_validaciones_personalizadas() {
         this.validate_fecha_expedicion();
         this.validate_fecha_nacimiento();
+        this.validate_fecha_actual();
     }
     /**
      * @description Detecta el cambio del tipo de visitante,
      * para controlar los valores de los campos segun el tipo
      * @author "edwin.vivas(at)xphera.co"
      */
-    public change_tipo_visitante(){
-        switch (this.visitante.tipo_visitante){
-            case "servicios":
-            case "domiciliario":
+    public change_tipo_visitante() {
+        switch (this.visitante.tipo_visitante) {
+            case 'servicios':
+            case 'domiciliario':
             {
-                this.visitante.empresa = "";
-                this.visitante.arl = "";
+                this.visitante.empresa = '';
+                this.visitante.arl = '';
                 break;
             }
-            default:{
-                this.visitante.empresa = "NO APLICA";
-                this.visitante.arl = "NO APLICA";
+            default: {
+                this.visitante.empresa = 'NO APLICA';
+                this.visitante.arl = 'NO APLICA';
                 break;
             }
         }

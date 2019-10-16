@@ -3,6 +3,7 @@
         </pre>-->
 
 <div>
+        
     <div class="card mb-3" *ngIf="mostrarFormulario">
         <div class="card-header">Información del Residente</div>
         <div class="card-body">
@@ -10,30 +11,66 @@
                 <div class="col-sm-12 text-xs-center">
                     <div class="card mb-3">
                         <div class="card-body">
+                                <form class="form" #registroresidenteForm="ngForm" >
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="tipo_documento_ddl">Tipo Documento</label>
-                                        <select id="tipo_documento_ddl" class="form-control" [(ngModel)]="nuevoResidente.tipo_documento">
-                                            <option
-                                                *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
-                                                [ngValue]="tipoDocumento.abbr"
-                                                >{{ tipoDocumento.detalle }}</option
-                                            >
-                                        </select>
-                                    </div>
+                                        <div class="form-group">
+                                                <label for="tipo_documento_ddl">Tipo Documento</label>
+                                                <select
+                                                tabindex="1"
+                                                class="form-control"
+                                                    [(ngModel)]="nuevoResidente.tipo_documento"
+                                                     required
+                                                    name="tipo_documento_ddl"
+                                                    #tipo_documento_ddl="ngModel"
+                                                   
+                                                    id="tipo_documento_ddl">
+                                                    <option value="">Seleccione</option>
+                                                    <option
+                                                        *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
+                                                        [ngValue]="tipoDocumento.abbr">
+                                                        {{ tipoDocumento.detalle }}</option>
+                                                </select>
+                                                <!-- URL(
+                                                {{image.imageUrl}}  -
+                                                {{webcamImage}}
+                                                ) -->
+                                                <div class="alert alert-danger"
+                                                    *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
+                                                    <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
+                                                        requerido</div>
+                                                </div>
+                                            </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="numero_documento">Número de Documento</label>
-                                        <input
-                                            id="numero_documento"
-                                            class="form-control"
-                                            type="number"
-                                            minlength="6"
-                                            [(ngModel)]="nuevoResidente.numero_documento"
-                                        />
-                                    </div>
+                                        <div class="form-group">
+                                                <label for="numero_documento">Número de Documento</label>
+                                                <input 
+                                                class="form-control"
+                                                    [(ngModel)]="nuevoResidente.numero_documento" 
+                                                    required
+                                                    pattern="^[0-9]*$"
+                                                     minlength="6" 
+                                                     maxlength="10"
+                                                    name="numero_documento" 
+                                                    type="text"
+                                                    #numero_documento="ngModel" 
+                                                    
+                                                    id="numero_documento" />
+                                                <div class="alert alert-danger"
+                                                    *ngIf="numero_documento.touched && numero_documento.invalid">
+                                                    <div *ngIf="numero_documento.errors.required">*El campo es
+                                                        requerido</div>
+                                                    <div *ngIf="numero_documento.errors.minlength">
+                                                        *El campo debe tener minimo
+                                                        {{ numero_documento.errors.minlength.requiredLength }}
+                                                        caracteres
+                                                    </div>
+                                                    <div *ngIf="numero_documento.errors.pattern">
+                                                        *Este campo no acepta texto ni espacios
+                                                    </div>
+                                                </div>
+                                            </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -41,22 +78,58 @@
                                     <div class="form-group">
                                         <label for="primer_apellido">Primer apellido</label>
                                         <input
-                                            id="primer_apellido"
-                                            class="form-control"
-                                            type="text"
-                                            [(ngModel)]="nuevoResidente.primer_apellido"
-                                        />
+                                        class="form-control"
+                                        [(ngModel)]="nuevoResidente.primer_apellido"
+                                        required
+                                        pattern="[a-zA-Z]*$" 
+                                        type="text"
+                                        id="primer_apellido"
+                                        name="primer_apellido"
+                                        #primer_apellido="ngModel" />
+
+                                        <div class="alert alert-danger"
+                                        *ngIf="primer_apellido.touched && primer_apellido.invalid">
+                                        <div *ngIf="primer_apellido.errors.required">*El campo es
+                                            requerido</div>
+                                        <div *ngIf="primer_apellido.errors.minlength">
+                                            *El campo debe tener minimo
+                                            {{ primer_apellido.errors.minlength.requiredLength }}
+                                            caracteres
+                                        </div>
+                                        <div *ngIf="primer_apellido.errors.pattern">
+                                            *Este campo no acepta numeros ni espacios
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="segundo_apellido">Segundo apellido</label>
                                         <input
-                                            id="segundo_apellido"
-                                            class="form-control"
-                                            type="text"
-                                            [(ngModel)]="nuevoResidente.segundo_apellido"
+                                        class="form-control"
+                                        [(ngModel)]="nuevoResidente.segundo_apellido"
+                                        required
+                                        type="text"
+                                        id="segundo_apellido" 
+                                        name="segundo_apellido"
+                                        #segundo_apellido="ngModel" 
+                                        pattern="[a-zA-Z]*$"
+                                        minlength="3" 
+                                        maxlength="8"   
                                         />
+                                        <div class="alert alert-danger"
+                                        *ngIf="segundo_apellido.touched && segundo_apellido.invalid">
+                                        <div *ngIf="segundo_apellido.errors.required">*El campo es
+                                            requerido</div>
+                                        <div *ngIf="segundo_apellido.errors.minlength">
+                                            *El campo debe tener minimo
+                                            {{ segundo_apellido.errors.minlength.requiredLength }}
+                                            caracteres
+                                        </div>
+                                        <div *ngIf="segundo_apellido.errors.pattern">
+                                            *Este campo no acepta numeros ni espacios
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -65,11 +138,31 @@
                                     <div class="form-group">
                                         <label for="primer_nombre">Primer nombre</label>
                                         <input
-                                            id="primer_nombre"
-                                            class="form-control"
-                                            type="text"
-                                            [(ngModel)]="nuevoResidente.primer_nombre"
+                                        class="form-control"
+                                        [(ngModel)]="nuevoResidente.primer_nombre"
+                                        required
+                                        pattern="[a-zA-Z]*$" 
+                                        minlength="3" 
+                                        maxlength="8"
+                                        type="text"
+                                        id="primer_nombre"  
+                                        name="primer_nombre"
+                                        #primer_nombre="ngModel" 
+                                           
                                         />
+                                        <div class="alert alert-danger"
+                                                            *ngIf="primer_nombre.touched && primer_nombre.invalid">
+                                                            <div *ngIf="primer_nombre.errors.required">*El campo es
+                                                                requerido</div>
+                                                            <div *ngIf="primer_nombre.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ primer_nombre.errors.minlength.requiredLength }}
+                                                                caracteres
+                                                            </div>
+                                                            <div *ngIf="primer_nombre.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
+                                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -79,22 +172,24 @@
                                             id="segundo_nombre"
                                             class="form-control"
                                             type="text"
-                                            [(ngModel)]="nuevoResidente.segundo_nombre"
+                                            
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <input class="btn btn-primary" type="button" (click)="guardar()" value="Guardar" />
+                                    <input class="btn btn-primary" type="button" (click)="guardar()" value="Guardar" [disabled]="!registroresidenteForm.valid" />
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+       
 </div>
 &nbsp; &nbsp;
 <div>
