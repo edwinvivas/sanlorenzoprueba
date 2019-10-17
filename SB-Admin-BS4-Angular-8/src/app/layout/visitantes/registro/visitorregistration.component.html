@@ -13,7 +13,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Visitante</h5>
-                            {{myDate | date:'dd/MM/yyyy'}}
+                           <!--  {{myDate | date:'dd/MM/yyyy'}} -->
                             <p class="card-text">
                                 {{ visitante.primer_nombre }} {{ visitante.segundo_nombre }} {{ visitante.primer_apellido }}
                                 {{ visitante.segundo_apellido }}
@@ -66,18 +66,18 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="lugar_expedicion">Lugar de expedición</label>
-                                                        <input 
-                                                        tabindex="3" 
+                                                        <input
+                                                        tabindex="3"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.lugar_expedicion" 
+                                                            [(ngModel)]="visitante.lugar_expedicion"
                                                             required
-                                                            pattern="[a-zA-Z]*$" 
-                                                            minlength="4" 
+                                                            pattern="[a-zA-Z]*$"
+                                                            minlength="4"
                                                             maxlength="8"
                                                             name="expedida"
-                                                            type="text" 
+                                                            type="text"
                                                             #lugar_expedicion="ngModel"
-                                                            (change)="log(lugar_expedicion)" 
+                                                            (change)="log(lugar_expedicion)"
                                                             id="lugar_expedicion" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="lugar_expedicion.touched && lugar_expedicion.invalid">
@@ -97,16 +97,16 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="numero_documento">Número de Documento</label>
-                                                        <input tabindex="2" 
+                                                        <input tabindex="2"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.numero_documento" 
+                                                            [(ngModel)]="visitante.numero_documento"
                                                             required
                                                             pattern="^[0-9]*$"
-                                                             minlength="6" 
+                                                             minlength="6"
                                                              maxlength="10"
-                                                            name="numero_documento" 
+                                                            name="numero_documento"
                                                             type="text"
-                                                            #numero_documento="ngModel" 
+                                                            #numero_documento="ngModel"
                                                             (change)="log(numero_documento)"
                                                             id="numero_documento" />
                                                         <div class="alert alert-danger"
@@ -154,8 +154,8 @@
                                                                 *La fecha de expedición debe ser mayor que la fecha de nacimiento
                                                         </div> -->
                                                         <div class="alert alert-danger"
-                                                            *ngIf="fecha_expedicion.touched && !estadosValidacionesPersonalizadas.fecha_actual">
-                                                                *La fecha de expedición no puede ser la fecha actual o mayor
+                                                            *ngIf="fecha_expedicion.touched && !estadosValidacionesPersonalizadas.fecha_mayor">
+                                                                *La fecha de expedición no puede ser mayor que la fecha actual
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,18 +171,18 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="primer_nombre">Primer nombre</label>
-                                                        <input 
-                                                        tabindex="5" 
+                                                        <input
+                                                        tabindex="5"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.primer_nombre" 
+                                                            [(ngModel)]="visitante.primer_nombre"
                                                             required
-                                                            pattern="[a-zA-Z]*$" 
-                                                            minlength="3" 
+                                                            pattern="[a-zA-Z]*$"
+                                                            minlength="3"
                                                             maxlength="8"
-                                                            name="primer_nombre" 
-                                                            type="text" 
+                                                            name="primer_nombre"
+                                                            type="text"
                                                             #primer_nombre="ngModel"
-                                                            (change)="log(primer_nombre)" 
+                                                            (change)="log(primer_nombre)"
                                                             id="primer_nombre" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="primer_nombre.touched && primer_nombre.invalid">
@@ -200,17 +200,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="primer_apellido">Primer apellido</label>
-                                                        <input 
-                                                        tabindex="7" 
+                                                        <input
+                                                        tabindex="7"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.primer_apellido" 
+                                                            [(ngModel)]="visitante.primer_apellido"
                                                             required
-                                                            pattern="[a-zA-Z]*$" 
-                                                            minlength="3" 
+                                                            pattern="[a-zA-Z]*$"
+                                                            minlength="3"
                                                             maxlength="8"
-                                                            name="primer_apellido" 
+                                                            name="primer_apellido"
                                                             type="text"
-                                                            #primer_apellido="ngModel" 
+                                                            #primer_apellido="ngModel"
                                                             (change)="log(primer_apellido)"
                                                             id="primer_apellido" />
                                                         <div class="alert alert-danger"
@@ -277,7 +277,12 @@
                                                         <div class="alert alert-danger"
                                                             *ngIf="fecha_nacimiento.touched && !fecha_nacimiento.invalid && !estadosValidacionesPersonalizadas.fecha_nacimiento">
                                                                 *La fecha de nacimiento debe ser menor que la fecha de expedición del documento de identidad
+                                                                <div
+                                                        *ngIf="fecha_nacimiento.touched && !estadosValidacionesPersonalizadas.fecha_actual || !estadosValidacionesPersonalizadas.fecha_mayor">
+                                                            *La fecha de nacimiento no puede ser la fecha actual o mayor
+                                                    </div>
                                                         </div>
+
                                                     </div>
                                                 </div>
 
@@ -305,17 +310,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="segundo_apellido">Segundo apellido</label>
-                                                        <input 
-                                                        tabindex="8" 
+                                                        <input
+                                                        tabindex="8"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.segundo_apellido" 
+                                                            [(ngModel)]="visitante.segundo_apellido"
                                                             required
                                                             pattern="[a-zA-Z]*$"
-                                                             minlength="3" 
+                                                             minlength="3"
                                                              maxlength="8"
-                                                            name="segundo_apellido" 
+                                                            name="segundo_apellido"
                                                             type="text"
-                                                            #segundo_apellido="ngModel" 
+                                                            #segundo_apellido="ngModel"
                                                             (change)="log(segundo_apellido)"
                                                             id="segundo_apellido" />
                                                         <div class="alert alert-danger"
@@ -364,18 +369,18 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="celular_visitante">Número de celular</label>
-                                                        <input 
-                                                        tabindex="12" 
+                                                        <input
+                                                        tabindex="12"
                                                         class="form-control"
-                                                            [(ngModel)]="visitante.celular_visitante" 
+                                                            [(ngModel)]="visitante.celular_visitante"
                                                             required
-                                                            pattern="^[0-9]*$" 
-                                                            minlength="10" 
+                                                            pattern="^[0-9]*$"
+                                                            minlength="10"
                                                             maxlength="10"
-                                                            name="celular_visitante" 
-                                                            type="text" 
+                                                            name="celular_visitante"
+                                                            type="text"
                                                             #celular_visitante="ngModel"
-                                                            (change)="log(celular_visitante)" 
+                                                            (change)="log(celular_visitante)"
                                                             id="celular_visitante" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="celular_visitante.touched && celular_visitante.invalid">
@@ -567,8 +572,6 @@
                                         <div class="card-header" >Datos empresa</div>
                                         <div class="card-body">
                                             <div class="row">
-
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="empresa">Empresa</label>

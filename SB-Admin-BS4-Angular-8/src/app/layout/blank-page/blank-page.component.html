@@ -2,10 +2,10 @@
     <div class="card-body">
         <h1 align="center"> <img class="logoformulario" src="/assets/images/logoph2.png" alt="" /> </h1>
         <h4 class="card-title">
-            CONJUNTO MULTIFAMILIAR SAN LORENZO P.H CRA 68 D N° 24 A-50 nit 830008327-023
+            CONJUNTO MULTIFAMILIAR SAN LORENZO P.H CRA 68 D N° 24 A-50 nit 830008327-0
         </h4>
         <p class="card-text">
-            La siguiente información es de carácter confidencial y reservado. Solamente se autoriza su uso dentro de los
+            La siguiente información es de carácter confidencial y reservada. Solamente se autoriza su uso dentro de los
             programas de
             seguridad y en caso de desastres.
         </p>
@@ -14,17 +14,18 @@
 
 <div class="accordion" id="accordionExample">
     <form class="form" #propietarioForm="ngForm" novalidate>
+
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseExample" aria-controls="collapseOne">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="false"  aria-controls="collapseOne">
                         Apartamento
                     </button>
                 </h2>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-6 text-xs-center">
@@ -165,15 +166,15 @@
                                 <div class="form-group">
                                     <label for="lugar_expedicion">Expedida en</label>
                                     <input
-                                    class="form-control" 
-                                    [(ngModel)]="propietario.lugar_expedicion" 
+                                    class="form-control"
+                                    [(ngModel)]="propietario.lugar_expedicion"
                                     required
-                                        pattern="[a-zA-Z]*$" 
-                                        minlength="4" 
-                                        maxlength="8" 
+                                        pattern="[a-zA-Z]*$"
+                                        minlength="4"
+                                        maxlength="8"
                                         name="lugar_expedicion"
-                                        type="text" 
-                                        #lugar_expedicion="ngModel" 
+                                        type="text"
+                                        #lugar_expedicion="ngModel"
                                         (change)="log(lugar_expedicion)"
                                         id="lugar_expedicion" />
                                     <div class="alert alert-danger"
@@ -199,17 +200,17 @@
                             <div class="card-body">
                                 <div  class="form-group">
                                     <label for="numero_celular">Numero de celular</label>
-                                    <input 
+                                    <input
                                     class="form-control"
-                                    [(ngModel)]="propietario.numero_celular" 
+                                    [(ngModel)]="propietario.numero_celular"
                                     required
-                                    pattern="^[0-9]*$" 
-                                    minlength="10" 
+                                    pattern="^[0-9]*$"
+                                    minlength="10"
                                     maxlength="10"
-                                    name="numero_celular" 
-                                    type="text" 
+                                    name="numero_celular"
+                                    type="text"
                                     #numero_celular="ngModel"
-                                    (change)="log(numero_celular)" 
+                                    (change)="log(numero_celular)"
                                     id="numero_celular" />
                                     <div class="alert alert-danger"
                                     *ngIf="numero_celular.touched && numero_celular.invalid">
@@ -224,7 +225,7 @@
                                        *Este campo no acepta texto ni espacios
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <!--/div-->
@@ -258,19 +259,149 @@
                     </button>
                 </h2>
             </div>
-            <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
-                <div class="card-body">
-                    <label>Vehiculo:</label>
-                    <div class="radio3">
-                        <label> <input type="radio" name="vehiculo1" id="vehiculo_si" value="vehiculo_si" checked="" />
-                            SI </label>
-                    </div>
-                    <div class="radio3">
-                        <label> <input type="radio" name="vehiculo1" id="vehiculo_no" value="vehiculo_no" /> NO </label>
+            <div id="collapsefour" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 text-xs-center">
+                                <!--div class="card mb-3"-->
+                                <div class="card-body">
+                                    <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-sm-4" >
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input
+                                                                                type="radio"
+                                                                                [(ngModel)]="vehiculo.opciones_vehiculo"
+                                                                                #positivo="ngModel"
+                                                                                value="positivo"
+                                                                                id="positivo"
+                                                                                name="opciones_vehiculo"
+                                                                                (change)="log(positivo); change_opciones_vehiculo"
+                                                                                class="custom-control-input"
+                                                                                required
+
+                                                                            />
+                                                                            <label class="custom-control-label" for="positivo">Si</label>
+                                                                        </div>
+                                                                    </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarvehiculo" >
+                                                                    <input
+                                                                    type="radio"
+                                                                    [(ngModel)]="vehiculo.opciones_vehiculo"
+                                                                    #negativo="ngModel"
+                                                                    value="negativo"
+                                                                    id="negativo"
+                                                                    name="opciones_vehiculo"
+                                                                    (change)="log(negativo); change_opciones_vehiculo"
+                                                                    class="custom-control-input"
+                                                                   required
+                                                                    />
+                                                                    <label class="custom-control-label" for="negativo">No</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                </div>
+                                </div>
+                                <!--/div-->
+                            </div>
+                            <div class="col-sm-12" *ngIf="vehiculo.opciones_vehiculo == 'positivo' ">
+                                    <div class="card mb-3" >
+                                        <div class="card-header" >Datos vehiculo</div>
+                                        <div class="card-body">
+                                            <div class="row">
+
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="color">color</label>
+                                                        <input
+                                                            class="form-control"
+                                                            [(ngModel)]="vehiculo.color"
+                                                            required
+                                                            pattern="[a-zA-Z]*$"
+                                                             minlength="4"
+                                                             maxlength="8"
+                                                            name="color"
+                                                            type="text"
+                                                            #color="ngModel"
+                                                            (change)="log(color)"
+                                                            id="color" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="color.touched && color.invalid">
+                                                            <div *ngIf="color.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="color.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ color.errors.minlength.requiredLength }} caracteres
+                                                            </div>
+                                                            <div *ngIf="color.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="marca">marca</label>
+                                                        <input tabindex="18" class="form-control"
+                                                            [(ngModel)]="vehiculo.marca" required pattern="[a-zA-Z]*$"
+                                                            minlength="4" maxlength="8" name="marca" type="text"
+                                                            #marca="ngModel" (change)="log(marca)" id="marca" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="marca.touched && marca.invalid">
+                                                            <div *ngIf="marca.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="marca.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ marca.errors.minlength.requiredLength }} caracteres
+                                                            </div>
+                                                            <div *ngIf="marca.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="placa">placa</label>
+                                                        <input
+                                                       class="form-control"
+                                                            [(ngModel)]="vehiculo.placa"
+                                                            required
+                                                            pattern="[a-zA-Z]*$"
+                                                            minlength="4"
+                                                            maxlength="8"
+                                                            name="placa"
+                                                            type="text"
+                                                            #placa="ngModel"
+                                                            (change)="log(placa)"
+                                                            id="placa" />
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="placa.touched && placa.invalid">
+                                                            <div *ngIf="placa.errors.required">*El campo es requerido
+                                                            </div>
+                                                            <div *ngIf="placa.errors.minlength">
+                                                                *El campo debe tener minimo
+                                                                {{ placa.errors.minlength.requiredLength }} caracteres
+                                                            </div>
+                                                            <div *ngIf="placa.errors.pattern">
+                                                                *Este campo no acepta numeros ni espacios
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
+
 
     </form>
 
@@ -290,39 +421,111 @@
                 <div class="col-xl-6 text-xs-center">
                     <!--div class="card mb-3"-->
                     <div class="card-body">
-                        <fieldset class="form-group">
-                            <label>Tiene Mascota:</label>
-                            <div class="radio3">
-                                <label> <input type="radio" name="mascota" id="mascota_si" value="mascota_si"
-                                        checked="" /> SI </label>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4" >
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input
+                                                type="radio"
+                                                [(ngModel)]="mascota.opciones_mascota"
+                                                #si="ngModel"
+                                                value="si"
+                                                id="si"
+                                                name="opciones_mascota"
+                                                (change)="log(si); change_opciones_mascota"
+                                                class="custom-control-input"
+                                                required
+
+                                            />
+                                            <label class="custom-control-label" for="si">Si</label>
+                                        </div>
+                                    </div>
+                            <div class="col-sm-4">
+                                <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarmascota" >
+                                    <input
+                                    type="radio"
+                                    [(ngModel)]="mascota.opciones_mascota"
+                                    #no="ngModel"
+                                    value="no"
+                                    id="no"
+                                    name="opciones_mascota"
+                                    (change)="log(no); change_opciones_mascota"
+                                    class="custom-control-input"
+                                   required
+                                    />
+                                    <label class="custom-control-label" for="no">No</label>
+                                </div>
                             </div>
-                            <div class="radio3">
-                                <label> <input type="radio" name="mascota" id="mascota_no" value="mascota_no" /> NO
-                                </label>
-                            </div>
-                        </fieldset>
+
+
+                        </div>
+                    </div>
+
                     </div>
                     <!--/div-->
                 </div>
-                <div class="col-xl-6 text-xs-center">
-                    <!--div class="card mb-3"-->
-                    <div class="card-body">
-                        <div id="razamascota" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Raza</label>
-                            <input type="text" class="form-control is-valid" id="razamascota" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
+                <div class="col-sm-12" *ngIf="mascota.opciones_mascota == 'si' ">
+                    <div class="card mb-3" >
+                        <div class="card-header" >Datos mascota</div>
+                        <div class="card-body">
+                            <div class="row">
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="raza">raza</label>
+                                        <input
+                                            class="form-control"
+                                            [(ngModel)]="mascota.raza"
+                                            required
+                                            pattern="[a-zA-Z]*$"
+                                             minlength="4"
+                                             maxlength="8"
+                                            name="raza"
+                                            type="text"
+                                            #raza="ngModel"
+                                            (change)="log(raza)"
+                                            id="raza" />
+                                        <div class="alert alert-danger"
+                                            *ngIf="raza.touched && raza.invalid">
+                                            <div *ngIf="raza.errors.required">*El campo es requerido
+                                            </div>
+                                            <div *ngIf="raza.errors.minlength">
+                                                *El campo debe tener minimo
+                                                {{ raza.errors.minlength.requiredLength }} caracteres
+                                            </div>
+                                            <div *ngIf="raza.errors.pattern">
+                                                *Este campo no acepta numeros ni espacios
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="clase">clase</label>
+                                        <input tabindex="18" class="form-control"
+                                            [(ngModel)]="mascota.clase" required pattern="[a-zA-Z]*$"
+                                            minlength="4" maxlength="8" name="clase" type="text"
+                                            #clase="ngModel" (change)="log(clase)" id="clase" />
+                                        <div class="alert alert-danger"
+                                            *ngIf="clase.touched && clase.invalid">
+                                            <div *ngIf="clase.errors.required">*El campo es requerido
+                                            </div>
+                                            <div *ngIf="clase.errors.minlength">
+                                                *El campo debe tener minimo
+                                                {{ clase.errors.minlength.requiredLength }} caracteres
+                                            </div>
+                                            <div *ngIf="clase.errors.pattern">
+                                                *Este campo no acepta numeros ni espacios
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                        <div id="clasemascota" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Clase</label>
-                            <input type="text" class="form-control is-valid" id="clasemascota" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
-                            </div>
+
                         </div>
                     </div>
-                    <!--/div-->
                 </div>
             </div>
         </div>
@@ -343,52 +546,108 @@
                 <div class="col-xl-6 text-xs-center">
                     <!--div class="card mb-3"-->
                     <div class="card-body">
-                        <fieldset class="form-group">
-                            <label>Servicio domestico:</label>
-                            <div class="radio4">
-                                <label>
-                                    <input type="radio" name="servdomestico" id="domestico_si" value="domestico_si"
-                                        checked="" /> SI
-                                </label>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4" >
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input
+                                                type="radio"
+                                                [(ngModel)]="serviciodomestico.opciones_servicio"
+                                                #aplica="ngModel"
+                                                value="aplica"
+                                                id="aplica"
+                                                name="opciones_servicio"
+                                                (change)="log(aplica); change_opciones_servicio"
+                                                class="custom-control-input"
+                                                required
+
+                                            />
+                                            <label class="custom-control-label" for="aplica">Si</label>
+                                        </div>
+                                    </div>
+                            <div class="col-sm-4">
+                                <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarservicio" >
+                                    <input
+                                    type="radio"
+                                    [(ngModel)]="serviciodomestico.opciones_servicio"
+                                    #noaplica="ngModel"
+                                    value="noaplica"
+                                    id="noaplica"
+                                    name="opciones_servicio"
+                                    (change)="log(noaplica); change_opciones_servicio"
+                                    class="custom-control-input"
+                                   required
+                                    />
+                                    <label class="custom-control-label" for="noaplica">No</label>
+                                </div>
                             </div>
-                            <div class="radio4">
-                                <label> <input type="radio" name="servdomestico" id="domestico_no"
-                                        value="domestico_si" /> NO </label>
-                            </div>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label>Tipo servicio:</label>
-                            <div class="radio5">
-                                <label> <input type="radio" name="servtipo" id="interno" value="interno" checked="" />
-                                    Interno </label>
-                            </div>
-                            <div class="radio5">
-                                <label> <input type="radio" name="servtipo" id="externo" value="interno" /> Externo
-                                </label>
-                            </div>
-                        </fieldset>
+
+
+                        </div>
+                    </div>
                     </div>
                     <!--/div-->
                 </div>
-                <div class="col-xl-6 text-xs-center">
-                    <!--div class="card mb-3"-->
-                    <div class="card-body">
-                        <div id="servicionombre" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
-                            <input type="text" class="form-control is-valid" id="nombreservicio" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
-                            </div>
-                            <div id="serviciocedula" class="form-group">
-                                <label class="form-control-label" for="inputSuccess">Numero de cedula</label>
-                                <input type="text" class="form-control is-valid" id="cedulaservicio" />
-                                <div class="valid-feedback">
-                                    <!--  Input success message -->
+                <div class="col-sm-12" *ngIf="serviciodomestico.opciones_servicio == 'aplica' ">
+                    <div class="card mb-3" >
+                        <div class="card-header" >Datos servicio domestico</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="nombres_apellidos">Nombre y apellidos</label>
+                                        <input
+                                            class="form-control"
+                                            [(ngModel)]="serviciodomestico.nombres_apellidos"
+                                            required
+                                            pattern="[a-zA-Z]*$"
+                                             minlength="4"
+                                             maxlength="8"
+                                            name="nombres_apellidos"
+                                            type="text"
+                                            #nombres_apellidos="ngModel"
+                                            (change)="log(nombres_apellidos)"
+                                            id="nombres_apellidos" />
+                                        <div class="alert alert-danger"
+                                            *ngIf="nombres_apellidos.touched && nombres_apellidos.invalid">
+                                            <div *ngIf="nombres_apellidos.errors.required">*El campo es requerido
+                                            </div>
+                                            <div *ngIf="nombres_apellidos.errors.minlength">
+                                                *El campo debe tener minimo
+                                                {{ nombres_apellidos.errors.minlength.requiredLength }} caracteres
+                                            </div>
+                                            <div *ngIf="nombres_apellidos.errors.pattern">
+                                                *Este campo no acepta numeros ni espacios
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="numero_documento">Numero de cedula</label>
+                                        <input tabindex="18" class="form-control"
+                                            [(ngModel)]="serviciodomestico.numero_documento" required pattern="[a-zA-Z]*$"
+                                            minlength="4" maxlength="8" name="numero_documento" type="text"
+                                            #numero_documento="ngModel" (change)="log(numero_documento)" id="numero_documento" />
+                                        <div class="alert alert-danger"
+                                            *ngIf="numero_documento.touched && numero_documento.invalid">
+                                            <div *ngIf="numero_documento.errors.required">*El campo es requerido
+                                            </div>
+                                            <div *ngIf="numero_documento.errors.minlength">
+                                                *El campo debe tener minimo
+                                                {{ numero_documento.errors.minlength.requiredLength }} caracteres
+                                            </div>
+                                            <div *ngIf="numero_documento.errors.pattern">
+                                                *Este campo no acepta numeros ni espacios
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
                     </div>
-                    <!--/div-->
                 </div>
             </div>
         </div>
@@ -409,12 +668,66 @@
                 <div class="col-xl-4 text-xs-center">
                     <!--div class="card mb-3"-->
                     <div class="card-body">
-                        <div id="Emergencianombre" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Nombre y Apellidos</label>
-                            <input type="text" class="form-control is-valid" id="nombreemergencia" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
+                        <div class="form-group">
+                            <label for="contacto_emergencia">Nombre y Apellidos</label>
+                            <input
+                            class="form-control"
+                            [(ngModel)]="contactoemergencia.contacto_emergencia"
+                                #contacto_emergencia="ngModel"
+                                required
+                                pattern="[a-zA-Z ]*$"
+                                name="contacto_emergencia"
+                                type="text"
+                                minlength="12"
+                                id="contacto_emergencia" />
+                            <div class="alert alert-danger"
+                                *ngIf="contacto_emergencia.touched && contacto_emergencia.invalid">
+                                <div *ngIf="contacto_emergencia.errors.required">*El campo es
+                                    requerido</div>
+                                <div *ngIf="contacto_emergencia.errors.minlength">
+                                    *El campo debe tener minimo
+                                    {{ contacto_emergencia.errors.minlength.requiredLength }}
+                                    caracteres
+                                </div>
+                                <div *ngIf="contacto_emergencia.errors.pattern">
+                                    *Este campo no acepta numeros
+                                </div>
                             </div>
+                        </div>
+
+                    </div>
+                    <!--/div-->
+                </div>
+                <div class="col-xl-4 text-xs-center">
+                    <!--div class="card mb-3"-->
+                    <div class="card-body">
+                        <div  class="form-group">
+                            <label for="celular_emergencia">Numero de celular</label>
+                            <input
+                            class="form-control"
+                            [(ngModel)]="contactoemergencia.celular_emergencia"
+                            required
+                            pattern="^[0-9]*$"
+                            minlength="10"
+                            maxlength="10"
+                            name="celular_emergencia"
+                            type="text"
+                            #celular_emergencia="ngModel"
+                            id="celular_emergencia" />
+                            <div class="alert alert-danger"
+                            *ngIf="celular_emergencia.touched && celular_emergencia.invalid">
+                            <div *ngIf="celular_emergencia.errors.required">*El campo es
+                              requerido</div>
+                            <div *ngIf="celular_emergencia.errors.minlength">
+                             *El campo debe tener minimo
+                                {{ celular_emergencia.errors.minlength.requiredLength }}
+                                  caracteres
+                                 </div>
+                                <div *ngIf="celular_emergencia.errors.pattern">
+                               *Este campo no acepta texto ni espacios
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!--/div-->
@@ -422,25 +735,18 @@
                 <div class="col-xl-4 text-xs-center">
                     <!--div class="card mb-3"-->
                     <div class="card-body">
-                        <div id="celularemergencia" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Numero de celular</label>
-                            <input type="text" class="form-control is-valid" id="emergenciacelular" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
-                            </div>
-                        </div>
-                    </div>
-                    <!--/div-->
-                </div>
-                <div class="col-xl-4 text-xs-center">
-                    <!--div class="card mb-3"-->
-                    <div class="card-body">
-                        <div id="telefonoemergencia" class="form-group">
-                            <label class="form-control-label" for="inputSuccess">Numero de Telefono</label>
-                            <input type="text" class="form-control is-valid" id="emergenciatelefono" />
-                            <div class="valid-feedback">
-                                <!--  Input success message -->
-                            </div>
+                        <div  class="form-group">
+                            <label for="telefono_emergencia">Numero de telefono</label>
+                            <input
+                            class="form-control"
+                            [(ngModel)]="contactoemergencia.telefono_emergencia"
+                            minlength="10"
+                            maxlength="10"
+                            name="telefono_emergencia"
+                            type="text"
+                            #telefono_emergencia="ngModel"
+                            id="telefono_emergencia" />
+
                         </div>
                     </div>
                     <!--/div-->
@@ -459,16 +765,146 @@
         </h2>
     </div>
     <div id="collapseeight" class="collapse" aria-labelledby="headingeight" data-parent="#accordionExample">
-        <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia aute, non
-            cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-            sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson
-            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-            farm-to-table, raw denim
-            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
+            <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-6 text-xs-center">
+                            <!--div class="card mb-3"-->
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4" >
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input
+                                                        type="radio"
+                                                        [(ngModel)]="inmobiliaria.opciones_inmobiliaria"
+                                                        #valido="ngModel"
+                                                        value="valido"
+                                                        id="valido"
+                                                        name="opciones_inmobiliaria"
+                                                        (change)="log(valido); change_opciones_inmobiliaria"
+                                                        class="custom-control-input"
+                                                        required
+
+                                                    />
+                                                    <label class="custom-control-label" for="valido">Si</label>
+                                                </div>
+                                            </div>
+                                    <div class="col-sm-4">
+                                        <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarinmobiliaria" >
+                                            <input
+                                            type="radio"
+                                            [(ngModel)]="inmobiliaria.opciones_inmobiliaria"
+                                            #novalido="ngModel"
+                                            value="novalido"
+                                            id="novalido"
+                                            name="opciones_inmobiliaria"
+                                            (change)="log(novalido); change_opciones_inmobiliaria"
+                                            class="custom-control-input"
+                                           required
+                                            />
+                                            <label class="custom-control-label" for="novalido">No</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            </div>
+                            <!--/div-->
+                        </div>
+                        <div class="col-sm-12" *ngIf="inmobiliaria.opciones_inmobiliaria == 'valido' ">
+                            <div class="card mb-3" >
+                                <div class="card-header" >Datos Inmobiliaria</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="razon_social">Razon social</label>
+                                                <input
+                                                    class="form-control"
+                                                    [(ngModel)]="inmobiliaria.razon_social"
+                                                    required
+                                                    pattern="[a-zA-Z]*$"
+                                                     minlength="4"
+                                                     maxlength="8"
+                                                    name="razon_social"
+                                                    type="text"
+                                                    #razon_social="ngModel"
+                                                    (change)="log(razon_social)"
+                                                    id="razon_social" />
+                                                <div class="alert alert-danger"
+                                                    *ngIf="razon_social.touched && razon_social.invalid">
+                                                    <div *ngIf="razon_social.errors.required">*El campo es requerido
+                                                    </div>
+                                                    <div *ngIf="razon_social.errors.minlength">
+                                                        *El campo debe tener minimo
+                                                        {{ razon_social.errors.minlength.requiredLength }} caracteres
+                                                    </div>
+                                                    <div *ngIf="razon_social.errors.pattern">
+                                                        *Este campo no acepta numeros ni espacios
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </div>
 </div>
+<div class="card">
+        <div class="card-header" id="headingnine">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsenine"
+                    aria-expanded="false" aria-controls="collapseExample" aria-controls="collapsenine">
+                    Administración
+                </button>
+            </h2>
+        </div>
+     <!--    class="collapse show" esta clase deja por defecto un collapse abierto-->
+        <div id="collapsenine" class="collapse" aria-labelledby="headingnine" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Seleccione el interior</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--/div-->
+                    </div>
+                    <div class="col-xl-6 text-xs-center">
+                        <!--div class="card mb-3"-->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Seleccione el apartamento</label>
+                                <select class="form-control">
+                                    <option>101</option>
+                                    <option>102</option>
+                                    <option>103</option>
+                                    <option>104</option>
+                                    <option>201</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--/div-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

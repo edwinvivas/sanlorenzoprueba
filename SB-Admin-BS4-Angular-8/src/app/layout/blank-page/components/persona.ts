@@ -10,6 +10,8 @@ export class Persona {
     public primer_nombre: string;
     public segundo_nombre: string;
 
+    public fecha_nacimiento: string;
+
     public apartamento: Apartamento;
 
     public constructor() {
@@ -19,5 +21,6 @@ export class Persona {
         this.segundo_nombre = '';
         this.primer_apellido = '';
         this.segundo_apellido = '';
+        this.fecha_nacimiento = '';
     }
 }

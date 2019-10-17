@@ -19,12 +19,14 @@ export class VisitorregistrationComponent implements OnInit {
     public estadosValidacionesPersonalizadas = {
         'fecha_expedicion' : false,
         'fecha_nacimiento' : false,
-        'fecha_actual': false
+        'fecha_actual': false,
+        'fecha_mayor': false
     };
 
 
 
     public visitante: Visitante;
+
 
     public image: any;
 
@@ -133,11 +135,19 @@ export class VisitorregistrationComponent implements OnInit {
         console.info ('validando fecha actual');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
         const fecha_actual: Date = this._utils_srv.str_to_date_gmt_co(this._datepipe.transform(this.myDate, 'yyyy-MM-dd'));
-        const valid: boolean =  this._utils_srv.fecha_mayor_igual_fecha( fecha_actual, fecha_expedicion);
-
-
+        const valid: boolean =  this._utils_srv.fecha_mayor_igual_fecha( fecha_actual, fecha_expedicion) /* ||
+         this._utils_srv.comparar_igualdad_fechas(fecha_actual, fecha_expedicion); */
 
         this.estadosValidacionesPersonalizadas.fecha_actual = valid;
+    }
+
+    public validate_fecha_mayor() {
+        console.info ('validando fecha mayor');
+        const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
+        const fecha_actual: Date = this._utils_srv.str_to_date_gmt_co(this._datepipe.transform(this.myDate, 'yyyy-MM-dd'));
+        const valid: boolean =  this._utils_srv.fecha_mayor( fecha_actual, fecha_expedicion)
+
+        this.estadosValidacionesPersonalizadas.fecha_mayor = valid;
     }
 
     public validaciones_personalidas_ok() {
@@ -150,6 +160,7 @@ export class VisitorregistrationComponent implements OnInit {
         this.validate_fecha_expedicion();
         this.validate_fecha_nacimiento();
         this.validate_fecha_actual();
+        this.validate_fecha_mayor();
     }
     /**
      * @description Detecta el cambio del tipo de visitante,

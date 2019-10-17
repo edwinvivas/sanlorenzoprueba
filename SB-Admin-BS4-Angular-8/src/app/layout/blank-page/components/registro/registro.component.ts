@@ -28,7 +28,7 @@ export class RegistroComponent implements OnInit {
         this.edit = false;
         this.mostrarFormulario = false;
         this.nuevoResidente = new Persona();
-        this.nuevoResidente.tipo_documento = 'CC';
+        this.nuevoResidente.tipo_documento = '';
 
       /*   this.persona1 = new Persona();
         this.persona1.tipo_documento = 'CC';

@@ -27,8 +27,10 @@ export class UtilsService {
    * @param fecha_menor Date, corresponde a la fecha más antigua a comparar
    */
   public fecha_mayor_igual_fecha(fecha_mayor: Date, fecha_menor: Date) {
+    return (fecha_mayor.getTime() - fecha_menor.getTime()) > 0;
+  }
+  public fecha_mayor(fecha_mayor: Date, fecha_menor: Date) {
     return (fecha_mayor.getTime() - fecha_menor.getTime()) >= 0;
   }
-
 
 }
