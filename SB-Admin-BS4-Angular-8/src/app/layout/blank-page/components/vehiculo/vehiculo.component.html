@@ -1,0 +1,218 @@
+<!-- <pre>
+        {{persona1}}
+        </pre>-->
+
+        <div>
+
+            <div class="card mb-3" *ngIf="mostrarFormulario2">
+                <div class="card-header">Información del vehiculo</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-xs-center">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                        <form class="form" #vehiculoForm="ngForm" >
+                                          <div class="row">
+                                            <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="color">Color</label>
+                                            <input
+                                            class="form-control"
+                                            [(ngModel)]="nuevoVehiculo.color"
+                                            required
+                                            pattern="[a-zA-Z]*$"
+                                            type="text"
+                                            #color="ngModel"
+                                            minlength="4"
+                                            maxlength="10"
+                                            name="color"
+                                            id="color"
+                                            />
+    
+                                            <div class="alert alert-danger"
+                                                *ngIf="color.touched && color.invalid">
+                                                <div *ngIf="color.errors.required">*El campo es
+                                                    requerido</div>
+                                                <div *ngIf="color.errors.minlength">
+                                                    *El campo debe tener minimo
+                                                    {{ color.errors.minlength.requiredLength }}
+                                                    caracteres
+                                                </div>
+                                                <div *ngIf="color.errors.pattern">
+                                                    *Este campo no acepta numeros ni espacios
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                      </div>
+                                   
+                                      <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="marca">Marca</label>
+                                            <input
+                                            class="form-control"
+                                            [(ngModel)]="nuevoVehiculo.marca"
+                                            required
+                                            pattern="[a-zA-Z]*$"
+                                            type="text"
+                                            #marca="ngModel"
+                                            minlength="3"
+                                            maxlength="10"
+                                            name="marca"
+                                            id="marca"
+                                            />
+    
+                                            <div class="alert alert-danger"
+                                                *ngIf="marca.touched && marca.invalid">
+                                                <div *ngIf="marca.errors.required">*El campo es
+                                                    requerido</div>
+                                                <div *ngIf="marca.errors.minlength">
+                                                    *El campo debe tener minimo
+                                                    {{ marca.errors.minlength.requiredLength }}
+                                                    caracteres
+                                                </div>
+                                                <div *ngIf="marca.errors.pattern">
+                                                    *Este campo no acepta numeros ni espacios
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                          <div class="form-group">
+                                              <label for="placa">Placa</label>
+                                              <input
+                                              class="form-control"
+                                              [(ngModel)]="nuevoVehiculo.placa"
+                                              required
+                                              type="text"
+                                              #placa="ngModel"
+                                              minlength="6"
+                                              maxlength="10"
+                                              name="placa"
+                                              id="placa"
+                                              />
+      
+                                              <div class="alert alert-danger"
+                                                  *ngIf="placa.touched && color.invalid">
+                                                  <div *ngIf="placa.errors.required">*El campo es
+                                                      requerido</div>
+                                                  <div *ngIf="placa.errors.minlength">
+                                                      *El campo debe tener minimo
+                                                      {{ placa.errors.minlength.requiredLength }}
+                                                      caracteres
+                                                  </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-6">
+                                          <div class="form-group">
+                                              <label for="garaje">Garaje</label>
+                                              <input
+                                              class="form-control"
+                                              [(ngModel)]="nuevoVehiculo.garaje"
+                                              required
+                                            
+                                              type="text"
+                                              #garaje="ngModel"
+                                              minlength="2"
+                                              maxlength="10"
+                                              name="garaje"
+                                              id="garaje"
+                                              />
+      
+                                              <div class="alert alert-danger"
+                                                  *ngIf="garaje.touched && garaje.invalid">
+                                                  <div *ngIf="garaje.errors.required">*El campo es
+                                                      requerido</div>
+                                                  <div *ngIf="garaje.errors.minlength">
+                                                      *El campo debe tener minimo
+                                                      {{ garaje.errors.minlength.requiredLength }}
+                                                      caracteres
+                                                  </div>
+                                                
+                                              </div>
+                                            </div>
+                                            </div>
+                                         
+                                    </div>
+                               
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input class="btn btn-primary" type="button" (click)="guardar()" value="Guardar" [disabled]="!vehiculoForm.valid" />
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        &nbsp; &nbsp;
+        <div>
+            <div class="card mb-3" *ngIf="!mostrarFormulario2">
+                <div class="card-header">
+                    Vehiculos <a href="javascript:void(1)"><i class="fa fa-fw fa-plus" (click)="MostrarFormAgregarvehiculo()"></i></a>
+                </div>
+                <div *ngIf="vehiculos.length > 0" class="card-body table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Garaje</th>
+                                <th>Color</th>
+                                <th>Marca</th>
+                                <th>Placa</th>
+                                <th>acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vehiculo of vehiculos">
+                                <th scope="row">{{ vehiculo.garaje }}</th>
+                                <td>{{ vehiculo.color }}</td>
+                                <td>{{ vehiculo.marca }}</td>
+                                <td>{{ vehiculo.placa }}</td>
+                                <td>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="javascript:void(1)" (click)="editarVehiculo(vehiculo)" value="edit">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="javascript:void(1)" (click)="eliminarVehiculoModal(contentModalDelete, vehiculo)">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <ng-template #contentModalDelete let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar vehiculo</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d(ModalEliminarOptions.CANCELAR)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        
+            </div>
+            <div class="modal-body">
+                <p>Esta seguro que desea eliminar el vehiculo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-danger" (click)="c(ModalEliminarOptions.ELIMINAR)">Si, eliminar</button>
+                <button type="button" ngbAutofocus class="btn btn-secondary" (click)="c(ModalEliminarOptions.CANCELAR)">Cacelar</button>
+            </div>
+        </ng-template>

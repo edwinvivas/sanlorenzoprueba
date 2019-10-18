@@ -6,12 +6,13 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePickerComponent } from '../../../app/layout/bs-component/components/date-picker/date-picker.component';
+import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 
 
 
 @NgModule({
     imports: [CommonModule, BlankPageRoutingModule, FormsModule, NgbModule],
-    declarations: [BlankPageComponent, RegistroComponent, DatePickerComponent]
+    declarations: [BlankPageComponent, RegistroComponent, DatePickerComponent, VehiculoComponent]
 })
 
 export class BlankPageModule {}

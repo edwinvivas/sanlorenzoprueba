@@ -1,0 +1,23 @@
+<div class="form-group">
+    <label for="buscar">Buscar Apartamento</label>
+    <input id="buscar" class="form-control" type="search"  aria-describedby="Buscar Apartamento" placeholder="Buscar Apartamento" [(ngModel)]="buscar"/>
+    <small id="emailHelp" class="form-text text-muted">Digite el apartamento que quiere buscar.</small>
+  </div>
+
+  <table class="table table-striped table-inverse table-responsive">
+    <thead class="thead-inverse">
+      <tr>
+        <th>BLOQUE</th>
+        <th>APARTAMENTO</th>
+        <th>VER</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apartamento of filtrarApartamentos">
+          <td scope="row">{{apartamento.interior}}</td>
+          <td>{{apartamento.numero}}</td>
+          <td><a [routerLink]="['ver',apartamento]" routerLinkActive="router-link-active">Ver</a> </td>
+        </tr>
+        
+      </tbody>
+  </table>

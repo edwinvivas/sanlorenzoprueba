@@ -1,282 +1,279 @@
-<!-- <pre>
-        {{persona1}}
-        </pre>-->
 
-<div>
+        <div>
 
-    <div class="card mb-3" *ngIf="mostrarFormulario">
-        <div class="card-header">Información del Residente</div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-12 text-xs-center">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                                <form class="form" #registroresidenteForm="ngForm" >
-                            <div class="row">
-                                <div class="col-sm-6">
-                                        <div class="form-group">
-                                                <label for="tipo_documento_ddl">Tipo Documento</label>
-                                                <select
-                                                tabindex="1"
-                                                class="form-control"
-                                                    [(ngModel)]="nuevoResidente.tipo_documento"
-                                                     required
-                                                    name="tipo_documento_ddl"
-                                                    #tipo_documento_ddl="ngModel"
-
-                                                    id="tipo_documento_ddl">
-                                                    <option value="">Seleccione</option>
-                                                    <option
-                                                        *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
-                                                        [ngValue]="tipoDocumento.abbr">
-                                                        {{ tipoDocumento.detalle }}</option>
-                                                </select>
-                                                <!-- URL(
-                                                {{image.imageUrl}}  -
-                                                {{webcamImage}}
-                                                ) -->
-                                                <div class="alert alert-danger"
-                                                    *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
-                                                    <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
-                                                        requerido</div>
-                                                </div>
-                                            </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="numero_documento">Numero de cedula</label>
-                                        <input
-                                        class="form-control"
-                                        [(ngModel)]="nuevoResidente.numero_documento"
-                                        required
-                                        pattern="^[0-9]*$"
-                                        type="text"
-                                        #numero_documento="ngModel"
-                                        minlength="6"
-                                        maxlength="10"
-                                        name="numero_documento"
-                                        id="numero_documento"
-                                        />
-
-                                        <div class="alert alert-danger"
-                                            *ngIf="numero_documento.touched && numero_documento.invalid">
-                                            <div *ngIf="numero_documento.errors.required">*El campo es
-                                                requerido</div>
-                                            <div *ngIf="numero_documento.errors.minlength">
-                                                *El campo debe tener minimo
-                                                {{ numero_documento.errors.minlength.requiredLength }}
-                                                caracteres
-                                            </div>
-                                            <div *ngIf="numero_documento.errors.pattern">
-                                                *Este campo no acepta texto ni espacios
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="primer_apellido">Primer apellido</label>
-                                        <input
-                                        class="form-control"
-                                        [(ngModel)]="nuevoResidente.primer_apellido"
-                                        required
-                                        pattern="[a-zA-Z]*$"
-                                        type="text"
-                                        id="primer_apellido"
-                                        name="primer_apellido"
-                                        #primer_apellido="ngModel" />
-
-                                        <div class="alert alert-danger"
-                                        *ngIf="primer_apellido.touched && primer_apellido.invalid">
-                                        <div *ngIf="primer_apellido.errors.required">*El campo es
-                                            requerido</div>
-                                        <div *ngIf="primer_apellido.errors.minlength">
-                                            *El campo debe tener minimo
-                                            {{ primer_apellido.errors.minlength.requiredLength }}
-                                            caracteres
-                                        </div>
-                                        <div *ngIf="primer_apellido.errors.pattern">
-                                            *Este campo no acepta numeros ni espacios
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="segundo_apellido">Segundo apellido</label>
-                                        <input
-                                        class="form-control"
-                                        [(ngModel)]="nuevoResidente.segundo_apellido"
-                                        required
-                                        type="text"
-                                        id="segundo_apellido"
-                                        name="segundo_apellido"
-                                        #segundo_apellido="ngModel"
-                                        pattern="[a-zA-Z]*$"
-                                        minlength="3"
-                                        maxlength="8"
-                                        />
-                                        <div class="alert alert-danger"
-                                        *ngIf="segundo_apellido.touched && segundo_apellido.invalid">
-                                        <div *ngIf="segundo_apellido.errors.required">*El campo es
-                                            requerido</div>
-                                        <div *ngIf="segundo_apellido.errors.minlength">
-                                            *El campo debe tener minimo
-                                            {{ segundo_apellido.errors.minlength.requiredLength }}
-                                            caracteres
-                                        </div>
-                                        <div *ngIf="segundo_apellido.errors.pattern">
-                                            *Este campo no acepta numeros ni espacios
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="primer_nombre">Primer nombre</label>
-                                        <input
-                                        class="form-control"
-                                        [(ngModel)]="nuevoResidente.primer_nombre"
-                                        required
-                                        pattern="[a-zA-Z]*$"
-                                        minlength="3"
-                                        maxlength="8"
-                                        type="text"
-                                        id="primer_nombre"
-                                        name="primer_nombre"
-                                        #primer_nombre="ngModel"
-
-                                        />
-                                        <div class="alert alert-danger"
-                                                            *ngIf="primer_nombre.touched && primer_nombre.invalid">
-                                                            <div *ngIf="primer_nombre.errors.required">*El campo es
-                                                                requerido</div>
-                                                            <div *ngIf="primer_nombre.errors.minlength">
-                                                                *El campo debe tener minimo
-                                                                {{ primer_nombre.errors.minlength.requiredLength }}
-                                                                caracteres
-                                                            </div>
-                                                            <div *ngIf="primer_nombre.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
+                <div class="card mb-3" *ngIf="mostrarFormulario">
+                    <div class="card-header">Información del Residente</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 text-xs-center">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                            <form class="form" #registroresidenteForm="ngForm" >
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                            <label for="tipo_documento_ddl">Tipo Documento</label>
+                                                            <select
+                                                            tabindex="1"
+                                                            class="form-control"
+                                                                [(ngModel)]="nuevoResidente.tipo_documento"
+                                                                 required
+                                                                name="tipo_documento_ddl"
+                                                                #tipo_documento_ddl="ngModel"
+            
+                                                                id="tipo_documento_ddl">
+                                                                <option value="">Seleccione</option>
+                                                                <option
+                                                                    *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
+                                                                    [ngValue]="tipoDocumento.abbr">
+                                                                    {{ tipoDocumento.detalle }}</option>
+                                                            </select>
+                                                            <!-- URL(
+                                                            {{image.imageUrl}}  -
+                                                            {{webcamImage}}
+                                                            ) -->
+                                                            <div class="alert alert-danger"
+                                                                *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
+                                                                <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
+                                                                    requerido</div>
                                                             </div>
                                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="segundo_nombre">Segundo nombre</label>
-                                        <input
-                                            id="segundo_nombre"
-                                            class="form-control"
-                                            type="text"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                        <div class="form-group">
-                                                <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                                <input class="form-control"
-                                                [(ngModel)]="nuevoResidente.fecha_nacimiento"
-                                                required
-                                                    type="date" id="fecha_nacimiento"
-                                                    name="fecha_nacimiento"
-                                                    #fecha_nacimiento="ngModel"
-
-                                                    min="1980-12-01"
-                                                    max="2110-12-31" />
-                                                <div class="alert alert-danger"
-                                                    *ngIf="fecha_nacimiento.touched && fecha_nacimiento.invalid">
-                                                    <div *ngIf="fecha_nacimiento.errors.required">*El campo es
-                                                        requerido</div>
-                                                    <div *ngIf="fecha_nacimiento.errors.minlength">
-                                                        *El campo debe tener minimo
-                                                        {{ fecha_nacimiento.errors.minlength.requiredLength }}
-                                                        caracteres
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="numero_documento">Numero de cedula</label>
+                                                    <input
+                                                    class="form-control"
+                                                    [(ngModel)]="nuevoResidente.numero_documento"
+                                                    required
+                                                    pattern="^[0-9]*$"
+                                                    type="text"
+                                                    #numero_documento="ngModel"
+                                                    minlength="6"
+                                                    maxlength="10"
+                                                    name="numero_documento"
+                                                    id="numero_documento"
+                                                    />
+            
+                                                    <div class="alert alert-danger"
+                                                        *ngIf="numero_documento.touched && numero_documento.invalid">
+                                                        <div *ngIf="numero_documento.errors.required">*El campo es
+                                                            requerido</div>
+                                                        <div *ngIf="numero_documento.errors.minlength">
+                                                            *El campo debe tener minimo
+                                                            {{ numero_documento.errors.minlength.requiredLength }}
+                                                            caracteres
+                                                        </div>
+                                                        <div *ngIf="numero_documento.errors.pattern">
+                                                            *Este campo no acepta texto ni espacios
+                                                        </div>
                                                     </div>
+            
                                                 </div>
                                             </div>
-
-
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="primer_apellido">Primer apellido</label>
+                                                    <input
+                                                    class="form-control"
+                                                    [(ngModel)]="nuevoResidente.primer_apellido"
+                                                    required
+                                                    pattern="[a-zA-Z]*$"
+                                                    type="text"
+                                                    id="primer_apellido"
+                                                    name="primer_apellido"
+                                                    #primer_apellido="ngModel" />
+            
+                                                    <div class="alert alert-danger"
+                                                    *ngIf="primer_apellido.touched && primer_apellido.invalid">
+                                                    <div *ngIf="primer_apellido.errors.required">*El campo es
+                                                        requerido</div>
+                                                    <div *ngIf="primer_apellido.errors.minlength">
+                                                        *El campo debe tener minimo
+                                                        {{ primer_apellido.errors.minlength.requiredLength }}
+                                                        caracteres
+                                                    </div>
+                                                    <div *ngIf="primer_apellido.errors.pattern">
+                                                        *Este campo no acepta numeros ni espacios
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="segundo_apellido">Segundo apellido</label>
+                                                    <input
+                                                    class="form-control"
+                                                    [(ngModel)]="nuevoResidente.segundo_apellido"
+                                                    required
+                                                    type="text"
+                                                    id="segundo_apellido"
+                                                    name="segundo_apellido"
+                                                    #segundo_apellido="ngModel"
+                                                    pattern="[a-zA-Z]*$"
+                                                    minlength="3"
+                                                    maxlength="8"
+                                                    />
+                                                    <div class="alert alert-danger"
+                                                    *ngIf="segundo_apellido.touched && segundo_apellido.invalid">
+                                                    <div *ngIf="segundo_apellido.errors.required">*El campo es
+                                                        requerido</div>
+                                                    <div *ngIf="segundo_apellido.errors.minlength">
+                                                        *El campo debe tener minimo
+                                                        {{ segundo_apellido.errors.minlength.requiredLength }}
+                                                        caracteres
+                                                    </div>
+                                                    <div *ngIf="segundo_apellido.errors.pattern">
+                                                        *Este campo no acepta numeros ni espacios
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="primer_nombre">Primer nombre</label>
+                                                    <input
+                                                    class="form-control"
+                                                    [(ngModel)]="nuevoResidente.primer_nombre"
+                                                    required
+                                                    pattern="[a-zA-Z]*$"
+                                                    minlength="3"
+                                                    maxlength="8"
+                                                    type="text"
+                                                    id="primer_nombre"
+                                                    name="primer_nombre"
+                                                    #primer_nombre="ngModel"
+            
+                                                    />
+                                                    <div class="alert alert-danger"
+                                                                        *ngIf="primer_nombre.touched && primer_nombre.invalid">
+                                                                        <div *ngIf="primer_nombre.errors.required">*El campo es
+                                                                            requerido</div>
+                                                                        <div *ngIf="primer_nombre.errors.minlength">
+                                                                            *El campo debe tener minimo
+                                                                            {{ primer_nombre.errors.minlength.requiredLength }}
+                                                                            caracteres
+                                                                        </div>
+                                                                        <div *ngIf="primer_nombre.errors.pattern">
+                                                                            *Este campo no acepta numeros ni espacios
+                                                                        </div>
+                                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="segundo_nombre">Segundo nombre</label>
+                                                    <input
+                                                        id="segundo_nombre"
+                                                        class="form-control"
+                                                        type="text"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                                                            <input class="form-control"
+                                                            [(ngModel)]="nuevoResidente.fecha_nacimiento"
+                                                            required
+                                                                type="date" id="fecha_nacimiento"
+                                                                name="fecha_nacimiento"
+                                                                #fecha_nacimiento="ngModel"
+            
+                                                                min="1980-12-01"
+                                                                max="2110-12-31" />
+                                                            <div class="alert alert-danger"
+                                                                *ngIf="fecha_nacimiento.touched && fecha_nacimiento.invalid">
+                                                                <div *ngIf="fecha_nacimiento.errors.required">*El campo es
+                                                                    requerido</div>
+                                                                <div *ngIf="fecha_nacimiento.errors.minlength">
+                                                                    *El campo debe tener minimo
+                                                                    {{ fecha_nacimiento.errors.minlength.requiredLength }}
+                                                                    caracteres
+                                                                </div>
+                                                            </div>
+                                                        </div>
+            
+            
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <input class="btn btn-primary" type="button" (click)="guardar()" value="Guardar" [disabled]="!registroresidenteForm.valid" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <input class="btn btn-primary" type="button" (click)="guardar()" value="Guardar" [disabled]="!registroresidenteForm.valid" />
-                                </div>
-                            </div>
-                        </form>
                         </div>
                     </div>
                 </div>
+            
             </div>
-        </div>
-    </div>
-
-</div>
-&nbsp; &nbsp;
-<div>
-    <div class="card mb-3" *ngIf="!mostrarFormulario">
-        <div class="card-header">
-            Residentes <a href="javascript:void(1)"><i class="fa fa-fw fa-plus" (click)="MostrarFormAgregarResidente()"></i></a>
-        </div>
-        <div *ngIf="residentes.length > 0" class="card-body table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Tipo Doc</th>
-                        <th>Numero Documento</th>
-                        <th>Apellidos</th>
-                        <th>Nombres</th>
-                        <th>acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let residente of residentes">
-                        <th scope="row">{{ residente.tipo_documento }}</th>
-                        <td>{{ residente.numero_documento }}</td>
-                        <td>{{ residente.primer_apellido + ' ' + residente.segundo_apellido }}</td>
-                        <td>{{ residente.primer_nombre + ' ' + residente.segundo_nombre }}</td>
-                        <td>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <a href="javascript:void(1)" (click)="editarResidente(residente)" value="edit">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <a href="javascript:void(1)" (click)="eliminarResidenteModal(contentModalDelete, residente)">
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<ng-template #contentModalDelete let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Eliminar Residente</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d(ModalEliminarOptions.CANCELAR)">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-    </div>
-    <div class="modal-body">
-        <p>Esta seguro que desea eliminar el residente?</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button"  class="btn btn-danger" (click)="c(ModalEliminarOptions.ELIMINAR)">Si, eliminar</button>
-        <button type="button" ngbAutofocus class="btn btn-secondary" (click)="c(ModalEliminarOptions.CANCELAR)">Cacelar</button>
-    </div>
-</ng-template>
+            &nbsp; &nbsp;
+            <div>
+                <div class="card mb-3" *ngIf="!mostrarFormulario">
+                    <div class="card-header">
+                        Residentes <a href="javascript:void(1)"><i class="fa fa-fw fa-plus" (click)="MostrarFormAgregarResidente()"></i></a>
+                    </div>
+                    <div *ngIf="residentes.length > 0" class="card-body table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tipo Doc</th>
+                                    <th>Numero Documento</th>
+                                    <th>Apellidos</th>
+                                    <th>Nombres</th>
+                                    <th>acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let residente of residentes">
+                                    <th scope="row">{{ residente.tipo_documento }}</th>
+                                    <td>{{ residente.numero_documento }}</td>
+                                    <td>{{ residente.primer_apellido + ' ' + residente.segundo_apellido }}</td>
+                                    <td>{{ residente.primer_nombre + ' ' + residente.segundo_nombre }}</td>
+                                    <td>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <a href="javascript:void(1)" (click)="editarResidente(residente)" value="edit">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <a href="javascript:void(1)" (click)="eliminarResidenteModal(contentModalDelete, residente)">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <ng-template #contentModalDelete let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar Residente</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d(ModalEliminarOptions.CANCELAR)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            
+                </div>
+                <div class="modal-body">
+                    <p>Esta seguro que desea eliminar el residente?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-danger" (click)="c(ModalEliminarOptions.ELIMINAR)">Si, eliminar</button>
+                    <button type="button" ngbAutofocus class="btn btn-secondary" (click)="c(ModalEliminarOptions.CANCELAR)">Cacelar</button>
+                </div>
+            </ng-template>

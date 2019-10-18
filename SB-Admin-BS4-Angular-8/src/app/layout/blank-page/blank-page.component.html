@@ -28,7 +28,7 @@
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-6 text-xs-center">
+                        <div class="col-xl-4 text-xs-center">
                             <!--div class="card mb-3"-->
                             <div class="card-body">
                                 <div class="form-group">
@@ -47,7 +47,7 @@
                             </div>
                             <!--/div-->
                         </div>
-                        <div class="col-xl-6 text-xs-center">
+                        <div class="col-xl-4 text-xs-center">
                             <!--div class="card mb-3"-->
                             <div class="card-body">
                                 <div class="form-group">
@@ -63,6 +63,22 @@
                             </div>
                             <!--/div-->
                         </div>
+                        <div class="col-xl-4 text-xs-center">
+                                <!--div class="card mb-3"-->
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Seleccione el Deposito</label>
+                                        <select class="form-control">
+                                            <option>7</option>
+                                            <option>6c</option>
+                                            <option>2a</option>
+                                            <option>10</option>
+                                            <option>no aplica</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/div-->
+                            </div>
                     </div>
                 </div>
             </div>
@@ -250,12 +266,13 @@
                 </div>
             </div>
         </div>
+     
         <div class="card">
             <div class="card-header" id="headingfour">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                         data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                        Vehiculo
+                        Vehiculo &nbsp; <span class="badge badge-primary">{{ data.vehiculos.length }}</span>
                     </button>
                 </h2>
             </div>
@@ -306,102 +323,19 @@
                                 </div>
                                 <!--/div-->
                             </div>
+                           
+                                
+                            
                             <div class="col-sm-12" *ngIf="vehiculo.opciones_vehiculo == 'positivo' ">
-                                    <div class="card mb-3" >
-                                        <div class="card-header" >Datos vehiculo</div>
                                         <div class="card-body">
-                                            <div class="row">
-
-
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="color">color</label>
-                                                        <input
-                                                            class="form-control"
-                                                            [(ngModel)]="vehiculo.color"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                             minlength="4"
-                                                             maxlength="8"
-                                                            name="color"
-                                                            type="text"
-                                                            #color="ngModel"
-                                                            (change)="log(color)"
-                                                            id="color" />
-                                                        <div class="alert alert-danger"
-                                                            *ngIf="color.touched && color.invalid">
-                                                            <div *ngIf="color.errors.required">*El campo es requerido
-                                                            </div>
-                                                            <div *ngIf="color.errors.minlength">
-                                                                *El campo debe tener minimo
-                                                                {{ color.errors.minlength.requiredLength }} caracteres
-                                                            </div>
-                                                            <div *ngIf="color.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="marca">marca</label>
-                                                        <input tabindex="18" class="form-control"
-                                                            [(ngModel)]="vehiculo.marca" required pattern="[a-zA-Z]*$"
-                                                            minlength="4" maxlength="8" name="marca" type="text"
-                                                            #marca="ngModel" (change)="log(marca)" id="marca" />
-                                                        <div class="alert alert-danger"
-                                                            *ngIf="marca.touched && marca.invalid">
-                                                            <div *ngIf="marca.errors.required">*El campo es requerido
-                                                            </div>
-                                                            <div *ngIf="marca.errors.minlength">
-                                                                *El campo debe tener minimo
-                                                                {{ marca.errors.minlength.requiredLength }} caracteres
-                                                            </div>
-                                                            <div *ngIf="marca.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="placa">placa</label>
-                                                        <input
-                                                       class="form-control"
-                                                            [(ngModel)]="vehiculo.placa"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="4"
-                                                            maxlength="8"
-                                                            name="placa"
-                                                            type="text"
-                                                            #placa="ngModel"
-                                                            (change)="log(placa)"
-                                                            id="placa" />
-                                                        <div class="alert alert-danger"
-                                                            *ngIf="placa.touched && placa.invalid">
-                                                            <div *ngIf="placa.errors.required">*El campo es requerido
-                                                            </div>
-                                                            <div *ngIf="placa.errors.minlength">
-                                                                *El campo debe tener minimo
-                                                                {{ placa.errors.minlength.requiredLength }} caracteres
-                                                            </div>
-                                                            <div *ngIf="placa.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                            <app-vehiculo [vehiculos]="data.vehiculos"></app-vehiculo>
                                     </div>
-                                </div>
+                                
                         </div>
                     </div>
                 </div>
         </div>
-
+    </div>
 
     </form>
 
@@ -595,7 +529,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="nombres_apellidos">Nombre y apellidos</label>
+                                        <label for="nombresApellidos">Nombre y apellidos</label>
                                         <input
                                             class="form-control"
                                             [(ngModel)]="serviciodomestico.nombres_apellidos"
@@ -607,7 +541,7 @@
                                             type="text"
                                             #nombres_apellidos="ngModel"
                                             (change)="log(nombres_apellidos)"
-                                            id="nombres_apellidos" />
+                                            id="nombresApellidos" />
                                         <div class="alert alert-danger"
                                             *ngIf="nombres_apellidos.touched && nombres_apellidos.invalid">
                                             <div *ngIf="nombres_apellidos.errors.required">*El campo es requerido
@@ -624,11 +558,11 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="numero_documento">Numero de cedula</label>
+                                        <label for="numeroDocumento">Numero de cedula</label>
                                         <input tabindex="18" class="form-control"
                                             [(ngModel)]="serviciodomestico.numero_documento" required pattern="[a-zA-Z]*$"
                                             minlength="4" maxlength="8" name="numero_documento" type="text"
-                                            #numero_documento="ngModel" (change)="log(numero_documento)" id="numero_documento" />
+                                            #numero_documento="ngModel" (change)="log(numero_documento)" id="numeroDocumento" />
                                         <div class="alert alert-danger"
                                             *ngIf="numero_documento.touched && numero_documento.invalid">
                                             <div *ngIf="numero_documento.errors.required">*El campo es requerido
@@ -868,41 +802,61 @@
      <!--    class="collapse show" esta clase deja por defecto un collapse abierto-->
         <div id="collapsenine" class="collapse" aria-labelledby="headingnine" data-parent="#accordionExample">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-xl-6 text-xs-center">
-                        <!--div class="card mb-3"-->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Seleccione el interior</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                </select>
+                <label>Seleccione el responsable del pago de la administración</label>
+                <br>
+                <br>
+                <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-4" >
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input
+                                            type="radio"
+                                            [(ngModel)]="administracion.responsable_pago"
+                                            #apoderado="ngModel"
+                                            value="apoderado"
+                                            id="apoderado"
+                                            name="responsable_pago"
+                                            (change)="log(apoderado)"
+                                            class="custom-control-input"
+                                            required
+
+                                        />
+                                        <label class="custom-control-label" for="apoderado">Propietario</label>
+                                    </div>
+                                </div>
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-radio custom-control-inline " >
+                                <input
+                                type="radio"
+                                [(ngModel)]="administracion.responsable_pago"
+                                #arrendatario="ngModel"
+                                value="arrendatario"
+                                id="arrendatario"
+                                name="responsable_pago"
+                                (change)="log(arrendatario)"
+                                class="custom-control-input"
+                               required
+                                />
+                                <label class="custom-control-label"
+                                    for="arrendatario">Arrendatario</label>
                             </div>
                         </div>
-                        <!--/div-->
-                    </div>
-                    <div class="col-xl-6 text-xs-center">
-                        <!--div class="card mb-3"-->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Seleccione el apartamento</label>
-                                <select class="form-control">
-                                    <option>101</option>
-                                    <option>102</option>
-                                    <option>103</option>
-                                    <option>104</option>
-                                    <option>201</option>
-                                </select>
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input
+                                type="radio"
+                                [(ngModel)]="administracion.responsable_pago"
+                                #inmobiliaria="ngModel"
+                                value="inmobiliaria"
+                                id="inmobiliaria"
+                                name="responsable_pago"
+                                (change)="log(inmobiliaria)"
+                                    class="custom-control-input"
+                                    required
+                                     />
+                                <label class="custom-control-label" for="inmobiliaria">Inmobiliaria</label>
                             </div>
                         </div>
-                        <!--/div-->
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Persona } from '../persona';
 import { Apartamento } from '../apartamento';

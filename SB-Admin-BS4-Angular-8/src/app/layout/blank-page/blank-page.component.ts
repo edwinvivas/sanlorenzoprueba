@@ -7,14 +7,18 @@ import { Vehiculo } from '../../shared/Models/vehiculo';
 import { Mascota } from '../../shared/Models/mascota';
 import { ServicioDomestico } from '../../shared/Models/serviciodomestico';
 import { Inmobiliaria } from '../../shared/Models/inmobiliaria';
+import { Administracion } from '../../shared/Models/administracion';
 
 class RegistroApartamento {
     public datosBasicos: any;
     public propietario: any;
     public residentes: Array<Persona>;
+    public vehiculos: Array<Vehiculo>;
+
 
     public constructor() {
         this.residentes = new Array<Persona>();
+        this.vehiculos = new Array<Vehiculo>();
     }
 
 
@@ -34,6 +38,7 @@ export class BlankPageComponent implements OnInit {
     public vehiculo: Vehiculo;
     public mascota: Mascota;
     public inmobiliaria: Inmobiliaria;
+    public administracion: Administracion;
     public serviciodomestico: ServicioDomestico;
     public contactoemergencia: ContactoEmergencia;
     public mostrarvehiculo: boolean;
@@ -47,6 +52,7 @@ export class BlankPageComponent implements OnInit {
         this.vehiculo = new Vehiculo();
         this.mascota = new Mascota();
         this.inmobiliaria = new Inmobiliaria();
+        this.administracion = new Administracion();
         this.serviciodomestico = new ServicioDomestico();
         this.data = new RegistroApartamento();
         this.mostrarvehiculo = false;
