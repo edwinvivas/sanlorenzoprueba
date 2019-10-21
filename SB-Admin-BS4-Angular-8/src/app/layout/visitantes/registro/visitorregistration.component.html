@@ -28,7 +28,7 @@
                         <form class="form" #visitorForm="ngForm" (submit)="guardarvisitante()">
                               <!--   [disabled]="!visitorForm.valid" -->
                             <button (click)="guardarvisitante()" value="Guardarvisitante"    [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
-                                type="submit">Enviar</button>
+                                type="submit"  [disabled]="!visitorForm.valid" >Enviar</button>
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -38,29 +38,36 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="tipo_documento_ddl">Tipo Documento</label>
+                                                        <label for="tipo_documento_vis">Tipo Documento</label>
                                                         <select
                                                         tabindex="1"
                                                         class="form-control"
                                                             [(ngModel)]="visitante.tipo_documento"
                                                              required
-                                                            name="tipo_documento_ddl"
-                                                            #tipo_documento_ddl="ngModel"
-                                                            (change)="log(tipo_documento_ddl)"
-                                                            id="tipo_documento_ddl">
+                                                            name="tipo_documento_vis"
+                                                            #tipo_documento_vis="ngModel"
+                                                            (change)="log(tipo_documento_vis)"
+                                                            id="tipo_documento_vis"
+                                                            >
                                                             <option value="">Seleccione</option>
-                                                            <option
-                                                                *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
-                                                                [ngValue]="tipoDocumento.abbr">
-                                                                {{ tipoDocumento.detalle }}</option>
+                                                                <option
+                                                                *ngFor="let tipoDocumento of tipos_documento"
+                                                                [ngValue]="tipoDocumento.id">
+                                                                {{ tipoDocumento.name }}</option>
+                                                              
+                                                                <!-- <option
+                                                                    *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
+                                                                    [ngValue]="tipoDocumento.abbr">
+                                                                    {{ tipoDocumento.detalle }}</option> -->
+                                                              
                                                         </select>
                                                         <!-- URL(
                                                         {{image.imageUrl}}  -
                                                         {{webcamImage}}
                                                         ) -->
                                                         <div class="alert alert-danger"
-                                                            *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
-                                                            <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
+                                                            *ngIf="tipo_documento_vis.touched && tipo_documento_vis.invalid">
+                                                            <div *ngIf="tipo_documento_vis.errors.required">*El campo es
                                                                 requerido</div>
                                                         </div>
                                                     </div>
@@ -239,10 +246,11 @@
                                                             (change)="log(rh)"
                                                              id="rh">
                                                             <option value="">Seleccione</option>
+                                                            
                                                             <option
-                                                            *ngFor="let rh of _parametricos_srv.getrh()"
-                                                            [ngValue]="rh.prefi">
-                                                            {{ rh.prefi }}</option>
+                                                            *ngFor="let tipoSangre of tipos_sangre" 
+                                                            [ngValue]="tipoSangre.id">
+                                                            {{ tipoSangre.name }}</option>
                                                         </select>
                                                         <div class="alert alert-danger"
                                                             *ngIf="rh.touched && rh.invalid">
@@ -343,11 +351,14 @@
                                                             [(ngModel)]="visitante.genero" required name="genero"
                                                             #genero="ngModel" (change)="log(genero)" id="genero">
                                                             <option value="">Seleccione</option>
-
+                                                            <!-- <option
+                                                            *ngFor="let tipoSangre of tipos_sangre" 
+                                                            [ngValue]="tipoSangre.id">
+                                                            {{ tipoSangre.name }}</option> -->
                                                             <option
-                                                            *ngFor="let genero of _parametricos_srv.getgenero()"
-                                                            [ngValue]="genero.prefi">
-                                                            {{ genero.prefi }}</option>
+                                                            *ngFor="let ClasificacionGenero of clasificacion_genero"
+                                                            [ngValue]="ClasificacionGenero.id">
+                                                            {{ ClasificacionGenero.name }}</option>
                                                         </select>
                                                         <div class="alert alert-danger"
                                                             *ngIf="genero.touched && genero.invalid">
@@ -626,7 +637,7 @@
                                 <div class="col-sm-12"></div>
                                 <!-- [disabled]="(!visitorForm.valid) && (!validaciones_personalidas_ok())" -->
                                 <button [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
-                                    type="submit">Enviar</button>
+                                    type="submit" [disabled]="!visitorForm.valid">Enviar</button>
                             </div>
                         </form>
 

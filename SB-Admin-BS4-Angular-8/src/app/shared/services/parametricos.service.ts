@@ -1,60 +1,75 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 interface TiposDocumento {
     abbr: string;
     detalle: string;
 }
 
-interface Rh {
+interface TiposSangre {
     prefi: string;
 }
 
 interface Genero {
-    prefi: string;
+    prefix: string;
+}
+interface ClasificacionGenero {
+    id: Number;
+    prefix: string;
+    name: string;
 }
 
+interface BaseClasificacionGeneroResponse {
+    count: Number;
+    next?: string;
+    previous?: string;
+    results: Array<ClasificacionGenero>;
+}
+interface TiposDocumento {
+    id: Number;
+    prefix: string;
+    name: string;
+}
+
+ interface BaseTipoDocumentoResponse {
+    count: Number;
+    next?: string;
+    previous?: string;
+    results: Array<TiposDocumento>;
+}
+
+interface TiposSangre {
+    id: Number;
+    name: string;
+}
+
+interface BaseTiposSangreResponse {
+    count: Number;
+    next?: string;
+    previous?: string;
+    results: Array<TiposSangre>;
+}
 @Injectable({
     providedIn: 'root'
 })
 export class ParametricosService {
-    constructor() {}
+    private basePathParameticos = 'http://127.0.0.1:8000/parametricos';
+    constructor(private httpClient: HttpClient) {}
 
     public saludar() {
         console.log('hola');
     }
 
     public getTiposDocumento() {
-        const tiposDocumentos: Array<TiposDocumento> = new Array<TiposDocumento>();
-
-        tiposDocumentos.push({ abbr: 'CC', detalle: 'Cédula de ciudadania' });
-        tiposDocumentos.push({ abbr: 'CE', detalle: 'Cédula de Extranjeria' });
-        tiposDocumentos.push({ abbr: 'PA', detalle: 'Pasaporte' });
-        tiposDocumentos.push({ abbr: 'PE', detalle: 'Permiso Especial de Permanencia' });
-
-        return tiposDocumentos;
+        return this.httpClient.get<BaseTipoDocumentoResponse>(`${this.basePathParameticos}/tipoDocumento`);
     }
 
-    public getrh() {
-        const rh: Array<Rh> = new Array<Rh>();
-
-        rh.push({ prefi: 'O-' });
-        rh.push({ prefi: 'O+' });
-        rh.push({ prefi: 'A-' });
-        rh.push({ prefi: 'A+' });
-        rh.push({ prefi: 'B-' });
-        rh.push({ prefi: 'B+' });
-        rh.push({ prefi: 'AB-' });
-        rh.push({ prefi: 'AB+' });
-
-        return rh;
+    public getTiposSangre() {
+        return this.httpClient.get<BaseTiposSangreResponse>(`${this.basePathParameticos}/rh`);
     }
 
-    public getgenero() {
-        const genero: Array<Genero> = new Array<Genero>();
 
-        genero.push({ prefi: 'M' });
-        genero.push({ prefi: 'F' });
 
-        return genero;
+    public getClasificacionGenero() {
+        return this.httpClient.get<BaseClasificacionGeneroResponse>(`${this.basePathParameticos}/genero`);
     }
 }

@@ -12,29 +12,33 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                     <div class="form-group">
-                                                            <label for="tipo_documento_ddl">Tipo Documento</label>
+                                                            <label for="tipo_documento_reg">Tipo Documentoeeee</label>
                                                             <select
                                                             tabindex="1"
                                                             class="form-control"
                                                                 [(ngModel)]="nuevoResidente.tipo_documento"
                                                                  required
-                                                                name="tipo_documento_ddl"
-                                                                #tipo_documento_ddl="ngModel"
-            
-                                                                id="tipo_documento_ddl">
+                                                                name="tipo_documento_reg"
+                                                                #tipo_documento_reg="ngModel"
+                                                                id="tipo_documento_reg">
                                                                 <option value="">Seleccione</option>
                                                                 <option
+                                                                *ngFor="let tipoDocumento of tipos_documento"
+                                                                [ngValue]="tipoDocumento.id">
+                                                                {{ tipoDocumento.name }}</option>
+                                                              
+                                                                <!-- <option
                                                                     *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
                                                                     [ngValue]="tipoDocumento.abbr">
-                                                                    {{ tipoDocumento.detalle }}</option>
+                                                                    {{ tipoDocumento.detalle }}</option> -->
                                                             </select>
                                                             <!-- URL(
                                                             {{image.imageUrl}}  -
                                                             {{webcamImage}}
                                                             ) -->
                                                             <div class="alert alert-danger"
-                                                                *ngIf="tipo_documento_ddl.touched && tipo_documento_ddl.invalid">
-                                                                <div *ngIf="tipo_documento_ddl.errors.required">*El campo es
+                                                                *ngIf="tipo_documento_reg.touched && tipo_documento_reg.invalid">
+                                                                <div *ngIf="tipo_documento_reg.errors.required">*El campo es
                                                                     requerido</div>
                                                             </div>
                                                         </div>

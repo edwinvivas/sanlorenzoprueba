@@ -21,10 +21,18 @@ export class RegistroComponent implements OnInit {
         ELIMINAR : 0,
         CANCELAR : 1
     };
+    public tipos_documento: Array<any>;
+
     @Input()
     public residentes: Array<Persona>;
 
     ngOnInit() {
+
+        this._parametricos_srv.getTiposDocumento().subscribe((tiposDocumento) => {
+            const cantidad = tiposDocumento.count;
+            this.tipos_documento = tiposDocumento.results;
+        });
+
 
         this.edit = false;
         this.mostrarFormulario = false;

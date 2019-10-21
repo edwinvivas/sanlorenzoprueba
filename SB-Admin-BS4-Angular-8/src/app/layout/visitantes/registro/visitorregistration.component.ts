@@ -34,6 +34,9 @@ export class VisitorregistrationComponent implements OnInit {
     public webcamImage: WebcamImage;
     public myDate = new Date();
 
+    public tipos_sangre: Array<any>;
+    public tipos_documento: Array<any>;
+    public clasificacion_genero: Array<any>;
 
     constructor(
         public _parametricos_srv: ParametricosService,
@@ -59,7 +62,25 @@ export class VisitorregistrationComponent implements OnInit {
     public visitantes: Array<Visitante>;
 
     ngOnInit() {
+
+
+        this._parametricos_srv.getTiposDocumento().subscribe((tiposDocumento) => {
+            const cantidad = tiposDocumento.count;
+            this.tipos_documento = tiposDocumento.results;
+        });
+
+        this._parametricos_srv.getTiposSangre().subscribe((TiposSangre) => {
+            const cantidad = TiposSangre.count;
+            this.tipos_sangre = TiposSangre.results;
+        });
+
+        this._parametricos_srv.getClasificacionGenero().subscribe((ClasificacionGenero) => {
+            const cantidad = ClasificacionGenero.count;
+            this.clasificacion_genero = ClasificacionGenero.results;
+        });
+
         this.nuevoVisitante = new Visitante();
+        this.nuevoVisitante.tipo_documento = '';
         this.edit = false;
         this.mostrarFormulario = false;
 
@@ -135,7 +156,7 @@ export class VisitorregistrationComponent implements OnInit {
         console.info ('validando fecha actual');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
         const fecha_actual: Date = this._utils_srv.str_to_date_gmt_co(this._datepipe.transform(this.myDate, 'yyyy-MM-dd'));
-        const valid: boolean =  this._utils_srv.fecha_mayor_igual_fecha( fecha_actual, fecha_expedicion) /* ||
+        const valid: boolean =  this._utils_srv.fecha_mayor_igual_fecha( fecha_actual, fecha_expedicion); /* ||
          this._utils_srv.comparar_igualdad_fechas(fecha_actual, fecha_expedicion); */
 
         this.estadosValidacionesPersonalizadas.fecha_actual = valid;
@@ -145,7 +166,7 @@ export class VisitorregistrationComponent implements OnInit {
         console.info ('validando fecha mayor');
         const fecha_expedicion: Date = this._utils_srv.str_to_date_gmt_co(this.visitante.fecha_expedicion);
         const fecha_actual: Date = this._utils_srv.str_to_date_gmt_co(this._datepipe.transform(this.myDate, 'yyyy-MM-dd'));
-        const valid: boolean =  this._utils_srv.fecha_mayor( fecha_actual, fecha_expedicion)
+        const valid: boolean =  this._utils_srv.fecha_mayor( fecha_actual, fecha_expedicion);
 
         this.estadosValidacionesPersonalizadas.fecha_mayor = valid;
     }
