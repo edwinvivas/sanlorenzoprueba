@@ -66,6 +66,7 @@ export class VisitorregistrationComponent implements OnInit {
 
         this._parametricos_srv.getTiposDocumento().subscribe((tiposDocumento) => {
             const cantidad = tiposDocumento.count;
+            console.log(tiposDocumento.results);
             this.tipos_documento = tiposDocumento.results;
         });
 
@@ -79,8 +80,10 @@ export class VisitorregistrationComponent implements OnInit {
             this.clasificacion_genero = ClasificacionGenero.results;
         });
 
-        this.nuevoVisitante = new Visitante();
-        this.nuevoVisitante.tipo_documento = '';
+        this.visitante = new Visitante();
+        this.visitante.tipo_documento = '';
+        this.visitante.rh = '';
+        this.visitante.genero = '';
         this.edit = false;
         this.mostrarFormulario = false;
 
@@ -93,17 +96,17 @@ export class VisitorregistrationComponent implements OnInit {
 
         this.mostrarvisitante = false;
 
-        this.visitante = new Visitante();
+        // this.visitante = new Visitante();
     }
 
     public guardarvisitante() {
         if (this.edit === false) {
-            this.visitantes.push(this.nuevoVisitante);
+            this.visitantes.push(this.visitante);
         } else {
             this.edit = false;
         }
 
-        this.nuevoVisitante = new Visitante();
+        this.visitante = new Visitante();
     }
     public MostrarFormAgregarVisitante() {
         this.mostrarFormulario = true;
