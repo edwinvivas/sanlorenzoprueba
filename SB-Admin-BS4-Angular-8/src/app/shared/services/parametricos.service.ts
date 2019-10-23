@@ -37,6 +37,16 @@ interface TiposDocumento {
     results: Array<TiposDocumento>;
 }
 
+interface Municipios {
+    codigo: Number;
+    nombre: string;
+    departamento: Number;
+  }
+
+  interface Departamento {
+    codigo: Number;
+    nombre: string;
+  }
 interface TiposSangre {
     id: Number;
     name: string;
@@ -48,6 +58,20 @@ interface BaseTiposSangreResponse {
     previous?: string;
     results: Array<TiposSangre>;
 }
+
+interface BaseMunicipiosResponse {
+    count: Number;
+    next?: string;
+    previous?: string;
+    results: Array<Municipios>;
+  }
+
+  interface BaseDepartamentoResponse {
+    count: Number;
+    next?: string;
+    previous?: string;
+    results: Array<Departamento>;
+  }
 @Injectable({
     providedIn: 'root'
 })
@@ -72,4 +96,19 @@ export class ParametricosService {
     public getClasificacionGenero() {
         return this.httpClient.get<BaseClasificacionGeneroResponse>(`${this.basePathParameticos}/genero`);
     }
+
+/**
+ *
+ * Entrega un listado de Municipios
+ * @param {String} departamento coresponde al codigo del departamento en el DANE
+ * @returns Listado de municipios
+ * @memberof ParametricosService
+ */
+public getMunicipios(departamento: String) {
+    return this.httpClient.get<BaseMunicipiosResponse>(`${this.basePathParameticos}/municipio?departamento=${departamento}`);
+  }
+  public getDepartamento() {
+    return this.httpClient.get<BaseDepartamentoResponse>(`${this.basePathParameticos}/departamento`);
+  }
+
 }

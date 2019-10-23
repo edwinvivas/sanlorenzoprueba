@@ -1,12 +1,13 @@
 import { Persona } from './persona';
 
 export class Apartamento {
-  public interior:string;
-  public numero:string;
+  public id: Number;
+  public interior: string;
+  public numero: string;
 
-  public residentes:Array<Persona>;
+  public residentes: Array<Persona>;
 
-  public constructor(){
+  public constructor() {
     this.residentes = new Array<Persona>();
   }
 }

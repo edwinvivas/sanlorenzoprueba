@@ -8,13 +8,14 @@ import { Mascota } from '../../shared/Models/mascota';
 import { ServicioDomestico } from '../../shared/Models/serviciodomestico';
 import { Inmobiliaria } from '../../shared/Models/inmobiliaria';
 import { Administracion } from '../../shared/Models/administracion';
+import { ParametricosService } from 'src/app/shared/services/parametricos.service';
 
 class RegistroApartamento {
     public datosBasicos: any;
     public propietario: any;
     public residentes: Array<Persona>;
     public vehiculos: Array<Vehiculo>;
-
+    public tipos_documento: Array<any>;
 
     public constructor() {
         this.residentes = new Array<Persona>();
@@ -32,7 +33,12 @@ class RegistroApartamento {
 })
 export class BlankPageComponent implements OnInit {
     public data: RegistroApartamento;
-    constructor(private _ngbModal_srv: NgbModal) {}
+
+    public opcion_municipios: Array<any>;
+    public opcion_departamentos: Array<any>;
+    public tipos_documento: Array<any>;
+
+    constructor(private _ngbModal_srv: NgbModal, public _parametricos_srv: ParametricosService ) {}
 
     public propietario: Propietario;
     public vehiculo: Vehiculo;
@@ -59,10 +65,32 @@ export class BlankPageComponent implements OnInit {
         this.mostrarmascota = false;
         this.mostrarservicio = false;
         this.mostrarinmobiliaria = false;
+        this.propietario.departamento_expedicion = '';
+        this.propietario.municipio_expedicion = '';
+
+
+        this._parametricos_srv.getDepartamento().subscribe((Departamento) => {
+            /* console.log(Departamento.results); */
+         this.opcion_departamentos = Departamento.results;
+        });
+
+        this._parametricos_srv.getTiposDocumento().subscribe((tiposDocumento) => {
+            const cantidad = tiposDocumento.count;
+            console.log(tiposDocumento.results);
+            this.tipos_documento = tiposDocumento.results;
+        });
 
     }
+    public departamentoChange() {
+        this._parametricos_srv.getMunicipios(this.propietario.departamento_expedicion).subscribe((Municipios) => {
+            /*    console.log(Municipios.results); */
+            this.opcion_municipios = Municipios.results;
+        });
+    }
+
     public log(data) {
         console.log(data);
+        console.log(this.opcion_municipios);
     }
 
     public change_opciones_vehiculo() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apartamento } from '../../blank-page/components/apartamento';
 import { Router, NavigationEnd } from '@angular/router';
+import { ResidentesService } from 'src/app/shared/services/residentes.service';
 
 @Component({
   selector: 'app-apartamentos',
@@ -19,33 +20,16 @@ export class ApartamentosComponent implements OnInit {
    */
   public apartamentos: Array<Apartamento>;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private residentes_srv: ResidentesService) { }
 
   ngOnInit() {
     this.buscar = '';
-    const apartamento1: Apartamento = new Apartamento();
-    apartamento1.interior = '1';
-    apartamento1.numero = '201';
+    this.apartamentos = [];
+     this.residentes_srv.getPropiedades().subscribe( (response)  => {
+      this.apartamentos = response.results;
+      console.log(response.results);
+     });
 
-
-    const apartamento2: Apartamento = new Apartamento();
-    apartamento2.interior = '2';
-    apartamento2.numero = '101';
-
-
-    const apartamento3: Apartamento = new Apartamento();
-    apartamento3.interior = '5';
-    apartamento3.numero = '301';
-
-    const apartamento4: Apartamento = new Apartamento();
-    apartamento4.interior = '2';
-    apartamento4.numero = '205';
-
-    this.apartamentos = new Array<Apartamento>();
-    this.apartamentos.push(apartamento1);
-    this.apartamentos.push(apartamento2);
-    this.apartamentos.push(apartamento3);
-    this.apartamentos.push(apartamento4);
   }
 
   get filtrarApartamentos() {

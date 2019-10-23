@@ -1,7 +1,8 @@
 export class Visitante {
     public tipo_documento: string;
     public numero_documento: string;
-    public lugar_expedicion: string;
+    public municipio_expedicion: string;
+    public departamento_expedicion: string;
     public fecha_expedicion1: string;
     public fecha_expedicion: string;
     public genero: string;
@@ -22,11 +23,12 @@ export class Visitante {
     public fotografia: string;
     public tipo_visitante: string;
     public fecha_actual: string;
-    public myDate:Date;
+    public myDate: Date;
 
     public constructor() {
         this.numero_documento = null;
-        this.lugar_expedicion = null;
+        this.municipio_expedicion = null;
+        this.departamento_expedicion = null;
         this.fecha_expedicion = null;
         this.genero = null;
         this.rh = null;

@@ -13,9 +13,10 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Visitante</h5>
-                           <!--  {{myDate | date:'dd/MM/yyyy'}} -->
+                            <!--  {{myDate | date:'dd/MM/yyyy'}} -->
                             <p class="card-text">
-                                {{ visitante.primer_nombre }} {{ visitante.segundo_nombre }} {{ visitante.primer_apellido }}
+                                {{ visitante.primer_nombre }} {{ visitante.segundo_nombre }}
+                                {{ visitante.primer_apellido }}
                                 {{ visitante.segundo_apellido }}
                             </p>
                         </div>
@@ -26,9 +27,10 @@
                 <div class="card-body">
                     <div class="row">
                         <form class="form" #visitorForm="ngForm" (submit)="guardarvisitante()">
-                              <!--   [disabled]="!visitorForm.valid" -->
-                            <button (click)="guardarvisitante()" value="Guardarvisitante"    [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
-                                type="submit"  [disabled]="!visitorForm.valid" >Enviar</button>
+                            <!--   [disabled]="!visitorForm.valid" -->
+                            <button (click)="guardarvisitante()" value="Guardarvisitante"
+                                [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active"
+                                class="btn btn-primary" type="submit" [disabled]="!visitorForm.valid">Enviar</button>
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -39,33 +41,21 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="tipo_documento_vis">Tipo Documento</label>
-                                                        <select
-                                                        tabindex="1"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.tipo_documento"
-                                                             required
-                                                            name="tipo_documento_vis"
-                                                            #tipo_documento_vis="ngModel"
-                                                            (change)="log(tipo_documento_vis)"
-                                                            id="tipo_documento_vis"
-                                                            
-                                                            >
+                                                        <select tabindex="1" class="form-control"
+                                                            [(ngModel)]="visitante.tipo_documento" required
+                                                            name="tipo_documento_vis" #tipo_documento_vis="ngModel"
+                                                            (change)="log(tipo_documento_vis)" id="tipo_documento_vis">
                                                             <option value="">Seleccione</option>
-                                                                <option
-                                                                *ngFor="let tipoDocumento of tipos_documento"
+                                                            <option *ngFor="let tipoDocumento of tipos_documento"
                                                                 [ngValue]="tipoDocumento.id">
                                                                 {{ tipoDocumento.name }}</option>
-                                                              
-                                                                <!-- <option
+
+                                                            <!-- <option
                                                                     *ngFor="let tipoDocumento of _parametricos_srv.getTiposDocumento()"
                                                                     [ngValue]="tipoDocumento.abbr">
                                                                     {{ tipoDocumento.detalle }}</option> -->
-                                                              
+
                                                         </select>
-                                                        <!-- URL(
-                                                        {{image.imageUrl}}  -
-                                                        {{webcamImage}}
-                                                        ) -->
                                                         <div class="alert alert-danger"
                                                             *ngIf="tipo_documento_vis.touched && tipo_documento_vis.invalid">
                                                             <div *ngIf="tipo_documento_vis.errors.required">*El campo es
@@ -73,49 +63,44 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="lugar_expedicion">Lugar de expedición</label>
-                                                        <input
-                                                        tabindex="3"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.lugar_expedicion"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="4"
-                                                            maxlength="8"
-                                                            name="expedida"
-                                                            type="text"
-                                                            #lugar_expedicion="ngModel"
-                                                            (change)="log(lugar_expedicion)"
-                                                            id="lugar_expedicion" />
+
+                                                        <label for="fecha_expedicion">Fecha de expedición</label>
+                                                        <input tabindex="3" class="form-control"
+                                                            [(ngModel)]="visitante.fecha_expedicion" required
+                                                            name="fecha_expedicion" type="date"
+                                                            #fecha_expedicion="ngModel"
+                                                            (change)="log(fecha_expedicion);ejecutar_validaciones_personalizadas()"
+                                                            id="fecha_expedicion" min="1960-12-01" max="2110-12-31" />
                                                         <div class="alert alert-danger"
-                                                            *ngIf="lugar_expedicion.touched && lugar_expedicion.invalid">
-                                                            <div *ngIf="lugar_expedicion.errors.required">*El campo es requerido
-                                                            </div>
-                                                            <div *ngIf="lugar_expedicion.errors.minlength">
+                                                            *ngIf="fecha_expedicion.touched && fecha_expedicion.invalid">
+                                                            <div *ngIf="fecha_expedicion.errors.required">*El campo es
+                                                                requerido</div>
+                                                            <div *ngIf="fecha_expedicion.errors.minlength">
                                                                 *El campo debe tener minimo
-                                                                {{ lugar_expedicion.errors.minlength.requiredLength }}
+                                                                {{ fecha_expedicion.errors.minlength.requiredLength }}
                                                                 caracteres
                                                             </div>
-                                                            <div *ngIf="lugar_expedicion.errors.pattern">
-                                                                *Este campo no acepta numeros ni espacios
-                                                            </div>
+                                                        </div>
+                                                        <!--  <div class="alert alert-danger"
+                                                            *ngIf="fecha_expedicion.touched && !fecha_expedicion.invalid && !estadosValidacionesPersonalizadas.fecha_expedicion">
+                                                                *La fecha de expedición debe ser mayor que la fecha de nacimiento
+                                                        </div> -->
+                                                        <div class="alert alert-danger"
+                                                            *ngIf="fecha_expedicion.touched && !estadosValidacionesPersonalizadas.fecha_mayor">
+                                                            *La fecha de expedición no puede ser mayor que la fecha
+                                                            actual
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="numero_documento">Número de Documento</label>
-                                                        <input tabindex="2"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.numero_documento"
-                                                            required
-                                                            pattern="^[0-9]*$"
-                                                             minlength="6"
-                                                             maxlength="10"
-                                                            name="numero_documento"
-                                                            type="text"
-                                                            #numero_documento="ngModel"
-                                                            (change)="log(numero_documento)"
+                                                        <input tabindex="2" class="form-control"
+                                                            [(ngModel)]="visitante.numero_documento" required
+                                                            pattern="^[0-9]*$" minlength="6" maxlength="10"
+                                                            name="numero_documento" type="text"
+                                                            #numero_documento="ngModel" (change)="log(numero_documento)"
                                                             id="numero_documento" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="numero_documento.touched && numero_documento.invalid">
@@ -132,38 +117,50 @@
                                                         </div>
                                                     </div>
 
+                                                   
+                                                </div>
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
+                                                        <label for="departamento_expedicion">Lugar de expedición</label>
+                                                        <br>
+                                                        <label>Departamento ({{visitante.departamento_expedicion}})</label>
+                                                        <select tabindex="4" class="form-control"
+                                                            [(ngModel)]="visitante.departamento_expedicion" required
+                                                            name="departamento_expedida" type="text"
+                                                            #departamento_expedicion="ngModel"
+                                                            id="departamento_expedicion"
+                                                            (change)="departamentoChange()"
+                                                            >
+                                                            <option value="">Seleccione</option>
 
-                                                        <label for="fecha_expedicion">Fecha de expedición</label>
-                                                        <input
-                                                        tabindex="4"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.fecha_expedicion"
-                                                            required
-                                                            name="fecha_expedicion"
-                                                            type="date"
-                                                            #fecha_expedicion="ngModel"
-                                                            (change)="log(fecha_expedicion);ejecutar_validaciones_personalizadas()"
-                                                            id="fecha_expedicion"
-                                                            min="1960-12-01"
-                                                            max="2110-12-31" />
+                                                            <option *ngFor="let departamento of opcion_departamentos"
+                                                                [ngValue]="departamento.codigo">
+                                                                {{ departamento.nombre }}</option>
+                                                        </select>
+
                                                         <div class="alert alert-danger"
-                                                            *ngIf="fecha_expedicion.touched && fecha_expedicion.invalid">
-                                                            <div *ngIf="fecha_expedicion.errors.required">*El campo es
-                                                                requerido</div>
-                                                            <div *ngIf="fecha_expedicion.errors.minlength">
-                                                                *El campo debe tener minimo
-                                                                {{ fecha_expedicion.errors.minlength.requiredLength }}
-                                                                caracteres
+                                                            *ngIf="departamento_expedicion.touched && departamento_expedicion.invalid">
+                                                            <div *ngIf="departamento_expedicion.errors.required">*El
+                                                                campo es requerido
                                                             </div>
                                                         </div>
-                                                       <!--  <div class="alert alert-danger"
-                                                            *ngIf="fecha_expedicion.touched && !fecha_expedicion.invalid && !estadosValidacionesPersonalizadas.fecha_expedicion">
-                                                                *La fecha de expedición debe ser mayor que la fecha de nacimiento
-                                                        </div> -->
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="municipio_expedicion">Municipio</label>
+                                                        <select tabindex="4.5" class="form-control"
+                                                            [(ngModel)]="visitante.municipio_expedicion" required
+                                                            name="municipio_expedida" type="text"
+                                                            #municipio_expedicion="ngModel" id="municipio_expedicion">
+                                                            <option value="">Seleccione</option>
+                                                            <option *ngFor="let municipios of opcion_municipios"
+                                                                [ngValue]="municipios.codigo">
+                                                                {{ municipios.nombre }}</option>
+                                                        </select>
                                                         <div class="alert alert-danger"
-                                                            *ngIf="fecha_expedicion.touched && !estadosValidacionesPersonalizadas.fecha_mayor">
-                                                                *La fecha de expedición no puede ser mayor que la fecha actual
+                                                            *ngIf="municipio_expedicion.touched && municipio_expedicion.invalid">
+                                                            <div *ngIf="municipio_expedicion.errors.required">*El campo
+                                                                es requerido
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,19 +176,11 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="primer_nombre">Primer nombre</label>
-                                                        <input
-                                                        tabindex="5"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.primer_nombre"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="primer_nombre"
-                                                            type="text"
-                                                            #primer_nombre="ngModel"
-                                                            (change)="log(primer_nombre)"
-                                                            id="primer_nombre" />
+                                                        <input tabindex="5" class="form-control"
+                                                            [(ngModel)]="visitante.primer_nombre" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="primer_nombre" type="text" #primer_nombre="ngModel"
+                                                            (change)="log(primer_nombre)" id="primer_nombre" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="primer_nombre.touched && primer_nombre.invalid">
                                                             <div *ngIf="primer_nombre.errors.required">*El campo es
@@ -208,18 +197,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="primer_apellido">Primer apellido</label>
-                                                        <input
-                                                        tabindex="7"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.primer_apellido"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                            minlength="3"
-                                                            maxlength="8"
-                                                            name="primer_apellido"
-                                                            type="text"
-                                                            #primer_apellido="ngModel"
-                                                            (change)="log(primer_apellido)"
+                                                        <input tabindex="7" class="form-control"
+                                                            [(ngModel)]="visitante.primer_apellido" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="primer_apellido" type="text"
+                                                            #primer_apellido="ngModel" (change)="log(primer_apellido)"
                                                             id="primer_apellido" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="primer_apellido.touched && primer_apellido.invalid">
@@ -238,20 +220,14 @@
 
                                                     <div class="form-group">
                                                         <label for="rh">RH</label>
-                                                        <select tabindex="9"
-                                                         class="form-control"
-                                                            [(ngModel)]="visitante.rh"
-                                                            required
-                                                            name="rh"
-                                                            #rh="ngModel"
-                                                            (change)="log(rh)"
-                                                             id="rh">
+                                                        <select tabindex="9" class="form-control"
+                                                            [(ngModel)]="visitante.rh" required name="rh" #rh="ngModel"
+                                                            (change)="log(rh)" id="rh">
                                                             <option value="">Seleccione</option>
-                                                            
-                                                            <option
-                                                            *ngFor="let tipoSangre of tipos_sangre" 
-                                                            [ngValue]="tipoSangre.id">
-                                                            {{ tipoSangre.name }}</option>
+
+                                                            <option *ngFor="let tipoSangre of tipos_sangre"
+                                                                [ngValue]="tipoSangre.id">
+                                                                {{ tipoSangre.name }}</option>
                                                         </select>
                                                         <div class="alert alert-danger"
                                                             *ngIf="rh.touched && rh.invalid">
@@ -261,18 +237,12 @@
 
                                                     <div class="form-group">
                                                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                                        <input
-                                                        tabindex="11"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.fecha_nacimiento"
-                                                            required
-                                                            name="fecha_nacimiento"
-                                                             type="date"
-                                                             #fecha_nacimiento="ngModel"
+                                                        <input tabindex="11" class="form-control"
+                                                            [(ngModel)]="visitante.fecha_nacimiento" required
+                                                            name="fecha_nacimiento" type="date"
+                                                            #fecha_nacimiento="ngModel"
                                                             (change)="log(fecha_nacimiento); ejecutar_validaciones_personalizadas()"
-                                                             id="fecha_nacimiento"
-                                                             min="1980-12-01"
-                                                            max="2110-12-31" />
+                                                            id="fecha_nacimiento" min="1980-12-01" max="2110-12-31" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="fecha_nacimiento.touched && fecha_nacimiento.invalid">
                                                             <div *ngIf="fecha_nacimiento.errors.required">*El campo es
@@ -285,11 +255,13 @@
                                                         </div>
                                                         <div class="alert alert-danger"
                                                             *ngIf="fecha_nacimiento.touched && !fecha_nacimiento.invalid && !estadosValidacionesPersonalizadas.fecha_nacimiento">
-                                                                *La fecha de nacimiento debe ser menor que la fecha de expedición del documento de identidad
-                                                                <div
-                                                        *ngIf="fecha_nacimiento.touched && !estadosValidacionesPersonalizadas.fecha_actual || !estadosValidacionesPersonalizadas.fecha_mayor">
-                                                            *La fecha de nacimiento no puede ser la fecha actual o mayor
-                                                    </div>
+                                                            *La fecha de nacimiento debe ser menor que la fecha de
+                                                            expedición del documento de identidad
+                                                            <div
+                                                                *ngIf="fecha_nacimiento.touched && !estadosValidacionesPersonalizadas.fecha_actual || !estadosValidacionesPersonalizadas.fecha_mayor">
+                                                                *La fecha de nacimiento no puede ser la fecha actual o
+                                                                mayor
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -319,18 +291,11 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="segundo_apellido">Segundo apellido</label>
-                                                        <input
-                                                        tabindex="8"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.segundo_apellido"
-                                                            required
-                                                            pattern="[a-zA-Z]*$"
-                                                             minlength="3"
-                                                             maxlength="8"
-                                                            name="segundo_apellido"
-                                                            type="text"
-                                                            #segundo_apellido="ngModel"
-                                                            (change)="log(segundo_apellido)"
+                                                        <input tabindex="8" class="form-control"
+                                                            [(ngModel)]="visitante.segundo_apellido" required
+                                                            pattern="[a-zA-Z]*$" minlength="3" maxlength="8"
+                                                            name="segundo_apellido" type="text"
+                                                            #segundo_apellido="ngModel" (change)="log(segundo_apellido)"
                                                             id="segundo_apellido" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="segundo_apellido.touched && segundo_apellido.invalid">
@@ -357,9 +322,9 @@
                                                             [ngValue]="tipoSangre.id">
                                                             {{ tipoSangre.name }}</option> -->
                                                             <option
-                                                            *ngFor="let ClasificacionGenero of clasificacion_genero"
-                                                            [ngValue]="ClasificacionGenero.id">
-                                                            {{ ClasificacionGenero.name }}</option>
+                                                                *ngFor="let ClasificacionGenero of clasificacion_genero"
+                                                                [ngValue]="ClasificacionGenero.id">
+                                                                {{ ClasificacionGenero.name }}</option>
                                                         </select>
                                                         <div class="alert alert-danger"
                                                             *ngIf="genero.touched && genero.invalid">
@@ -381,19 +346,12 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="celular_visitante">Número de celular</label>
-                                                        <input
-                                                        tabindex="12"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.celular_visitante"
-                                                            required
-                                                            pattern="^[0-9]*$"
-                                                            minlength="10"
-                                                            maxlength="10"
-                                                            name="celular_visitante"
-                                                            type="text"
+                                                        <input tabindex="12" class="form-control"
+                                                            [(ngModel)]="visitante.celular_visitante" required
+                                                            pattern="^[0-9]*$" minlength="10" maxlength="10"
+                                                            name="celular_visitante" type="text"
                                                             #celular_visitante="ngModel"
-                                                            (change)="log(celular_visitante)"
-                                                            id="celular_visitante" />
+                                                            (change)="log(celular_visitante)" id="celular_visitante" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="celular_visitante.touched && celular_visitante.invalid">
                                                             <div *ngIf="celular_visitante.errors.required">*El campo es
@@ -439,12 +397,14 @@
                                                         <input tabindex="14" class="form-control"
                                                             [(ngModel)]="visitante.contacto_emergencia" required
                                                             pattern="[a-zA-Z ]*$" minlength="8" maxlength="20"
-                                                            name="contacto_emergencia" type="text" #contacto_emergencia="ngModel"
+                                                            name="contacto_emergencia" type="text"
+                                                            #contacto_emergencia="ngModel"
                                                             (change)="log(contacto_emergencia)" id="contacto_emergencia"
                                                             placeholder="Nombre y apellido" />
                                                         <div class="alert alert-danger"
                                                             *ngIf="contacto_emergencia.touched && contacto_emergencia.invalid">
-                                                            <div *ngIf="contacto_emergencia.errors.required">*El campo es
+                                                            <div *ngIf="contacto_emergencia.errors.required">*El campo
+                                                                es
                                                                 requerido</div>
                                                             <div *ngIf="contacto_emergencia.errors.minlength">
                                                                 *El campo debe tener minimo
@@ -479,16 +439,10 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="celular_emergencia">Número de celular</label>
-                                                        <input
-                                                        tabindex="15"
-                                                        class="form-control"
-                                                            [(ngModel)]="visitante.celular_emergencia"
-                                                            required
-                                                            pattern="^[0-9]*$"
-                                                            minlength="10"
-                                                            maxlength="10"
-                                                            name="celular_emergencia"
-                                                            type="text"
+                                                        <input tabindex="15" class="form-control"
+                                                            [(ngModel)]="visitante.celular_emergencia" required
+                                                            pattern="^[0-9]*$" minlength="10" maxlength="10"
+                                                            name="celular_emergencia" type="text"
                                                             #celular_emergencia="ngModel"
                                                             (change)="log(celular_emergencia)"
                                                             id="celular_emergencia" />
@@ -518,59 +472,43 @@
                                         <div class="card-body">
 
                                             <div class="form-group">
-                                                    <div class="row">
-                                                        <!-- {{visitante.tipo_visitante}} =>
+                                                <div class="row">
+                                                    <!-- {{visitante.tipo_visitante}} =>
                                                         {{visitante.familiar}} -
                                                         {{visitante.domiciliario}} -
                                                         {{visitante.servicios}} -->
-                                                        <div class="col-sm-4" >
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input
-                                                                        type="radio"
-                                                                        [(ngModel)]="visitante.tipo_visitante"
-                                                                        #familiar="ngModel"
-                                                                        value="familiar"
-                                                                        id="familiar"
-                                                                        name="tipo_visitante"
-                                                                        (change)="log(familiar);change_tipo_visitante()"
-                                                                        class="custom-control-input"
-                                                                        required
-
-                                                                    />
-                                                                    <label class="custom-control-label" for="familiar">Familiar</label>
-                                                                </div>
-                                                            </div>
                                                     <div class="col-sm-4">
-                                                        <div class="custom-control custom-radio custom-control-inline " *ngIf="!mostrarempresa" >
-                                                            <input
-                                                            type="radio"
-                                                            [(ngModel)]="visitante.tipo_visitante"
-                                                            #domiciliario="ngModel"
-                                                            value="domiciliario"
-                                                            id="domiciliario"
-                                                            name="tipo_visitante"
-                                                            (change)="log(domiciliario);change_tipo_visitante()"
-                                                            class="custom-control-input"
-                                                           required
-                                                            />
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" [(ngModel)]="visitante.tipo_visitante"
+                                                                #familiar="ngModel" value="familiar" id="familiar"
+                                                                name="tipo_visitante"
+                                                                (change)="log(familiar);change_tipo_visitante()"
+                                                                class="custom-control-input" required />
+                                                            <label class="custom-control-label"
+                                                                for="familiar">Familiar</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="custom-control custom-radio custom-control-inline "
+                                                            *ngIf="!mostrarempresa">
+                                                            <input type="radio" [(ngModel)]="visitante.tipo_visitante"
+                                                                #domiciliario="ngModel" value="domiciliario"
+                                                                id="domiciliario" name="tipo_visitante"
+                                                                (change)="log(domiciliario);change_tipo_visitante()"
+                                                                class="custom-control-input" required />
                                                             <label class="custom-control-label"
                                                                 for="domiciliario">Domiciliario</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input
-                                                            type="radio"
-                                                            [(ngModel)]="visitante.tipo_visitante"
-                                                            #servicios="ngModel"
-                                                            value="servicios"
-                                                            id="servicios"
-                                                            name="tipo_visitante"
-                                                            (change)="log(servicios); change_tipo_visitante()"
-                                                                class="custom-control-input"
-                                                                required
-                                                                 />
-                                                            <label class="custom-control-label" for="servicios">Servicios</label>
+                                                            <input type="radio" [(ngModel)]="visitante.tipo_visitante"
+                                                                #servicios="ngModel" value="servicios" id="servicios"
+                                                                name="tipo_visitante"
+                                                                (change)="log(servicios); change_tipo_visitante()"
+                                                                class="custom-control-input" required />
+                                                            <label class="custom-control-label"
+                                                                for="servicios">Servicios</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -579,9 +517,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12" *ngIf="visitante.tipo_visitante == 'servicios' || visitante.tipo_visitante == 'domiciliario'">
-                                    <div class="card mb-3" >
-                                        <div class="card-header" >Datos empresa</div>
+                                <div class="col-sm-12"
+                                    *ngIf="visitante.tipo_visitante == 'servicios' || visitante.tipo_visitante == 'domiciliario'">
+                                    <div class="card mb-3">
+                                        <div class="card-header">Datos empresa</div>
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -637,8 +576,9 @@
                             <div class="row">
                                 <div class="col-sm-12"></div>
                                 <!-- [disabled]="(!visitorForm.valid) && (!validaciones_personalidas_ok())" -->
-                                <button [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active" class="btn btn-primary"
-                                    type="submit" [disabled]="!visitorForm.valid">Enviar</button>
+                                <button [routerLink]="['/visitantes/ingreso']" routerLinkActive="router-link-active"
+                                    class="btn btn-primary" type="submit"
+                                    [disabled]="!visitorForm.valid">Enviar</button>
                             </div>
                         </form>
 
