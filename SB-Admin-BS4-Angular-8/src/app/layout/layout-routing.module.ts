@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
             { path: 'visitantes', loadChildren: () => import('./visitantes/visitantes.module').then(m => m.VisitantesModule) },
-            { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
+            { path: 'registroresidentes', loadChildren: () =>
+            import('./registroresidentes/registroresidentes.module').then(m => m.RegistroresidentesModule) },
             { path: 'blank-page2', loadChildren: () => import('./blank-page2/blank-page2.module').then(m => m.BlankPage2Module) },
             { path: 'residentes', loadChildren: () => import('./residentes/residentes.module').then(m => m.ResidentesModule) }
         ]
@@ -27,4 +28,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }

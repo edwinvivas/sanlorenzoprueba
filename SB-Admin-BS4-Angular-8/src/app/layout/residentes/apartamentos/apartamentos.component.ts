@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Apartamento } from '../../blank-page/components/apartamento';
+import { Apartamento } from '../../../shared/Models/apartamento';
 import { Router, NavigationEnd } from '@angular/router';
 import { ResidentesService } from 'src/app/shared/services/residentes.service';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from './components/persona';
+import { Persona } from '../../shared/Models/persona';
 import { Propietario } from '../../shared/Models/Propietario';
 import { ContactoEmergencia } from '../../shared/Models/contactoemergencia';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -28,11 +28,11 @@ class RegistroApartamento {
 
 
 @Component({
-    selector: 'app-blank-page',
-    templateUrl: './blank-page.component.html',
-    styleUrls: ['./blank-page.component.scss']
+    selector: 'app-registroresidentes',
+    templateUrl: './registroresidentes.component.html',
+    styleUrls: ['./registroresidentes.component.scss']
 })
-export class BlankPageComponent implements OnInit {
+export class RegistroresidentesComponent implements OnInit {
     public data: RegistroApartamento;
 
     public opcion_municipios: Array<any>;
@@ -93,8 +93,12 @@ export class BlankPageComponent implements OnInit {
 
                 this._propiedades_srv.getPropiedad(id_propiedad).subscribe((response) => {
                     console.log(response);
-                    this.propietario.tipo_documento = response.tipo_documento_propietario;
-                    this.propietario.nombres_apellidos = response.nombre_propietario;
+                    this.propietario.tipo_documento_propietario = response.tipo_documento_propietario;
+                    this.propietario.nombre_propietario = response.nombre_propietario;
+                    this.propietario.interior = response.interior;
+                    this.propietario.apartamento = response.numero;
+                    this.propietario.numero_documento_propietario = response.numero_documento_propietario;
+                    this.propietario.celular_propietario = response.celular_propietario;
                 });
 
 

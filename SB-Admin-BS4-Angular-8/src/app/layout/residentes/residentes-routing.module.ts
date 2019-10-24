@@ -8,6 +8,7 @@ const routes: Routes = [
     { path: 'apartamentos', component: ApartamentosComponent },
 ];
 
+
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [],

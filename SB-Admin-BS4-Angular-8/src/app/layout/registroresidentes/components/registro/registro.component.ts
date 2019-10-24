@@ -1,7 +1,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { Persona } from '../persona';
-import { Apartamento } from '../apartamento';
+import { Persona } from '../../../../shared/Models/persona';
+import { Apartamento } from '../../../../shared/Models/apartamento';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Apartamento } from 'src/app/layout/blank-page/components/apartamento';
+import { Apartamento } from 'src/app/shared/Models/apartamento';
 
 interface BaseApartamentosResponse {
   count: Number;

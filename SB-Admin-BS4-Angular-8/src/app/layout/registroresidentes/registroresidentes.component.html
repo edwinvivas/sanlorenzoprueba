@@ -20,29 +20,28 @@
                 <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseOne" aria-expanded="false"  aria-controls="collapseOne">
-                        Apartamento
+                        Propiedad
                     </button>
                 </h2>
             </div>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-4 text-xs-center">
                             <!--div class="card mb-3"-->
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Seleccione el interior</label>
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                    </select>
+                                    <label for="nombre_propietario">Propietario</label>
+                                    <input 
+                                    class="form-control" 
+                                    [(ngModel)]="propietario.nombre_propietario"
+                                        #nombre_propietario="ngModel" 
+                                        (change)="log(nombre_propietario)" 
+                                        name="nombre_propietario" 
+                                        type="text" 
+                                        id="nombre_propietario" />
+                                  
                                 </div>
                             </div>
                             <!--/div-->
@@ -51,14 +50,15 @@
                             <!--div class="card mb-3"-->
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Seleccione el apartamento</label>
-                                    <select class="form-control">
-                                        <option>101</option>
-                                        <option>102</option>
-                                        <option>103</option>
-                                        <option>104</option>
-                                        <option>201</option>
-                                    </select>
+                                    <label for="interior">Interior</label>
+                                    <input 
+                                    class="form-control" 
+                                    [(ngModel)]="propietario.interior"
+                                        #interior="ngModel" 
+                                        (change)="log(interior)" 
+                                        name="interior" 
+                                        type="text" 
+                                        id="interior" />
                                 </div>
                             </div>
                             <!--/div-->
@@ -67,14 +67,15 @@
                                 <!--div class="card mb-3"-->
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Seleccione el Deposito</label>
-                                        <select class="form-control">
-                                            <option>7</option>
-                                            <option>6c</option>
-                                            <option>2a</option>
-                                            <option>10</option>
-                                            <option>no aplica</option>
-                                        </select>
+                                        <label for="apartamento">Apartamento</label>
+                                        <input 
+                                        class="form-control" 
+                                        [(ngModel)]="propietario.apartamento"
+                                            #apartamento="ngModel" 
+                                            (change)="log(apartamento)" 
+                                            name="apartamento" 
+                                            type="text" 
+                                            id="apartamento" />
                                     </div>
                                 </div>
                                 <!--/div-->
@@ -101,22 +102,27 @@
                             <!-- div class="card mb-3"-->
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nombres_apellidos">Nombre y Apellidos</label>
+                                    <label for="nombrepropietario">Nombre y Apellidos</label>
                                     <input tabindex="1"
-                                    class="form-control" [(ngModel)]="propietario.nombres_apellidos"
-                                        #nombres_apellidos="ngModel" (change)="log(nombres_apellidos)" required
-                                        pattern="[a-zA-Z ]*$" name="nombres_apellidos" type="text" minlength="12"
-                                        id="nombres_apellidos" />
+                                    class="form-control" 
+                                    [(ngModel)]="propietario.nombre_propietario"
+                                        #nombrepropietario="ngModel" 
+                                        (change)="log(nombrepropietario)" 
+                                        required
+                                        pattern="[a-zA-Z ]*$" 
+                                        name="nombrepropietario" 
+                                        type="text" minlength="12"
+                                        id="nombrepropietario" />
                                     <div class="alert alert-danger"
-                                        *ngIf="nombres_apellidos.touched && nombres_apellidos.invalid">
-                                        <div *ngIf="nombres_apellidos.errors.required">*El campo es
+                                        *ngIf="nombrepropietario.touched && nombrepropietario.invalid">
+                                        <div *ngIf="nombrepropietario.errors.required">*El campo es
                                             requerido</div>
-                                        <div *ngIf="nombres_apellidos.errors.minlength">
+                                        <div *ngIf="nombrepropietario.errors.minlength">
                                             *El campo debe tener minimo
-                                            {{ nombres_apellidos.errors.minlength.requiredLength }}
+                                            {{ nombrepropietario.errors.minlength.requiredLength }}
                                             caracteres
                                         </div>
-                                        <div *ngIf="nombres_apellidos.errors.pattern">
+                                        <div *ngIf="nombrepropietario.errors.pattern">
                                             *Este campo no acepta numeros
                                         </div>
                                     </div>
@@ -161,11 +167,16 @@
                            
                             <div class="card-body">
                                     <div class="form-group">
-                                            <label for="tipo_documento_vis">Tipo Documento</label>
-                                            <select tabindex="3" class="form-control"
-                                                [(ngModel)]="propietario.tipo_documento" required
-                                                name="tipo_documento_vis" #tipo_documento_vis="ngModel"
-                                                (change)="log(tipo_documento_vis)" id="tipo_documento_vis">
+                                            <label for="tipo_documento_propietario">Tipo Documento</label>
+                                            <select 
+                                            tabindex="3" 
+                                            class="form-control"
+                                                [(ngModel)]="propietario.tipo_documento_propietario" 
+                                                required
+                                                name="tipo_documento_propietario" 
+                                                #tipo_documento_propietario="ngModel"
+                                                (change)="log(tipo_documento_propietario)" 
+                                                id="tipo_documento_propietario">
                                                 <option value="">Seleccione</option>
                                                 <option *ngFor="let tipoDocumento of tipos_documento"
                                                     [ngValue]="tipoDocumento.id">
@@ -178,8 +189,8 @@
 
                                             </select>
                                             <div class="alert alert-danger"
-                                                *ngIf="tipo_documento_vis.touched && tipo_documento_vis.invalid">
-                                                <div *ngIf="tipo_documento_vis.errors.required">*El campo es
+                                                *ngIf="tipo_documento_propietario.touched && tipo_documento_propietario.invalid">
+                                                <div *ngIf="tipo_documento_propietario.errors.required">*El campo es
                                                     requerido</div>
                                             </div>
                                         </div>
@@ -192,24 +203,31 @@
                             <!--div class="card mb-3"-->
                             <div class="card-body">
                                     <div class="form-group">
-                                            <label for="numero_documento">Numero de documento</label>
+                                            <label for="numero_documento_propietario">Numero de documento</label>
                                             <input 
                                             tabindex="4"
-                                            class="form-control" [(ngModel)]="propietario.numero_documento" required
-                                                pattern="^[0-9]*$" type="text" #numero_documento="ngModel" minlength="6"
-                                                maxlength="10" name="numero_documento" (change)="log(numero_documento)"
-                                                id="numero_documento" />
+                                            class="form-control" 
+                                            [(ngModel)]="propietario.numero_documento_propietario" 
+                                            required
+                                                pattern="^[0-9]*$"
+                                                 type="text" 
+                                                 #numero_documento_propietario="ngModel" 
+                                                 minlength="6"
+                                                maxlength="10" 
+                                                name="numero_documento_propietario" 
+                                                (change)="log(numero_documento_propietario)"
+                                                id="numero_documento_propietario" />
         
                                             <div class="alert alert-danger"
-                                                *ngIf="numero_documento.touched && numero_documento.invalid">
-                                                <div *ngIf="numero_documento.errors.required">*El campo es
+                                                *ngIf="numero_documento_propietario.touched && numero_documento_propietario.invalid">
+                                                <div *ngIf="numero_documento_propietario.errors.required">*El campo es
                                                     requerido</div>
-                                                <div *ngIf="numero_documento.errors.minlength">
+                                                <div *ngIf="numero_documento_propietario.errors.minlength">
                                                     *El campo debe tener minimo
-                                                    {{ numero_documento.errors.minlength.requiredLength }}
+                                                    {{ numero_documento_propietario.errors.minlength.requiredLength }}
                                                     caracteres
                                                 </div>
-                                                <div *ngIf="numero_documento.errors.pattern">
+                                                <div *ngIf="numero_documento_propietario.errors.pattern">
                                                     *Este campo no acepta texto ni espacios
                                                 </div>
                                             </div>
@@ -296,30 +314,30 @@
                             <div class="col-xl-4 text-xs-center">
                                     <div class="card-body">
                             <div  class="form-group">
-                                    <label for="numero_celular">Numero de celular</label>
+                                    <label for="celular_propietario">Numero de celular</label>
                                     <input
                                     tabindex="8"
                                     class="form-control"
-                                    [(ngModel)]="propietario.numero_celular"
+                                    [(ngModel)]="propietario.celular_propietario"
                                     required
                                     pattern="^[0-9]*$"
                                     minlength="10"
                                     maxlength="10"
-                                    name="numero_celular"
+                                    name="celular_propietario"
                                     type="text"
-                                    #numero_celular="ngModel"
-                                    (change)="log(numero_celular)"
-                                    id="numero_celular" />
+                                    #celular_propietario="ngModel"
+                                    (change)="log(celular_propietario)"
+                                    id="celular_propietario" />
                                     <div class="alert alert-danger"
-                                    *ngIf="numero_celular.touched && numero_celular.invalid">
-                                    <div *ngIf="numero_celular.errors.required">*El campo es
+                                    *ngIf="celular_propietario.touched && celular_propietario.invalid">
+                                    <div *ngIf="celular_propietario.errors.required">*El campo es
                                       requerido</div>
-                                    <div *ngIf="numero_celular.errors.minlength">
+                                    <div *ngIf="celular_propietario.errors.minlength">
                                      *El campo debe tener minimo
-                                        {{ numero_celular.errors.minlength.requiredLength }}
+                                        {{ celular_propietario.errors.minlength.requiredLength }}
                                           caracteres
                                          </div>
-                                        <div *ngIf="numero_celular.errors.pattern">
+                                        <div *ngIf="celular_propietario.errors.pattern">
                                        *Este campo no acepta texto ni espacios
                                         </div>
                                     </div>
