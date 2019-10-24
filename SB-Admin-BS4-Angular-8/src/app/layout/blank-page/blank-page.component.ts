@@ -9,7 +9,8 @@ import { ServicioDomestico } from '../../shared/Models/serviciodomestico';
 import { Inmobiliaria } from '../../shared/Models/inmobiliaria';
 import { Administracion } from '../../shared/Models/administracion';
 import { ParametricosService } from 'src/app/shared/services/parametricos.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { PropiedadesService } from 'src/app/shared/services/propiedades.service';
 class RegistroApartamento {
     public datosBasicos: any;
     public propietario: any;
@@ -38,7 +39,11 @@ export class BlankPageComponent implements OnInit {
     public opcion_departamentos: Array<any>;
     public tipos_documento: Array<any>;
 
-    constructor(private _ngbModal_srv: NgbModal, public _parametricos_srv: ParametricosService ) {}
+    constructor(
+        private _ngbModal_srv: NgbModal,
+        public _parametricos_srv: ParametricosService,
+        private _propiedades_srv: PropiedadesService,
+        private _route: ActivatedRoute ) {}
 
     public propietario: Propietario;
     public vehiculo: Vehiculo;
@@ -79,6 +84,21 @@ export class BlankPageComponent implements OnInit {
             console.log(tiposDocumento.results);
             this.tipos_documento = tiposDocumento.results;
         });
+
+
+
+
+        this._route.paramMap.subscribe(params => {
+            const id_propiedad: Number = Number(params.get('id'));
+
+                this._propiedades_srv.getPropiedad(id_propiedad).subscribe((response) => {
+                    console.log(response);
+                    this.propietario.tipo_documento = response.tipo_documento_propietario;
+                    this.propietario.nombres_apellidos = response.nombre_propietario;
+                });
+
+
+          });
 
     }
     public departamentoChange() {
